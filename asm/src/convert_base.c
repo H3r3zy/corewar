@@ -5,13 +5,13 @@
 ** Login   <desnos_m@epitech.net>
 **
 ** Started on  Wed Oct 12 22:26:31 2016 Maximilien Desnos
-** Last update Fri Mar 24 18:44:32 2017 Maximilien Desnos
+** Last update Fri Mar 24 18:38:53 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
 #include	"my.h"
 
-int		my_pos(char *str, char c)
+static int	my_pos(char *str, char c)
 {
   int		i;
 
@@ -21,17 +21,12 @@ int		my_pos(char *str, char c)
   return (i);
 }
 
-int		count_size_base(unsigned int nbr, char *base, int size)
+static int	count_size_base(unsigned int nbr, char *base, int size)
 {
   long int	i;
   int		ret;
 
   i = 1;
-  if (nbr < 0)
-    {
-      size++;
-      nbr = nbr * -1;
-    }
   while (i <= nbr)
     i = i * my_strlen(base);
   if (i == 1)
@@ -50,7 +45,7 @@ int		count_size_base(unsigned int nbr, char *base, int size)
   return (size);
 }
 
-char		*ret_nbr_base(unsigned int nbr,
+static char	*ret_nbr_base(unsigned int nbr,
 			      char *base, char *nbr_base, int end)
 {
   long int	i;
@@ -79,12 +74,12 @@ char		*ret_nbr_base(unsigned int nbr,
   return (nbr_base);
 }
 
-unsigned int	my_getnbr_base(char *str, char *base)
+static unsigned int	my_getnbr_base(char *str, char *base)
 {
-  int		i;
-  int		end;
-  unsigned int	nb;
-  int		ba;
+  int			i;
+  int			end;
+  unsigned int		nb;
+  int			ba;
 
   nb = 0;
   ba = my_strlen(base) - 1;
@@ -100,7 +95,7 @@ unsigned int	my_getnbr_base(char *str, char *base)
   return (nb);
 }
 
-char		*convert_base(char *nbr, char *base_from, char *base_to)
+char	*convert_base(char *nbr, char *base_from, char *base_to)
 {
   unsigned int	nbr_int;
   int		size;

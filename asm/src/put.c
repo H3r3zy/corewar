@@ -5,10 +5,11 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Wed Jan  4 14:38:20 2017 Maximilien Desnos
-** Last update Thu Jan 19 18:27:46 2017 Maximilien Desnos
+** Last update Fri Mar 24 18:47:33 2017 Sahel Lucas--Saoudi
 */
 
 #include	<unistd.h>
+#include	"my.h"
 
 void		my_putchar(char c, int i)
 {
@@ -17,12 +18,5 @@ void		my_putchar(char c, int i)
 
 void		my_putstr(char *str, int j)
 {
-  int		i;
-
-  i = 0;
-  while (str[i] != '\0')
-    {
-      my_putchar(str[i], j);
-      i++;
-    }
+  write(j, str, my_strlen(str));
 }

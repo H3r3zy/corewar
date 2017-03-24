@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 17:20:31 2017 Maximilien Desnos
-** Last update Fri Mar 24 18:23:00 2017 Maximilien Desnos
+** Last update Fri Mar 24 18:46:20 2017 Sahel Lucas--Saoudi
 */
 
 #include	<unistd.h>
@@ -16,7 +16,7 @@
 #include	"get_next_line.h"
 #include	"my.h"
 
-int		count_line(char *av)
+static int	count_line(char *av)
 {
   int		fd;
   char		buf[2];
@@ -34,7 +34,7 @@ int		count_line(char *av)
   return (i);
 }
 
-void		remp_tab(char *av, char **tab)
+static void	remp_tab(char *av, char **tab)
 {
   int		i;
   int		fd;

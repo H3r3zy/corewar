@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Tue Jan 17 12:01:16 2017 Maximilien Desnos
-** Last update Tue Feb 14 15:34:35 2017 maximilien desnos
+** Last update Fri Mar 24 18:45:14 2017 Sahel Lucas--Saoudi
 */
 
 #include        <unistd.h>
@@ -15,7 +15,7 @@
 #include        <fcntl.h>
 #include        "get_next_line.h"
 
-int		my_strleng(char *str, int b)
+static int	my_strleng(char *str, int b)
 {
   int		i;
 
@@ -27,7 +27,7 @@ int		my_strleng(char *str, int b)
   return (i);
 }
 
-int		my_strcpy(char *d, char *str, int i)
+static int	my_strcpy(char *d, char *str, int i)
 {
   while (str[i] != '\0' && str[i] != '\n')
     {
@@ -37,7 +37,7 @@ int		my_strcpy(char *d, char *str, int i)
   return (i);
 }
 
-char		*my_realoc(char *str, char *ad, int *a, int *b)
+static char	*my_realoc(char *str, char *ad, int *a, int *b)
 {
   int		i;
   int		j;
@@ -63,7 +63,7 @@ char		*my_realoc(char *str, char *ad, int *a, int *b)
   return (d);
 }
 
-char		*princ(char *str, int size, int fd, int *b)
+static char	*princ(char *str, int size, int fd, int *b)
 {
   static char	buf[READ_SIZE + 1];
   static int	a = 0;

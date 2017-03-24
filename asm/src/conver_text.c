@@ -5,13 +5,13 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 17:03:34 2017 Maximilien Desnos
-** Last update Fri Mar 24 17:03:46 2017 Maximilien Desnos
+** Last update Fri Mar 24 18:45:38 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
 #include	<my.h>
 
-char		*convert_char(char c, char *conv)
+static char	*convert_char(char c, char *conv)
 {
   int		i;
   int		j;

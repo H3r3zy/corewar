@@ -5,7 +5,7 @@
 ## Login   <desnos_m@epitech.net>
 ## 
 ## Started on  Mon Feb 13 15:09:13 2017 maximilien desnos
-## Last update Fri Mar 24 18:44:05 2017 Maximilien Desnos
+## Last update Fri Mar 24 18:40:14 2017 Sahel Lucas--Saoudi
 ##
 
 SRC	=	src/main.c		\
@@ -34,10 +34,12 @@ all: $(NAME)
 $(NAME) :	$(OBJ)
 	gcc -g -ggdb3 -o $(NAME) $(OBJ) $(CFLAGS)
 
-clean:
+fclean: clean
 	rm -f $(NAME)
 
-fclean: clean
+clean:
 	rm -f $(OBJ)
 
 re: fclean all
+
+.PHONY:	all, fclean, clean, re

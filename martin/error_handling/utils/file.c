@@ -5,13 +5,14 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 19:06:59 2017 Martin Van Elslande
-** Last update Fri Mar 24 19:11:40 2017 Martin Van Elslande
+** Last update Fri Mar 24 20:00:12 2017 Martin Januario
 */
 
 #include	<fcntl.h>
 #include	<unistd.h>
 #include	"utils.h"
 #include	"parse.h"
+#include	"my_string.h"
 
 int		check_folder(char *file)
 {

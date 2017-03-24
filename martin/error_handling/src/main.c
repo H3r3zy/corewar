@@ -5,15 +5,17 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Thu Mar 23 19:23:53 2017 Martin Van Elslande
-** Last update Fri Mar 24 19:13:01 2017 Martin Van Elslande
+** Last update Fri Mar 24 20:24:11 2017 Martin Januario
 */
 
 #include	<unistd.h>
 #include	<fcntl.h>
 #include	"utils.h"
 #include	"parse.h"
+#include	"my_string.h"
+#include	"get_next_line.h"
 
-int	help(int out, int ret)
+int		help(int out, int ret)
 {
   my_putstr(out, "USAGE\n");
   my_putstr(out, "\t./asm file_name[.s]\n\n");
@@ -24,30 +26,47 @@ int	help(int out, int ret)
   return (ret);
 }
 
-int	check_line(char *line)
+int		my_filelen(int fd)
 {
-  int	i;
+  t_buffer	buffer;
+  char		*str;
+  int		idx;
 
-  i = 0;
-  while (line[i] && line[i] != '#')
-    {
-      
-    }
+  idx = 0;
+  ini_gnl(&buffer);
+  while ((str = get_nect_line(fd, &buffer)) != NULL)
+    idx++;
+  return (idx);
 }
 
-int	read_file(int fd)
+int		read_file(int fd)
 {
-  char	*line;
+  t_buffer	buffer;
+  int		size;
+  char		**champ;
+  int		idx;
 
-  while (line = get_next_line(fd))
+  ini_gnl(&buffer);
+  idx = 0;
+  if ((size = my_filelen(fd)) == 0)
+    return (0);
+  if ((champ = malloc(sizeof(char *) * (size + 1))) == NULL)
+    return (1);
+  while ((champ[idx] = get_next_line(fd, &buffer)) != NULL)
     {
-      if (!check_line(line))
-	return (my_putstr(2, "MESSAGE A MODIFIER\n"));
-      
+      if (my_strlen(champ[idx]) != 0)
+	{
+	  if (!check_line(champ[idx], idx))
+	    return (0);
+	  idx++;
+	  champ[idx] = NULL;
+	}
     }
+  champ[idx] = NULL;
+  return (1);
 }
 
-int	main(int ac, char **av)
+int		main(int ac, char **av)
 {
   if (ac != 2)
     return (help(2, 84));

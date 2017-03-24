@@ -1,0 +1,54 @@
+##
+## Makefile for  in /home/januar_m/delivery/CPE/CPE_2016_corewar/martin/error_handling
+## 
+## Made by Martin Januario
+## Login   <martin.januario@epitech.eu>
+## 
+## Started on  Fri Mar 24 19:22:19 2017 
+## Last update Fri Mar 24 20:29:28 2017 Martin Januario
+##
+
+SRC	=	src/main.c			\
+		src/check_line.c		\
+		src/op.c
+
+BASICS	=	utils/my_strlen.c		\
+		utils/my_putstr.c		\
+		utils/match.c			\
+		utils/disp_tab.c		\
+		utils/my_tablen.c		\
+		utils/file.c			\
+		utils/my_str_to_wordtab.c	\
+		utils/free_tab.c		\
+		utils/my_free.c			\
+		utils/my_strcmp.c
+
+GNL	=	gnl/get_next_line.c		\
+		gnl/ini_gnl.c
+
+OBJ	=	$(SRC:.c=.o)			\
+		$(GNL:.c=.o)			\
+		$(BASICS:.c=.o)
+
+CFLAGS	=	-Wall -Wextra -I include/
+
+NAME	=	pars_me
+
+all:		$(NAME)
+
+debug:		CFLAGS += -ggdb3
+
+debug:		fclean all
+
+$(NAME):	$(OBJ)
+		gcc -o $(NAME) $(OBJ)
+
+clean:
+		rm -f $(OBJ)
+
+fclean:		clean
+		rm -f $(NAME)
+
+re:		fclean all
+
+.PHONY:		all debug clean fclean re

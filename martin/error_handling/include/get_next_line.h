@@ -1,25 +1,26 @@
 /*
-** get_next_line.h for get_next_line in /home/tsuna/Epitech/projects/prog_elem/GNL/CPE_2016_getnextline
+** get_next_line.h for  in /home/januar_m/delivery/CPE/CPE_2016_matchstick
 ** 
-** Made by Martin Van Elslande
-** Login   <martin.van-elslande@epitech.eu>
+** Made by Martin Januario
+** Login   <martin.januario@epitech.eu>
 ** 
-** Started on  Mon Jan  2 23:38:58 2017 Martin Van Elslande
-** Last update Sun Jan 15 17:08:25 2017 Martin Van Elslande
+** Started on  Mon Feb 13 15:01:20 2017 
+** Last update Fri Mar 24 19:59:53 2017 Martin Januario
 */
 
-#ifndef	READ_SIZE
-# define	READ_SIZE 42
-#endif	/* !READ_SIZE */
+#ifndef GET_NEXT_LINE_H_
+# define GET_NEXT_LINE_H_
 
-#ifndef	GET_LINE_
-# define	GET_LINE_
+# define	READ_SIZE (42)
 
-typedef	struct	s_next_line
+typedef struct	s_buffer
 {
-  char		buff[READ_SIZE + 1];
-  int		i;
-  int		bytes;
-}		t_next_line;
+  char		buffer[READ_SIZE + 1];
+  int		idx;
+  int		size;
+}		t_buffer;
 
-#endif	/* !READ_SIZE */
+char		*get_next_line(int, t_buffer *);
+void		ini_gnl(t_buffer *);
+
+#endif /* !GET_NEXT_LINE_H_ */

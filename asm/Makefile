@@ -5,7 +5,7 @@
 ## Login   <maximilien.desnos@epitech.eu>
 ## 
 ## Started on  Sat Mar 25 15:40:03 2017 maximilien desnos
-## Last update Sat Mar 25 15:46:04 2017 maximilien desnos
+## Last update Sat Mar 25 18:56:35 2017 maximilien desnos
 ##
 
 SRC	=	src/main.c		\
@@ -13,7 +13,11 @@ SRC	=	src/main.c		\
 		src/op.c		\
 		src/recup_lines.c	\
 		src/check_label.c	\
+		src/recup_op.c		\
+		src/my_strcmp.c		\
+		src/recup_args.c	\
 		src/convert_base.c	\
+		src/my_str_to_wordtab.c	\
 		src/my_nbr_to_str.c	\
 		src/recup_file.c	\
 		src/my_strlen.c		\

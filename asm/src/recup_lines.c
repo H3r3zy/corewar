@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 15:07:35 2017 maximilien desnos
-** Last update Sat Mar 25 18:16:25 2017 maximilien desnos
+** Last update Sat Mar 25 19:45:30 2017 maximilien desnos
 */
 
 #include	<stdlib.h>
@@ -34,7 +34,8 @@ void		find_info(char *fd, t_line *op)
   int		lb;
 
   lb = check_label(fd, op);
-  recup_args(fd, op, ld);
+  recup_args(fd, op, lb);
+  recup_op(fd, op, lb);
 }
 
 void		recup_lines(t_line *op, char **fd)
@@ -45,6 +46,7 @@ void		recup_lines(t_line *op, char **fd)
   i = 2;
   if ((op2 = malloc(sizeof(t_line))) == NULL)
     exit(84);
+  op->arg = NULL;
   while (fd[i] != NULL)
     {
       find_info(fd[i], op2);

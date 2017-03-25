@@ -1,11 +1,11 @@
 /*
-** my_nbr_to_str.c for my_nbr_to_str in /home/desnos_m/PSU_2016_my_printf
+** my_nbr_to_str.c for corewar in /home/desnosm/rendu/Progelem/CPE_2016_corewar/asm
 **
 ** Made by maximilien desnos
-** Login   <desnos_m@epitech.net>
+** Login   <maximilien.desnos@epitech.eu>
 **
-** Started on  Wed Nov 16 15:44:30 2016 maximilien desnos
-** Last update Fri Mar 24 18:44:49 2017 Maximilien Desnos
+** Started on  Sat Mar 25 18:31:25 2017 maximilien desnos
+** Last update Sat Mar 25 18:31:27 2017 maximilien desnos
 */
 
 #include	<stdlib.h>

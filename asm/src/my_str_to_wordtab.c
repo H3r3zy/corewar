@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 16:00:10 2017 maximilien desnos
-** Last update Sat Mar 25 16:02:17 2017 maximilien desnos
+** Last update Sat Mar 25 18:35:34 2017 maximilien desnos
 */
 
 #include	<stdlib.h>
@@ -22,7 +22,7 @@ int		count_space(char *str)
       {
 	if (str[i] == ',')
 	  {
-	    while (str[i] == ',')
+	    while (str[i] == ','  || str[i] == ' ' || str[i] == '\t')
 	      i++;
 	    j++;
 	  }
@@ -34,7 +34,7 @@ int		count_space(char *str)
 
 int		sin_space(int i, char *str)
 {
-  while (str[i] == ',')
+  while (str[i] == ',' || str[i] == ' ' || str[i] == '\t')
     i++;
   return (i);
 }

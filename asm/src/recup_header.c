@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 18:29:45 2017 Maximilien Desnos
-** Last update Sat Mar 25 18:13:59 2017 maximilien desnos
+** Last update Sat Mar 25 18:31:54 2017 maximilien desnos
 */
 
 #include	<sys/types.h>
@@ -86,7 +86,6 @@ static void		remp_fd(header_t *hd, int fd)
       i++;
     }
   j = my_strlen(hd->comment);
-  printf("%s\n", hd->comment);
   write(fd, hd->comment, j);
   while (j < 2048)
     {

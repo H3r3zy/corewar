@@ -5,13 +5,23 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 17:13:56 2017 Maximilien Desnos
-** Last update Fri Mar 24 20:07:25 2017 Maximilien Desnos
+** Last update Sat Mar 25 13:58:24 2017 Sahel Lucas--Saoudi
 */
 
 #ifndef MY_H_
 # define MY_H_
 
 # include "op.h"
+
+struct		s_line
+{
+  op_t		*op;
+  char		*arg;
+  char		*label;
+  int		byte;
+  t_line	*previous;
+  t_line	*next;
+}		t_line
 
 int		recup_pos_name(char **);
 int		count_size_header_str(char *);

@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 15:07:35 2017 maximilien desnos
-** Last update Sat Mar 25 15:40:49 2017 maximilien desnos
+** Last update Sat Mar 25 18:16:25 2017 maximilien desnos
 */
 
 #include	<stdlib.h>
@@ -31,8 +31,10 @@ static void	add_op(t_line *op, t_line *op2)
 
 void		find_info(char *fd, t_line *op)
 {
-  op->arg = my_strdup(fd);
-  check_label(fd, op);
+  int		lb;
+
+  lb = check_label(fd, op);
+  recup_args(fd, op, ld);
 }
 
 void		recup_lines(t_line *op, char **fd)

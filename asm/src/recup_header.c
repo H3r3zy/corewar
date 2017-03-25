@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 18:29:45 2017 Maximilien Desnos
-** Last update Fri Mar 24 22:07:44 2017 Maximilien Desnos
+** Last update Sat Mar 25 18:13:59 2017 maximilien desnos
 */
 
 #include	<sys/types.h>
@@ -95,7 +95,7 @@ static void		remp_fd(header_t *hd, int fd)
     }
 }
 
-void			recup_header(char **tab, header_t *hd)
+int			recup_header(char **tab, header_t *hd)
 {
   int		fd;
   char		*name;

@@ -1,15 +1,18 @@
 ##
-## Makefile for Makefile in /home/desnos_m/rendu/Progelem/CPE_2016_matchstick
+## Makefile for corewar in /home/desnosm/rendu/Progelem/CPE_2016_corewar/asm
 ## 
 ## Made by maximilien desnos
-## Login   <desnos_m@epitech.net>
+## Login   <maximilien.desnos@epitech.eu>
 ## 
-## Started on  Mon Feb 13 15:09:13 2017 maximilien desnos
-## Last update Fri Mar 24 22:01:03 2017 Maximilien Desnos
+## Started on  Sat Mar 25 15:40:03 2017 maximilien desnos
+## Last update Sat Mar 25 15:46:04 2017 maximilien desnos
 ##
 
 SRC	=	src/main.c		\
 		src/conver_text.c	\
+		src/op.c		\
+		src/recup_lines.c	\
+		src/check_label.c	\
 		src/convert_base.c	\
 		src/my_nbr_to_str.c	\
 		src/recup_file.c	\

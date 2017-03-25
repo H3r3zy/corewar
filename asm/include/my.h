@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 17:13:56 2017 Maximilien Desnos
-** Last update Sat Mar 25 13:58:24 2017 Sahel Lucas--Saoudi
+** Last update Sat Mar 25 14:33:25 2017 Sahel Lucas--Saoudi
 */
 
 #ifndef MY_H_
@@ -19,9 +19,9 @@ struct		s_line
   char		*arg;
   char		*label;
   int		byte;
-  t_line	*previous;
-  t_line	*next;
-}		t_line
+  struct s_line	*previous;
+  struct s_line	*next;
+}		t_line;
 
 int		recup_pos_name(char **);
 int		count_size_header_str(char *);

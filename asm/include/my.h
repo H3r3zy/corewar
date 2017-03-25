@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 17:13:56 2017 Maximilien Desnos
-** Last update Sat Mar 25 14:49:48 2017 Sahel Lucas--Saoudi
+** Last update Sat Mar 25 15:04:34 2017 Sahel Lucas--Saoudi
 */
 
 #ifndef MY_H_
@@ -25,6 +25,7 @@ typedef struct	s_line
 
 int		recup_pos_name(char **);
 int		count_size_header_str(char *);
+int		match(char *, char *);
 char		**recup_file(char *);
 char		*conver_text(char *);
 char		*my_nbr_to_str(int);

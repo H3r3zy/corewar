@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 17:03:34 2017 Maximilien Desnos
-** Last update Fri Mar 24 18:45:38 2017 Sahel Lucas--Saoudi
+** Last update Fri Mar 24 20:22:34 2017 Maximilien Desnos
 */
 
 #include	<stdlib.h>
@@ -19,7 +19,7 @@ static char	*convert_char(char c, char *conv)
   int		k;
   char		*base;
 
-  base = "0123456789ABCDEF";
+  base = "0123456789abcdef";
   j = 1;
   k = 0;
   while (j <= c)

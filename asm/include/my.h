@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 17:13:56 2017 Maximilien Desnos
-** Last update Fri Mar 24 18:35:06 2017 Sahel Lucas--Saoudi
+** Last update Fri Mar 24 20:07:25 2017 Maximilien Desnos
 */
 
 #ifndef MY_H_
@@ -13,6 +13,8 @@
 
 # include "op.h"
 
+int		recup_pos_name(char **);
+int		count_size_header_str(char *);
 char		**recup_file(char *);
 char		*conver_text(char *);
 char		*my_nbr_to_str(int);

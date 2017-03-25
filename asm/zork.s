@@ -6,8 +6,8 @@
 # Sat Nov 10 03:24:30 2081
 #
 
-.comment "just a basic living prog"
 .name "zork"
+.comment "just a basic living prog"
 
 l2:
 sti r1.%:live.%1

@@ -5,7 +5,7 @@
 ## Login   <desnos_m@epitech.net>
 ## 
 ## Started on  Mon Feb 13 15:09:13 2017 maximilien desnos
-## Last update Fri Mar 24 18:40:14 2017 Sahel Lucas--Saoudi
+## Last update Fri Mar 24 22:01:03 2017 Maximilien Desnos
 ##
 
 SRC	=	src/main.c		\
@@ -15,17 +15,18 @@ SRC	=	src/main.c		\
 		src/recup_file.c	\
 		src/my_strlen.c		\
 		src/get_next_line.c	\
+		src/count_size_header_str.c\
 		src/put.c		\
 		src/recup_header.c	\
 		src/free_tab.c		\
 		src/verif_line.c	\
 		src/my_power_rec.c	\
 		src/aff_tab.c		\
-		src/my_strdup.c		\
+		src/my_strdup.c
 
 OBJ	=	$(SRC:.c=.o)
 
-CFLAGS	=	-Wextra -Wall -pedantic -ansi -I include
+CFLAGS	=	-Wextra -Wall -I include -g
 
 NAME	=	asm
 

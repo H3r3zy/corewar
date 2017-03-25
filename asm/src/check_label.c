@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 15:30:07 2017 maximilien desnos
-** Last update Sat Mar 25 15:45:35 2017 maximilien desnos
+** Last update Sat Mar 25 15:50:57 2017 maximilien desnos
 */
 
 #include	"op.h"
@@ -13,5 +13,5 @@
 
 void		check_label(char *fd, t_line *op)
 {
-  printf("%s\n", op_tab[0].mnemonique);
+
 }

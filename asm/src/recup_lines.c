@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 15:07:35 2017 maximilien desnos
-** Last update Sun Mar 26 18:54:56 2017 Sahel Lucas--Saoudi
+** Last update Sun Mar 26 21:58:04 2017 maximilien desnos
 */
 
 #include	<stdlib.h>
@@ -40,18 +40,18 @@ void		find_info(char *fd, t_line *op)
     {
       set_byte(op);
       remp_int(op);
-      //printf(":%d:\n", op->op.code);
+      /*printf(":%d:\n", op->op.code);
       write(1, &op->op.code, sizeof(char));
       if (op->have_cb == 1)
 	write(1, &op->cb, sizeof(char));
       int i = 0;
       while (op->arg[i])
 	{
-	  //printf("new arg\n"); 
+	  //printf("new arg\n");
 	  write(1, &op->ret[i], op->byte[i]);
 	  i++;
 	}
-      //printf("bite\n");
+	//printf("bite\n");*/
     }
 }
 
@@ -61,6 +61,7 @@ void		recup_lines(t_line *op, char **fd)
   int		i;
 
   i = 2;
+  op->nb_bytes_tot = 0;
   if ((op2 = malloc(sizeof(t_line))) == NULL)
     exit(84);
   op->arg = NULL;
@@ -68,6 +69,7 @@ void		recup_lines(t_line *op, char **fd)
     {
       find_info(fd[i], op2);
       add_op(op, op2);
+      op->nb_bytes_tot = op->nb_bytes_tot + bytes;
       i++;
     }
 }

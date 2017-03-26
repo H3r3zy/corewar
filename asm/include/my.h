@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 17:13:56 2017 Maximilien Desnos
-** Last update Sun Mar 26 19:17:42 2017 maximilien desnos
+** Last update Sun Mar 26 18:25:16 2017 Sahel Lucas--Saoudi
 */
 
 #ifndef MY_H_
@@ -19,8 +19,10 @@ typedef struct	s_line
   char		**arg;
   char		*label;
   char		*write;
+  char		cb;
+  char		have_cb;
   int		bytes;
-  int		*byte;
+  int		byte[MAX_ARGS_NUMBER];
   unsigned int	*ret;
   struct s_line	*previous;
   struct s_line	*next;
@@ -46,6 +48,7 @@ char		*my_strdup(char *);
 void		my_putchar(char, int);
 void		remp_int(t_line *);
 void		my_putstr(char *, int);
+void		set_byte(t_line *);
 void		aff_tab(char **);
 void		recup_op(char *, t_line *, int);
 void		recup_args(char *, t_line *, int);

@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 18:43:31 2017 maximilien desnos
-** Last update Sat Mar 25 19:43:49 2017 maximilien desnos
+** Last update Sat Mar 25 19:47:57 2017 maximilien desnos
 */
 
 #include	<stdlib.h>
@@ -86,8 +86,5 @@ void		recup_op(char *fd, t_line *op, int lb)
   if (j > 0)
     remp_op(fct, op);
   else
-    {
-      printf("ok\n");
-      op->op.mnemonique = NULL;
-    }
+    op->op.mnemonique = NULL;
 }

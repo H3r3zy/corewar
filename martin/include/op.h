@@ -5,7 +5,7 @@
 ** Login   <astek@epitech.net>
 **
 ** Started on  Mon Mar 30 11:14:31 2009 Astek
-** Last update Tue Mar 22 16:44:20 2011 Astek
+** Last update Sat Mar 25 13:37:47 2017 Martin Januario
 */
 
 #ifndef _OP_H_
@@ -16,7 +16,7 @@
 # define MAX_ARGS_NUMBER         4     /* this may not be changed 2^*IND_SIZE */
 
 # define COMMENT_CHAR            '#'
-# define LABEL_CHAR              ':'
+# define LABEL_CHAR              ':' // Check si ils sont present ou si il y a des doublons
 # define DIRECT_CHAR             '%'
 # define SEPARATOR_CHAR          ','
 

@@ -5,22 +5,29 @@
 ## Login   <martin.januario@epitech.eu>
 ## 
 ## Started on  Fri Mar 24 19:22:19 2017 
-## Last update Fri Mar 24 20:29:28 2017 Martin Januario
+## Last update Sat Mar 25 15:02:40 2017 Martin Januario
 ##
 
 SRC	=	src/main.c			\
 		src/check_line.c		\
+		src/check_command.c		\
+		src/check_type.c		\
 		src/op.c
 
 BASICS	=	utils/my_strlen.c		\
 		utils/my_putstr.c		\
 		utils/match.c			\
 		utils/disp_tab.c		\
+		utils/parse_.c			\
+		utils/my_strcpy.c		\
 		utils/my_tablen.c		\
+		utils/my_str_is_num.c		\
+		utils/my_strdup.c		\
 		utils/file.c			\
 		utils/my_str_to_wordtab.c	\
 		utils/free_tab.c		\
 		utils/my_free.c			\
+		utils/my_str_is_alpha.c		\
 		utils/my_strcmp.c
 
 GNL	=	gnl/get_next_line.c		\

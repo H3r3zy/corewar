@@ -5,11 +5,11 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Mon Feb 27 14:44:41 2017 
-** Last update Sun Mar 12 21:06:25 2017 
+** Last update Fri Mar 24 20:40:43 2017 Martin Januario
 */
 
 #include	<stdlib.h>
-#include	"my.h"
+#include	"my_string.h"
 
 char	*my_strdup(char *src)
 {

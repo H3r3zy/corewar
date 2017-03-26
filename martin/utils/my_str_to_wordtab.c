@@ -5,18 +5,21 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Wed Jan  4 20:41:11 2017 
-** Last update Wed Mar 15 16:48:50 2017 
+** Last update Sat Mar 25 13:12:10 2017 Martin Januario
 */
 
 #include	<stdlib.h>
-#include	"my.h"
+#include	"my_string.h"
+#include	"op.h"
 
 int		skip_space(char *str)
 {
   int		idx;
 
   idx = 0;
-  while (str[idx] != '\0' && (str[idx] == ' ' || str[idx] == '\t'))
+  while (str[idx] != '\0' &&
+	 (str[idx] == ' ' || str[idx] == '\t' ||
+	  str[idx] == SEPARATOR_CHAR))
     idx++;
   return (idx);
 }
@@ -31,7 +34,8 @@ int		width_word(char *str, int cpt, int opt)
   dquote = 0;
   save = cpt;
   while (str[cpt] != '\0' &&
-	 ((str[cpt] != ' ' && str[cpt] != '\t') ||
+	 ((str[cpt] != ' ' && str[cpt] != '\t' &&
+	   str[cpt] != SEPARATOR_CHAR) ||
 	  (((dquote > 0 && dquote % 2 != 0) ||
 			       (quote > 0 && quote % 2 != 0)) && opt == 0)))
     {

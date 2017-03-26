@@ -5,10 +5,11 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 20:27:32 2017 Martin Januario
-** Last update Fri Mar 24 20:28:44 2017 Martin Januario
+** Last update Fri Mar 24 20:42:17 2017 Martin Januario
 */
 
 #include	<stdlib.h>
+#include	"my_string.h"
 
 int		free_tab(char **tab)
 {

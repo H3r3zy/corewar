@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 15:07:35 2017 maximilien desnos
-** Last update Sun Mar 26 18:29:37 2017 Sahel Lucas--Saoudi
+** Last update Sun Mar 26 20:40:20 2017 maximilien desnos
 */
 
 #include	<stdlib.h>
@@ -36,9 +36,11 @@ void		find_info(char *fd, t_line *op)
   lb = check_label(fd, op);
   recup_args(fd, op, lb);
   recup_op(fd, op, lb);
-  remp_int(op);
   if (op->op.mnemonique)
-    set_byte(op);
+    {
+      set_byte(op);
+      remp_int(op);
+    }
 }
 
 void		recup_lines(t_line *op, char **fd)

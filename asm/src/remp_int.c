@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sun Mar 26 18:18:57 2017 maximilien desnos
-** Last update Sun Mar 26 20:17:24 2017 maximilien desnos
+** Last update Sun Mar 26 20:46:43 2017 maximilien desnos
 */
 
 #include	<stdlib.h>
@@ -26,18 +26,20 @@ static void	change_overf(int i, unsigned int nb, t_line *op)
   if (nb < 0)
     while (nb < 0)
       nb = nb + tmp;
-  op->ret = nb;
+  op->ret[i] = nb;
 }
 
 static void	recup_reg(char *arg, t_line *op, int j)
 {
+  int		size;
   int		i;
   char		*tmp;
 
   i = 0;
+  size = 0;
   while (arg[i + 1] != '\0')
     i++;
-  if ((op->ret = malloc(sizeof(char) * (i + 1))) == NULL)
+  if ((tmp = malloc(sizeof(char) * (i + 1))) == NULL)
     exit(84);
   i = 1;
   while (arg[i] != '\0')
@@ -57,7 +59,7 @@ static void	recup_dir(char *arg, t_line *op, int j)
   i = 0;
   while (arg[i + 1] != '\0')
     i++;
-  if ((op->ret = malloc(sizeof(char) * (i + 1))) == NULL)
+  if ((tmp = malloc(sizeof(char) * (i + 1))) == NULL)
     exit(84);
   i = 1;
   while (arg[i] != '\0')

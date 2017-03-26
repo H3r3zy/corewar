@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 17:13:56 2017 Maximilien Desnos
-** Last update Sat Mar 25 18:57:41 2017 maximilien desnos
+** Last update Sun Mar 26 15:19:15 2017 Sahel Lucas--Saoudi
 */
 
 #ifndef MY_H_
@@ -18,7 +18,9 @@ typedef struct	s_line
   op_t		op;
   char		**arg;
   char		*label;
-  int		byte;
+  char		*write;
+  int		bytes;
+  int		*byte;
   struct s_line	*previous;
   struct s_line	*next;
 }		t_line;

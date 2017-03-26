@@ -1,8 +1,8 @@
 .name		"bouh"
 .comment	"allo"
 
-	live %0
-start: sti r1, %:live, %1
+	live %0 // live : 01 / %0 : 00 00 00 00 -> %0 : DIRECT (4 bytes)
+start: sti r1, %:live, %1 // sti : 0b / r1 : 68 -> REG (pdf 1 byte)
 wall: st r8,-400
     fork %:live
     live %42

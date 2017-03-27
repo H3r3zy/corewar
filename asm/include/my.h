@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 17:13:56 2017 Maximilien Desnos
-** Last update Sun Mar 26 18:25:16 2017 Sahel Lucas--Saoudi
+** Last update Sun Mar 26 21:58:36 2017 maximilien desnos
 */
 
 #ifndef MY_H_
@@ -21,6 +21,7 @@ typedef struct	s_line
   char		*write;
   char		cb;
   char		have_cb;
+  int		nb_bytes_tot;
   int		bytes;
   int		byte[MAX_ARGS_NUMBER];
   unsigned int	*ret;

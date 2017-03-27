@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 15:07:35 2017 maximilien desnos
-** Last update Sun Mar 26 21:58:04 2017 maximilien desnos
+** Last update Mon Mar 27 15:21:23 2017 maximilien desnos
 */
 
 #include	<stdlib.h>
@@ -59,6 +59,8 @@ void		recup_lines(t_line *op, char **fd)
 {
   t_line	*op2;
   int		i;
+  int		j;
+  int		m;
 
   i = 2;
   op->nb_bytes_tot = 0;
@@ -72,4 +74,11 @@ void		recup_lines(t_line *op, char **fd)
       op->nb_bytes_tot = op->nb_bytes_tot + bytes;
       i++;
     }
+  /*  m = COREWAR_EXEC_MAGIC;
+  j = 0;
+  while (j < sizeof(int))
+    {
+
+      j++;
+      }*/
 }

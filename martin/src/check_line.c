@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 20:13:29 2017 Martin Januario
-** Last update Sun Mar 26 16:47:15 2017 Martin Januario
+** Last update Mon Mar 27 17:58:48 2017 Martin Van Elslande
 */
 
 #include	<stdlib.h>
@@ -51,4 +51,30 @@ int		check_line(char *line, int nb_line, t_label *label)
   if (nb_line <= 1)
     return (name_comment(line, nb_line));
   return (check_command(line, nb_line, label));
+}
+
+int		convert_and_check(char *line, int nb_line, t_label *label)
+{
+  char		**tab;
+  int		i;
+
+  i = 0;
+  while (line[i] != ' ' && line[i] != '\t')
+    i++;
+  if (line[i - 1] == ':')
+    {
+      if (!(tab = malloc(sizeof(char *) * 3)))
+	return (0);
+      if (!(tab[0] = my_strndup(line, i)))
+	return (0);
+      while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+	i++;
+      if (!(tab[1] = my_strdup(&line[i])))
+	return (0);
+      if (!check_line(tab[0], nb_line, label) ||
+	  !check_line(tab[1], nb_line, label))
+	return (0);
+      return (1);
+    }
+  return (check_line(line, nb_line, label));
 }

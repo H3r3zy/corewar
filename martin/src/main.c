@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Thu Mar 23 19:23:53 2017 Martin Van Elslande
-** Last update Sun Mar 26 22:38:18 2017 Martin Januario
+** Last update Mon Mar 27 17:58:33 2017 Martin Van Elslande
 */
 
 #include	<unistd.h>
@@ -69,10 +69,10 @@ int		read_file(int fd, t_label *label)
     return (1);
   while ((champ[idx] = get_next_line(fd, &buffer)) != NULL)
     {
-      if (my_strlen(champ[idx]) != 0 &&
-	  nb_space(champ[idx]) != my_strlen(champ[idx]) && line_is_comment(champ[idx]) == 0)
+      if (my_strlen(champ[idx]) && nb_space(champ[idx]) != my_strlen(champ[idx])
+	  && !line_is_comment(champ[idx]))
 	{
-	  if (check_line(champ[idx], idx, label) == 0)
+	  if (!convert_and_check(champ[idx], idx, label))
 	    return (0);
 	  idx++;
 	  champ[idx] = NULL;

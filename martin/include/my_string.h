@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 19:49:54 2017 Martin Januario
-** Last update Sun Mar 26 22:39:09 2017 Martin Januario
+** Last update Mon Mar 27 18:07:39 2017 Martin Van Elslande
 */
 
 #ifndef		MY_STRING_H_
@@ -15,7 +15,7 @@
 
 int		my_strlen(char *);
 int		my_str_is_num(char *);
-int		my_putstr(int, char *);
+int		my_putstr(int, char *, ...);
 int		my_strcmp(char *, char *);
 void		disp_tab(char **);
 int		match(char *, char *);
@@ -28,8 +28,12 @@ char		**my_str_to_wordtab(char *);
 int		free_tab(char **);
 void		my_free(char *);
 char		*my_strdup(char *);
+char		*my_strndup(char *, int);
 char		*my_strcpy(char *, char *);
+int		my_strncmp(char *, char *, int);
 int		my_str_is_alpha(char *);
+void		my_putchar(char);
 char		**parse_(char *, char);
+int		my_putnbr(int);
 
 #endif		/* !MY_STRING_H_ */

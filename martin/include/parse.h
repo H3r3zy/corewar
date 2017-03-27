@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 19:10:44 2017 Martin Van Elslande
-** Last update Sun Mar 26 20:54:08 2017 Martin Januario
+** Last update Mon Mar 27 18:06:46 2017 Martin Van Elslande
 */
 
 #ifndef		PARSE_H_
@@ -27,6 +27,7 @@ int             check_type_reg(char *, int);
 int             check_type_dir(char *, int, t_label *);
 int             check_label(char *, t_label *);
 int             check_command(char *, int, t_label *);
+int		convert_and_check(char *, int, t_label *);
 int		add_label(t_label *, char *);
 
 #endif		/* !PARSE_H_ */

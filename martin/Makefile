@@ -5,7 +5,7 @@
 ## Login   <martin.januario@epitech.eu>
 ## 
 ## Started on  Fri Mar 24 19:22:19 2017 
-## Last update Sun Mar 26 22:36:37 2017 Martin Januario
+## Last update Mon Mar 27 18:02:53 2017 Martin Van Elslande
 ##
 
 SRC	=	src/main.c			\
@@ -34,14 +34,17 @@ BASICS	=	utils/my_strlen.c		\
 		utils/free_tab.c		\
 		utils/my_free.c			\
 		utils/my_str_is_alpha.c		\
+		utils/my_strncmp.c		\
+		utils/my_putnbr.c		\
+		utils/my_putchar.c		\
 		utils/my_strcmp.c
 
 GNL	=	gnl/get_next_line.c		\
 		gnl/ini_gnl.c
 
-OBJ	=	$(SRC:.c=.o)			\
+OBJ	=	$(BASICS:.c=.o)			\
 		$(GNL:.c=.o)			\
-		$(BASICS:.c=.o)
+		$(SRC:.c=.o)
 
 CFLAGS	=	-Wall -Wextra -I include/
 

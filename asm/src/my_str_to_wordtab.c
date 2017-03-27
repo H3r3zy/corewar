@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 16:00:10 2017 maximilien desnos
-** Last update Sat Mar 25 18:35:34 2017 maximilien desnos
+** Last update Mon Mar 27 20:22:45 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
@@ -50,7 +50,7 @@ int		add_word_tab(int i, char *str, char **tab, int j)
   if ((tab[j] = malloc(sizeof(char) * (size + 1))) == NULL)
     exit(84);
   size = 0;
-  while (str[i] != '\0' && str[i] != ',')
+  while (str[i] != '\0' && str[i] != ',' && str[i] != ' ' && str[i] != '\t')
     {
       tab[j][size] = str[i];
       i = i + 1;

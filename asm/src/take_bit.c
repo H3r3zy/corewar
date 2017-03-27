@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Sat Mar 25 14:16:23 2017 Sahel Lucas--Saoudi
-** Last update Sun Mar 26 18:19:20 2017 Sahel Lucas--Saoudi
+** Last update Sun Mar 26 20:29:54 2017 Sahel Lucas--Saoudi
 */
 
 #include <stdlib.h>
@@ -95,23 +95,3 @@ void	set_byte(t_line *line)
   coding_byte[i * 2 - 1] = '\0';
   line->cb = transfo(coding_byte);
 }
-/*
-int	main()
-{
-  t_line	*l;
-
-  l = malloc(sizeof(t_line));
-  l->arg = malloc(sizeof(char *) * (4));
-  l->arg[0] = "r1";
-  l->arg[1] = "%0";
-  l->arg[2] = "r1";
-  l->arg[3] = NULL;
-  l->op = op_tab[5];
-  set_byte(l);
-  //printf("%d\n", l->byte);
-  write(1, &l->op.code, sizeof(char));
-  //write(1, "A", 1);
-  if (l->have_cb == 1)
-    write(1, &l->cb, sizeof(char));
-}
-*/

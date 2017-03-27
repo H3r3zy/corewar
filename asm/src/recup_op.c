@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 18:43:31 2017 maximilien desnos
-** Last update Sat Mar 25 19:47:57 2017 maximilien desnos
+** Last update Mon Mar 27 15:46:12 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
@@ -50,7 +50,7 @@ void		remp_op(char *fct, t_line *op)
       i++;
     }
   if (j == 0)
-    op->op.mnemonique = NULL;
+    op->exist = 0;
 }
 
 static int	verif_lb(char *fd, int i)
@@ -86,5 +86,5 @@ void		recup_op(char *fd, t_line *op, int lb)
   if (j > 0)
     remp_op(fct, op);
   else
-    op->op.mnemonique = NULL;
+    op->exist = 0;
 }

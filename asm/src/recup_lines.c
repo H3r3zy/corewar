@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 15:07:35 2017 maximilien desnos
-** Last update Mon Mar 27 15:21:23 2017 maximilien desnos
+** Last update Mon Mar 27 20:32:22 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
@@ -13,45 +13,53 @@
 
 static void	add_op(t_line *op, t_line *op2)
 {
-  if (op->arg == NULL)
-    {
-      op = op2;
-      op->next = NULL;
-      op->previous = NULL;
-    }
-  else
-    {
-      while (op->next != NULL)
-	op = op->next;
-      op->next = op2;
-      op2->previous = op;
-      op2->next = NULL;
-    }
+  while (op->next)
+    op = op->next;
+  op->next = op2;
+  op2->previous = op;
+  op2->next = NULL;
 }
 
-void		find_info(char *fd, t_line *op)
+static t_line	*find_info(char *fd)
 {
   int		lb;
+  static int	nb_line = 0;
+  t_line	*op;
 
+  op = malloc(sizeof(t_line));
+  op->exist = 1;
   lb = check_label(fd, op);
   recup_args(fd, op, lb);
   recup_op(fd, op, lb);
-  if (op->op.mnemonique)
+  op->line = nb_line;
+  nb_line++;
+  if (op->exist)
     {
       set_byte(op);
       remp_int(op);
-      /*printf(":%d:\n", op->op.code);
-      write(1, &op->op.code, sizeof(char));
-      if (op->have_cb == 1)
-	write(1, &op->cb, sizeof(char));
-      int i = 0;
-      while (op->arg[i])
+    }
+  return (op);
+}
+
+void		write_asm(t_line *op)
+{
+  int		i;
+
+  while (op)
+    {
+      if (op->exist)
 	{
-	  //printf("new arg\n");
-	  write(1, &op->ret[i], op->byte[i]);
-	  i++;
+	  write(1, &op->op.code, sizeof(char));
+	  if (op->have_cb == 1)
+	    write(1, &op->cb, sizeof(char));
+	  i = 0;
+	  while (op->arg[i])
+	    {
+	      write(1, &op->ret[i], op->byte[i]);
+	      i++;
+	    }
 	}
-	//printf("bite\n");*/
+      op = op->next;
     }
 }
 
@@ -67,18 +75,17 @@ void		recup_lines(t_line *op, char **fd)
   if ((op2 = malloc(sizeof(t_line))) == NULL)
     exit(84);
   op->arg = NULL;
+  op->previous = NULL;
+  op = find_info(fd[i]);
+  op->next = NULL;
+  op->previous = NULL;
   while (fd[i] != NULL)
     {
-      find_info(fd[i], op2);
+      op2 = find_info(fd[i]);
       add_op(op, op2);
-      op->nb_bytes_tot = op->nb_bytes_tot + bytes;
+      op->nb_bytes_tot = op->nb_bytes_tot + op->bytes;
       i++;
     }
-  /*  m = COREWAR_EXEC_MAGIC;
-  j = 0;
-  while (j < sizeof(int))
-    {
-
-      j++;
-      }*/
+  set_label(op);
+  write_asm(op);
 }

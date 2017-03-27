@@ -5,7 +5,7 @@
 ## Login   <maximilien.desnos@epitech.eu>
 ## 
 ## Started on  Sat Mar 25 15:40:03 2017 maximilien desnos
-## Last update Sun Mar 26 18:25:42 2017 Sahel Lucas--Saoudi
+## Last update Mon Mar 27 15:33:02 2017 Sahel Lucas--Saoudi
 ##
 
 SRC	=	src/main.c		\
@@ -33,7 +33,8 @@ SRC	=	src/main.c		\
 		src/aff_tab.c		\
 		src/my_strdup.c		\
 		src/take_bit.c		\
-		src/match.c
+		src/match.c		\
+		src/set_label.c
 
 OBJ	=	$(SRC:.c=.o)
 

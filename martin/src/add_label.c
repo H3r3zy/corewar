@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Sun Mar 26 18:23:02 2017 Martin Januario
-** Last update Sun Mar 26 21:46:51 2017 Martin Januario
+** Last update Mon Mar 27 18:48:28 2017 Martin Januario
 */
 
 #include	<stdlib.h>
@@ -39,6 +39,7 @@ int		add_label(t_label *label, char *str)
     return (0);
   new->name = &tmp[0];
   new->here = 1;
+  new->next = NULL;
   label->next = new;
   return (1);
 }

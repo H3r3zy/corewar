@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 19:06:59 2017 Martin Van Elslande
-** Last update Sun Mar 26 22:02:55 2017 Martin Januario
+** Last update Mon Mar 27 18:49:06 2017 Martin Januario
 */
 
 #include	<fcntl.h>
@@ -38,6 +38,7 @@ int		check_file(char *file)
   if (NULL == (label = malloc(sizeof(t_label) * 1)))
     return (84);
   label->name =	NULL;
+  label->next = NULL;
   label->here = 0;
   if (!check_folder(file))
     return (84);

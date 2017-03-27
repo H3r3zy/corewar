@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Sun Mar 26 14:26:15 2017 Martin Van Elslande
-** Last update Sun Mar 26 14:29:23 2017 Martin Van Elslande
+** Last update Mon Mar 27 18:57:05 2017 Martin Januario
 */
 
 #include	<stdlib.h>
@@ -29,6 +29,7 @@ char	*my_strndup(char *src, int n)
       str[i] = src[i];
       i++;
     }
+  str[i] = 0;
   return (str);
 }
 

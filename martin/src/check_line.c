@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 20:13:29 2017 Martin Januario
-** Last update Mon Mar 27 18:12:09 2017 Martin Van Elslande
+** Last update Mon Mar 27 18:17:17 2017 Martin Van Elslande
 */
 
 #include	<stdlib.h>
@@ -61,7 +61,7 @@ int		convert_and_check(char *line, int nb_line, t_label *label)
   i = 0;
   while (line[i] && line[i] != ' ' && line[i] != '\t')
     i++;
-  if (line[i - 1] == ':')
+  if (line[i - 1] && line[i - 1] == ':')
     {
       if (!(tab = malloc(sizeof(char *) * 3)))
 	return (0);

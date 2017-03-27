@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 20:13:29 2017 Martin Januario
-** Last update Mon Mar 27 18:33:30 2017 Martin Van Elslande
+** Last update Mon Mar 27 18:52:26 2017 Martin Januario
 */
 
 #include	<stdlib.h>
@@ -49,6 +49,8 @@ int		check_line(char *line, int nb_line, t_label *label)
 {
   if (!line[0])
     return (1);
+  my_putstr(1, line);
+  my_putstr(1, "\n");
   withdraw_comment(line);
   if (nb_line <= 1)
     return (name_comment(line, nb_line));

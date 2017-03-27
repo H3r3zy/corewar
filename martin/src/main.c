@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Thu Mar 23 19:23:53 2017 Martin Van Elslande
-** Last update Sat Mar 25 11:29:09 2017 Martin Januario
+** Last update Sun Mar 26 22:38:18 2017 Martin Januario
 */
 
 #include	<unistd.h>
@@ -53,7 +53,7 @@ int		line_is_comment(char *str)
   return (0);
 }
 
-int		read_file(int fd)
+int		read_file(int fd, t_label *label)
 {
   t_buffer	buffer;
   int		size;
@@ -69,11 +69,10 @@ int		read_file(int fd)
     return (1);
   while ((champ[idx] = get_next_line(fd, &buffer)) != NULL)
     {
-      if (my_strlen(champ[idx]) != 0 && line_is_comment(champ[idx]) == 0)
+      if (my_strlen(champ[idx]) != 0 &&
+	  nb_space(champ[idx]) != my_strlen(champ[idx]) && line_is_comment(champ[idx]) == 0)
 	{
-	  printf("str: %s\nreturn check_line: %d\n----------\n",
-		 champ[idx], check_line(champ[idx], idx));
-	  if (check_line(champ[idx], idx) == 0)
+	  if (check_line(champ[idx], idx, label) == 0)
 	    return (0);
 	  idx++;
 	  champ[idx] = NULL;
@@ -89,7 +88,9 @@ int		main(int ac, char **av)
     return (help(2, 84));
   else if (my_strcmp(av[1], "-h") == 0)
     return (help(1, 0));
+  else if (T_REG != 1 || T_DIR != 2 || T_IND != 4)
+    return (my_putstr(2, "AHAHAHAHAHAHAHAHAHAH\n"));
   else if (check_file(av[1]) == 84)
-    my_putstr(1, "ERROR IN CHAMPIONS.\n");
+    my_putstr(2, "ERROR IN CHAMPIONS.\n");
   return (0);
 }

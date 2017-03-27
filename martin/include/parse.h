@@ -5,14 +5,28 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 19:10:44 2017 Martin Van Elslande
-** Last update Fri Mar 24 20:42:49 2017 Martin Januario
+** Last update Sun Mar 26 20:54:08 2017 Martin Januario
 */
 
 #ifndef		PARSE_H_
 # define	PARSE_H_
 
-int		read_file(int);
+typedef struct		s_label
+{
+  struct s_label	*next;
+  char			*name;
+  int			here;
+}			t_label;
+
+int		read_file(int, t_label *);
 int		check_file(char *);
-int		check_line(char *, int);
+int		check_line(char *, int, t_label *);
+int             check_type(char **, int, int, t_label *);
+int             check_type_ind(char *, int);
+int             check_type_reg(char *, int);
+int             check_type_dir(char *, int, t_label *);
+int             check_label(char *, t_label *);
+int             check_command(char *, int, t_label *);
+int		add_label(t_label *, char *);
 
 #endif		/* !PARSE_H_ */

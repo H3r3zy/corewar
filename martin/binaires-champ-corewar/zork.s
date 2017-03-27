@@ -9,7 +9,7 @@
 .name                      "98"
 .comment "OLALA"	
 
-
+olala: live %1
 l2:
 ld -1, r1
 sti r1,%:live,%1

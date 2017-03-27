@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 20:13:29 2017 Martin Januario
-** Last update Sat Mar 25 11:19:50 2017 Martin Januario
+** Last update Sun Mar 26 16:47:15 2017 Martin Januario
 */
 
 #include	<stdlib.h>
@@ -45,10 +45,10 @@ int		withdraw_comment(char *line)
   return (0);
 }
 
-int		check_line(char *line, int nb_line)
+int		check_line(char *line, int nb_line, t_label *label)
 {
   withdraw_comment(line);
   if (nb_line <= 1)
     return (name_comment(line, nb_line));
-  return (check_command(line, nb_line));
+  return (check_command(line, nb_line, label));
 }

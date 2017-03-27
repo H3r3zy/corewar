@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 20:13:29 2017 Martin Januario
-** Last update Mon Mar 27 18:17:17 2017 Martin Van Elslande
+** Last update Mon Mar 27 18:33:30 2017 Martin Van Elslande
 */
 
 #include	<stdlib.h>
@@ -47,6 +47,8 @@ int		withdraw_comment(char *line)
 
 int		check_line(char *line, int nb_line, t_label *label)
 {
+  if (!line[0])
+    return (1);
   withdraw_comment(line);
   if (nb_line <= 1)
     return (name_comment(line, nb_line));
@@ -59,12 +61,15 @@ int		convert_and_check(char *line, int nb_line, t_label *label)
   int		i;
 
   i = 0;
+  while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+    i++;
   while (line[i] && line[i] != ' ' && line[i] != '\t')
     i++;
   if (line[i - 1] && line[i - 1] == ':')
     {
       if (!(tab = malloc(sizeof(char *) * 3)))
 	return (0);
+      tab[2] = 0;
       if (!(tab[0] = my_strndup(line, i)))
 	return (0);
       while (line[i] && (line[i] == ' ' || line[i] == '\t'))

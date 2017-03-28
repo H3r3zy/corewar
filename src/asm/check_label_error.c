@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Sun Mar 26 15:27:14 2017 Martin Januario
-** Last update Tue Mar 28 14:22:53 2017 Sahel Lucas--Saoudi
+** Last update Tue Mar 28 17:01:00 2017 Martin Januario
 */
 
 #include	<stdlib.h>
@@ -36,5 +36,7 @@ int		check_label_error(char *str, t_label *label)
   if (tmp->name == NULL)
     return (0);
   tmp->here = 0;
+  tmp->next = NULL;
+  label->next = tmp;
   return (1);
 }

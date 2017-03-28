@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 19:06:59 2017 Martin Van Elslande
-** Last update Mon Mar 27 18:49:06 2017 Martin Januario
+** Last update Tue Mar 28 16:59:38 2017 Martin Januario
 */
 
 #include	<fcntl.h>
@@ -46,13 +46,15 @@ int		check_file(char *file)
   if (fd == -1)
     return (my_putstr(2, "Error while opening the file.\n"));
   nb = read_file(fd, label);
+  if (!nb)
+    return (84);
   while (label->next != NULL)
     {
       if (label->here == 0 && label->name != NULL)
 	return (84);
       label = label->next;
     }
-  if (!nb)
+  if (!nb || (label->here == 0 && label->name != NULL))
     return (84);
   return (0);
 }

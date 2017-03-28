@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Thu Mar 23 19:23:53 2017 Martin Van Elslande
-** Last update Tue Mar 28 15:36:40 2017 Sahel Lucas--Saoudi
+** Last update Tue Mar 28 22:21:12 2017 Sahel Lucas--Saoudi
 */
 
 #include	<unistd.h>
@@ -98,7 +98,7 @@ int		main(int ac, char **av)
   else if (T_REG != 1 || T_DIR != 2 || T_IND != 4)
     return (my_putstr(2, "AHAHAHAHAHAHAHAHAHAH\n"));
   else if (check_file(av[1]) == 84)
-    return (my_putstr(2, "ERROR IN CHAMPIONS.\n"));
+    return (84);
   fd = recup_file(av[1]);
   op = malloc(sizeof(t_line));
   hd = malloc(sizeof(header_t));

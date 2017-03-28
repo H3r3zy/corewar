@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 15:07:35 2017 maximilien desnos
-** Last update Tue Mar 28 12:20:00 2017 maximilien desnos
+** Last update Tue Mar 28 12:49:34 2017 maximilien desnos
 */
 
 #include	<unistd.h>
@@ -56,6 +56,7 @@ void		write_asm(t_line *op)
 	  i = 0;
 	  while (op->arg[i])
 	    {
+	      op->ret[i] = reverse_add(op->ret[i]);
 	      write(1, &op->ret[i], op->byte[i]);
 	      i++;
 	    }

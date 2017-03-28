@@ -5,9 +5,12 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 17:11:31 2017 Maximilien Desnos
-** Last update Tue Mar 28 12:17:00 2017 maximilien desnos
+** Last update Tue Mar 28 12:49:43 2017 maximilien desnos
 */
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include	<stdlib.h>
 #include	"my.h"
 #include	"op.h"
@@ -28,5 +31,7 @@ int		main(int ac, char **av)
     exit(84);
   recup_lines(op, fd);
   recup_header(fd, hd);
+  printf("%i", op->exist);
+  /*  write_asm(op);*/
   return (0);
 }

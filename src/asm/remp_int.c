@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sun Mar 26 18:18:57 2017 maximilien desnos
-** Last update Tue Mar 28 14:29:01 2017 Sahel Lucas--Saoudi
+** Last update Tue Mar 28 22:14:33 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
@@ -21,8 +21,11 @@ static void	change_overf(int i, unsigned int nb, t_line *op)
   else
     tmp = 4294967295;
   if (nb > tmp)
-    while (nb > tmp)
-      nb = nb + tmp;
+    {
+      while (nb > tmp)
+	nb = nb + tmp;
+      nb += 1;
+    }
   op->ret[i] = nb;
 }
 
@@ -63,7 +66,10 @@ static void	recup_dir(char *arg, t_line *op, int j)
       i++;
     }
   tmp[i - 1] = '\0';
-  i = my_getnbr(tmp);
+  if (my_getnbr(tmp) < 0)
+    i = my_getnbr(tmp);
+  else
+    i = my_getnbr(tmp);
   change_overf(j, i, op);
 }
 
@@ -88,7 +94,10 @@ void		remp_int(t_line *op)
 	recup_dir(op->arg[i], op, i);
       else
 	{
-	  tmp = my_getnbr(op->arg[i]);
+	  if (my_getnbr(op->arg[i]) < 0)
+	    tmp = my_getnbr(op->arg[i]);
+	  else
+	    tmp = my_getnbr(op->arg[i]);
 	  change_overf(i, tmp, op);
 	}
       i++;

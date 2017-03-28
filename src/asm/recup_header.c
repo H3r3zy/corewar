@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 18:29:45 2017 Maximilien Desnos
-** Last update Tue Mar 28 14:53:07 2017 Sahel Lucas--Saoudi
+** Last update Tue Mar 28 21:51:44 2017 Sahel Lucas--Saoudi
 */
 
 #include	<sys/types.h>
@@ -109,7 +109,7 @@ int			recup_header(char **tab, header_t *hd)
 
   recup_name(tab, hd);
   name = name_file(hd->prog_name);
-  if ((fd = open(name, O_WRONLY| O_CREAT , 0644)) == -1)
+  if ((fd = open(name, O_WRONLY| O_CREAT | O_TRUNC, 0644)) == -1)
     exit(84);
   return (fd);
 }

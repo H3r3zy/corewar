@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 15:07:35 2017 maximilien desnos
-** Last update Tue Mar 28 15:04:16 2017 Sahel Lucas--Saoudi
+** Last update Tue Mar 28 15:34:11 2017 Sahel Lucas--Saoudi
 */
 
 #include	<unistd.h>
@@ -52,7 +52,7 @@ void		write_asm(t_line *op, header_t *hd, int fd)
     {
       if (op->exist)
 	{
-	  write(fd, "new_line\n", 9); 
+	  //	  write(fd, "new_line\n", 9); 
 	  write(fd, &op->op.code, sizeof(char));
 	  if (op->have_cb == 1)
 	    write(fd, &op->cb, sizeof(char));

@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Sat Mar 25 14:16:23 2017 Sahel Lucas--Saoudi
-** Last update Tue Mar 28 15:03:33 2017 Sahel Lucas--Saoudi
+** Last update Tue Mar 28 16:45:39 2017 Sahel Lucas--Saoudi
 */
 
 #include <stdlib.h>
@@ -21,7 +21,7 @@ char	transfo(char coding_byte[MAX_ARGS_NUMBER * 2 + 1])
   dec = 0;
   while (i < MAX_ARGS_NUMBER * 2)
     {
-      if (coding_byte[(int) i] == 1)
+      if (coding_byte[(int) i] == '1')
 	dec += my_power_rec(2, MAX_ARGS_NUMBER * 2 - i - 1);
       i++;
     }
@@ -50,7 +50,7 @@ void	set_byte(t_line *line)
   line->have_cb = 0;
   if (match(line->op.mnemonique, "sti") || match(line->op.mnemonique, "zjmp") ||
       match(line->op.mnemonique, "ldi") || match(line->op.mnemonique, "fork") ||
-      match(line->op.mnemonique, "lldi"))
+      match(line->op.mnemonique, "lldi") || match(line->op.mnemonique, "lfork"))
     is_idx = 1;
   if (!match(line->op.mnemonique, "live") && !match(line->op.mnemonique, "zjmp") &&
       !match(line->op.mnemonique, "fork") && !match(line->op.mnemonique, "lfork"))
@@ -60,37 +60,41 @@ void	set_byte(t_line *line)
     }
   while (i < MAX_ARGS_NUMBER)
     {
+      if (i < tablen_(line->arg))
+	printf("%s\n", line->arg[i]);
       if (i < tablen_(line->arg) && line->arg[i][0] == 'r') // Registre
 	{
-	  coding_byte[i * 2] = 0;
-	  coding_byte[i * 2 + 1] = 1;
+	  coding_byte[i * 2] = '0';
+	  coding_byte[i * 2 + 1] = '1';
 	  line->bytes += 1;
 	  line->byte[i] = 1;
 	}
       else if (i < tablen_(line->arg) && match(line->arg[i], "%*")) // Direct
 	{
-	  coding_byte[i * 2] = 1;
-	  coding_byte[i * 2 + 1] = 0;
+	  coding_byte[i * 2] = '1';
+	  coding_byte[i * 2 + 1] = '0';
 	  line->bytes += (is_idx == 0) ? (DIR_SIZE) : (2);
 	  line->byte[i] = (is_idx == 0) ? (DIR_SIZE) : (2);
 	}
       else if (i < tablen_(line->arg) && ((line->arg[i][0] >= '0' && line->arg[i][0] <= '9') || line->arg[i][0] == '-')) // indirect
 	{
-	  coding_byte[i * 2] = 1;
-	  coding_byte[i * 2 + 1] = 1;
+	  coding_byte[i * 2] = '1';
+	  coding_byte[i * 2 + 1] = '1';
 	  line->bytes += (is_idx == 0) ? (IND_SIZE) : (2);
 	  line->byte[i] = (is_idx == 0) ? (IND_SIZE) : (2);
 	}
       else
 	{
-	  coding_byte[i * 2] = 0;
-	  coding_byte[i * 2 + 1] = 0;
+	  coding_byte[i * 2] = '0';
+	  coding_byte[i * 2 + 1] = '0';
 	  line->byte[i] = 0;
 	}
-      //printf("%i\n", line->byte[i]);
+      printf("ARG byte : %i\n", line->byte[i]);
       i++;
     }
   
   coding_byte[i * 2 - 1] = '\0';
+  printf("%s\n", coding_byte);
   line->cb = transfo(coding_byte);
+  printf("CODING BYTE: %u\n", line->cb);
 }

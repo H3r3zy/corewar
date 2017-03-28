@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 20:13:29 2017 Martin Januario
-** Last update Tue Mar 28 14:33:45 2017 Sahel Lucas--Saoudi
+** Last update Tue Mar 28 15:47:26 2017 Martin Van Elslande
 */
 
 #include	<stdlib.h>
@@ -13,7 +13,7 @@
 #include	"parse.h"
 #include	"my_string.h"
 
-int		name_comment(char *str, int i)
+int		name_comment(char *str, int nb_line)
 {
   char		**tmp;
 
@@ -21,9 +21,18 @@ int		name_comment(char *str, int i)
     return (0);
   if (my_tablen(tmp) != 2)
     return (free_tab(tmp));
-  if (my_strcmp(tmp[0], (i == 0) ? NAME_CMD_STRING :
-		COMMENT_CMD_STRING) != 0)
-    return (free_tab(tmp));
+  if (!nb_line && my_strcmp(tmp[0], NAME_CMD_STRING))
+    {
+      my_putstr(2, "line %d: No name specified\n", nb_line + 1);
+      return (free_tab(tmp));
+    }
+  else if (nb_line == 1 && my_strcmp(tmp[0], COMMENT_CMD_STRING))
+    my_putstr(2, "line %d: Warning: No comment specified.\n", nb_line + 1);
+  else if (nb_line != 1 && !my_strcmp(tmp[0], COMMENT_CMD_STRING))
+    {
+      my_putstr(2, "line %d: The comment must be just after the name.\n", nb_line + 1);
+      return (free_tab(tmp));
+    }
   free_tab(tmp);
   return (1);
 }
@@ -49,8 +58,6 @@ int		check_line(char *line, int nb_line, t_label *label)
 {
   if (!line[0])
     return (1);
-  my_putstr(1, line);
-  my_putstr(1, "\n");
   withdraw_comment(line);
   if (nb_line <= 1)
     return (name_comment(line, nb_line));
@@ -67,7 +74,7 @@ int		convert_and_check(char *line, int nb_line, t_label *label)
     i++;
   while (line[i] && line[i] != ' ' && line[i] != '\t')
     i++;
-  if (line[i - 1] && line[i - 1] == ':')
+  if (line[i - 1] && line[i - 1] == LABEL_CHAR)
     {
       if (!(tab = malloc(sizeof(char *) * 3)))
 	return (0);

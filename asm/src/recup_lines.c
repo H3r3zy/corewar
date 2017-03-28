@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 15:07:35 2017 maximilien desnos
-** Last update Tue Mar 28 12:49:34 2017 maximilien desnos
+** Last update Tue Mar 28 10:58:56 2017 Sahel Lucas--Saoudi
 */
 
 #include	<unistd.h>
@@ -56,7 +56,10 @@ void		write_asm(t_line *op)
 	  i = 0;
 	  while (op->arg[i])
 	    {
-	      op->ret[i] = reverse_add(op->ret[i]);
+	      if (op->byte[i] == 2)
+		op->ret[i] = reverse_add2(op->ret[i]);
+	      else if (op->byte[i] == 4)
+		op->ret[i] = reverse_add(op->ret[i]);
 	      write(1, &op->ret[i], op->byte[i]);
 	      i++;
 	    }

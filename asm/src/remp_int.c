@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sun Mar 26 18:18:57 2017 maximilien desnos
-** Last update Tue Mar 28 12:48:33 2017 maximilien desnos
+** Last update Tue Mar 28 11:00:14 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
@@ -22,6 +22,9 @@ static void	change_overf(int i, unsigned int nb, t_line *op)
     tmp = 4294967295;
   if (nb > tmp)
     while (nb > tmp)
+      nb = nb + tmp;
+  if (nb < 0)
+    while (nb < 0)
       nb = nb + tmp;
   op->ret[i] = nb;
 }

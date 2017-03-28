@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 17:13:56 2017 Maximilien Desnos
-** Last update Tue Mar 28 12:17:34 2017 maximilien desnos
+** Last update Tue Mar 28 10:57:53 2017 Sahel Lucas--Saoudi
 */
 
 #ifndef MY_H_
@@ -31,7 +31,8 @@ typedef struct	s_line
   struct s_line	*next;
 }		t_line;
 
-int		reverse_add(int);
+unsigned int	reverse_add(unsigned int);
+unsigned int	reverse_add2(unsigned int);
 int		my_getnbr(char *);
 int		check_label(char *, t_line *);
 int		recup_pos_name(char **);

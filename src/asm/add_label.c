@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Sun Mar 26 18:23:02 2017 Martin Januario
-** Last update Mon Mar 27 18:48:28 2017 Martin Januario
+** Last update Tue Mar 28 16:59:09 2017 Martin Januario
 */
 
 #include	<stdlib.h>
@@ -33,8 +33,13 @@ int		add_label(t_label *label, char *str)
   my_strncpy(tmp, str, my_strlen(str) - 1);
   while (label->next != NULL && my_strcmp(label->name, tmp) != 0)
     label = label->next;
-  if (my_strcmp(label->name, tmp) == 0 && label->here == 1)
-    return (0);
+  if (my_strcmp(label->name, tmp) == 0)
+    {
+      label->here = 1;
+      return (1);
+    }
+  while (label->next != NULL)
+    label = label->next;
   if (NULL == (new = malloc(sizeof(t_label) * 1)))
     return (0);
   new->name = &tmp[0];

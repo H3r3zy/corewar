@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 20:13:29 2017 Martin Januario
-** Last update Tue Mar 28 15:47:26 2017 Martin Van Elslande
+** Last update Tue Mar 28 17:31:13 2017 Martin Januario
 */
 
 #include	<stdlib.h>
@@ -17,6 +17,7 @@ int		name_comment(char *str, int nb_line)
 {
   char		**tmp;
 
+  printf("line: %s\n", str);
   if ((tmp = my_str_to_wordtab(str)) == NULL)
     return (0);
   if (my_tablen(tmp) != 2)
@@ -59,7 +60,8 @@ int		check_line(char *line, int nb_line, t_label *label)
   if (!line[0])
     return (1);
   withdraw_comment(line);
-  if (nb_line <= 1)
+  if (nb_line == 0 ||
+      (nb_line == 1 && my_strncmp(line, ".comment ", 9) == 1))
     return (name_comment(line, nb_line));
   return (check_command(line, nb_line, label));
 }

@@ -5,7 +5,7 @@
 ## Login   <maximilien.desnos@epitech.eu>
 ## 
 ## Started on  Sat Mar 25 15:40:03 2017 maximilien desnos
-## Last update Mon Mar 27 15:33:02 2017 Sahel Lucas--Saoudi
+## Last update Tue Mar 28 12:17:17 2017 maximilien desnos
 ##
 
 SRC	=	src/main.c		\
@@ -13,6 +13,7 @@ SRC	=	src/main.c		\
 		src/op.c		\
 		src/recup_lines.c	\
 		src/check_label.c	\
+		src/reverse_add.c	\
 		src/my_getnbr.c		\
 		src/remp_int.c		\
 		src/recup_op.c		\

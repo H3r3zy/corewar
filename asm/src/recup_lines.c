@@ -5,9 +5,10 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 15:07:35 2017 maximilien desnos
-** Last update Mon Mar 27 20:32:22 2017 Sahel Lucas--Saoudi
+** Last update Tue Mar 28 12:20:00 2017 maximilien desnos
 */
 
+#include	<unistd.h>
 #include	<stdlib.h>
 #include	"my.h"
 
@@ -67,8 +68,6 @@ void		recup_lines(t_line *op, char **fd)
 {
   t_line	*op2;
   int		i;
-  int		j;
-  int		m;
 
   i = 2;
   op->nb_bytes_tot = 0;

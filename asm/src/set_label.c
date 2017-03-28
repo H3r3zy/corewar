@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Sun Mar 26 20:30:08 2017 Sahel Lucas--Saoudi
-** Last update Mon Mar 27 20:31:24 2017 Sahel Lucas--Saoudi
+** Last update Tue Mar 28 11:18:46 2017 Sahel Lucas--Saoudi
 */
 
 #include <unistd.h>
@@ -42,7 +42,7 @@ static void	set_label_bytes(t_line *actual, t_line *first, int arg)
 	  if (label_line <= actual->line)
 	    {
 	      i = 0;
-	      byte -= 1;
+	      byte -= (actual->have_cb) ? (1) : (0);
 	      while (i < arg)
 		{
 		  byte -= actual->byte[i];
@@ -70,7 +70,6 @@ static void	need_label(t_line *first, t_line *line)
   int		arg_i;
 
   arg_i = 0;
-  //printf("==> %d\n", line->ret[0]);
   if (line->exist)
     while (line->arg[arg_i])
       {

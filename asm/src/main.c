@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 17:11:31 2017 Maximilien Desnos
-** Last update Tue Mar 28 11:02:18 2017 Sahel Lucas--Saoudi
+** Last update Tue Mar 28 11:19:57 2017 Sahel Lucas--Saoudi
 */
 
 #include <sys/types.h>
@@ -29,7 +29,8 @@ int		main(int ac, char **av)
     exit(84);
   if ((hd = malloc(sizeof(header_t))) == NULL)
     exit(84);
+  op = recup_lines(op, fd);
   recup_header(fd, hd);
-  recup_lines(op, fd);
+  write_asm(op);
   return (0);
 }

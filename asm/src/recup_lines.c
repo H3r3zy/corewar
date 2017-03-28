@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 15:07:35 2017 maximilien desnos
-** Last update Tue Mar 28 10:58:56 2017 Sahel Lucas--Saoudi
+** Last update Tue Mar 28 11:19:35 2017 Sahel Lucas--Saoudi
 */
 
 #include	<unistd.h>
@@ -68,7 +68,7 @@ void		write_asm(t_line *op)
     }
 }
 
-void		recup_lines(t_line *op, char **fd)
+t_line		*recup_lines(t_line *op, char **fd)
 {
   t_line	*op2;
   int		i;
@@ -90,5 +90,5 @@ void		recup_lines(t_line *op, char **fd)
       i++;
     }
   set_label(op);
-  write_asm(op);
+  return (op);
 }

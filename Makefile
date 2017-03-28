@@ -1,0 +1,86 @@
+##
+## Makefile for  in /home/januar_m/delivery/CPE/CPE_2016_corewar/martin/error_handling
+## 
+## Made by Martin Januario
+## Login   <martin.januario@epitech.eu>
+## 
+## Started on  Fri Mar 24 19:22:19 2017 
+## Last update Tue Mar 28 14:50:45 2017 Sahel Lucas--Saoudi
+##
+
+SRC	=	src/asm/main.c			\
+		src/asm/check_line.c		\
+		src/asm/check_command.c		\
+		src/asm/check_type.c		\
+		src/asm/check_label_error.c	\
+		src/asm/type_all.c		\
+		src/asm/add_label.c		\
+		src/asm/op.c			\
+		src/asm/get_next_line.c		\
+		src/asm/check_label.c		\
+		src/asm/count_size_header_str.c	\
+		src/asm/my_nbr_to_str.c		\
+		src/asm/my_power_rec.c		\
+		src/asm/my_str_to_wordtab.c	\
+		src/asm/recup_args.c		\
+		src/asm/recup_file.c		\
+		src/asm/recup_header.c		\
+		src/asm/recup_lines.c		\
+		src/asm/recup_op.c		\
+		src/asm/remp_int.c		\
+		src/asm/reverse_add.c		\
+		src/asm/set_label.c		\
+		src/asm/take_bit.c		\
+		src/asm/verif_line.c
+
+BASICS	=	utils/my_strlen.c		\
+		utils/my_putstr.c		\
+		utils/match.c			\
+		utils/my_strncpy.c		\
+		utils/disp_tab.c		\
+		utils/parse_.c			\
+		utils/found_char.c		\
+		utils/my_getnbr.c		\
+		utils/my_strcpy.c		\
+		utils/my_tablen.c		\
+		utils/my_str_is_num.c		\
+		utils/my_strdup.c		\
+		utils/file.c			\
+		utils/my_str_to_wordtab.c	\
+		utils/free_tab.c		\
+		utils/my_free.c			\
+		utils/my_str_is_alpha.c		\
+		utils/my_strncmp.c		\
+		utils/my_putnbr.c		\
+		utils/my_putchar.c		\
+		utils/my_strcmp.c
+
+GNL	=	gnl/get_next_line.c		\
+		gnl/ini_gnl.c
+
+OBJ	=	$(BASICS:.c=.o)			\
+		$(GNL:.c=.o)			\
+		$(SRC:.c=.o)
+
+CFLAGS	=	-Wall -Wextra -I include/
+
+NAME	=	asm
+
+all:		$(NAME)
+
+debug:		CFLAGS += -ggdb3
+
+debug:		fclean all
+
+$(NAME):	$(OBJ)
+		gcc -o $(NAME) $(OBJ)
+
+clean:
+		rm -f $(OBJ)
+
+fclean:		clean
+		rm -f $(NAME)
+
+re:		fclean all
+
+.PHONY:		all debug clean fclean re

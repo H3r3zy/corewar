@@ -5,12 +5,13 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 15:07:35 2017 maximilien desnos
-** Last update Tue Mar 28 11:19:35 2017 Sahel Lucas--Saoudi
+** Last update Tue Mar 28 13:55:07 2017 maximilien desnos
 */
 
 #include	<unistd.h>
 #include	<stdlib.h>
 #include	"my.h"
+#include	"op.h"
 
 static void	add_op(t_line *op, t_line *op2)
 {
@@ -42,17 +43,18 @@ static t_line	*find_info(char *fd)
   return (op);
 }
 
-void		write_asm(t_line *op)
+void		write_asm(t_line *op, header_t *hd, int fd)
 {
   int		i;
 
+  remp_fd(hd, fd, op);
   while (op)
     {
       if (op->exist)
 	{
-	  write(1, &op->op.code, sizeof(char));
+	  write(fd, &op->op.code, sizeof(char));
 	  if (op->have_cb == 1)
-	    write(1, &op->cb, sizeof(char));
+	    write(fd, &op->cb, sizeof(char));
 	  i = 0;
 	  while (op->arg[i])
 	    {
@@ -60,7 +62,7 @@ void		write_asm(t_line *op)
 		op->ret[i] = reverse_add2(op->ret[i]);
 	      else if (op->byte[i] == 4)
 		op->ret[i] = reverse_add(op->ret[i]);
-	      write(1, &op->ret[i], op->byte[i]);
+	      write(fd, &op->ret[i], op->byte[i]);
 	      i++;
 	    }
 	}
@@ -80,13 +82,14 @@ t_line		*recup_lines(t_line *op, char **fd)
   op->arg = NULL;
   op->previous = NULL;
   op = find_info(fd[i]);
+  op->nb_bytes_tot = op->bytes;
   op->next = NULL;
   op->previous = NULL;
   while (fd[i] != NULL)
     {
       op2 = find_info(fd[i]);
       add_op(op, op2);
-      op->nb_bytes_tot = op->nb_bytes_tot + op->bytes;
+      op->nb_bytes_tot = op->nb_bytes_tot + op2->bytes;
       i++;
     }
   set_label(op);

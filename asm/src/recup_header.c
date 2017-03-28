@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 18:29:45 2017 Maximilien Desnos
-** Last update Tue Mar 28 12:20:49 2017 maximilien desnos
+** Last update Tue Mar 28 15:54:19 2017 maximilien desnos
 */
 
 #include	<sys/types.h>
@@ -24,6 +24,8 @@ static void		recup_str_header(char *tab, char *name)
 
   i = 0;
   j = 0;
+  while (tab[i] != '.')
+    i++;
   while (tab[i] != '"')
     i++;
   i++;
@@ -41,7 +43,11 @@ static int     		recup_name(char **tab, header_t *hd)
   int			i;
 
   i = recup_pos_name(tab);
-  recup_str_header(tab[i], hd->prog_name);
+  recup_str_header(tab[0], hd->prog_name);
+  printf("%s\n", hd->prog_name);
+  i = recup_pos_comment(tab);
+  recup_str_header(tab[1], hd->comment);
+  printf("%s\n", hd->comment);
   return (i);
 }
 
@@ -72,21 +78,26 @@ static char		*name_file(char *name)
   return (nm_fl);
 }
 
-static void		remp_fd(header_t *hd, int fd)
+void			remp_fd(header_t *hd, int fd, t_line *op)
 {
   int			i;
   int			j;
+  int			tmp;
 
+  tmp = reverse_add(COREWAR_EXEC_MAGIC);
   i = my_strlen(hd->prog_name);
+  write(fd, &tmp, sizeof(tmp));
   write(fd, hd->prog_name, i);
-  while (i < 128)
+  while (i < 132)
     {
       write(fd, "\0", 1);
       i++;
     }
   j = my_strlen(hd->comment);
+  tmp = reverse_add(op->nb_bytes_tot);
+  write(fd, &tmp, sizeof(tmp));
   write(fd, hd->comment, j);
-  while (j < 2048)
+  while (j < 2052)
     {
       write(fd, "\0", 1);
       j++;
@@ -101,11 +112,8 @@ int			recup_header(char **tab, header_t *hd)
 
   recup_name(tab, hd);
   i = COREWAR_EXEC_MAGIC;
-  recup_str_header(tab[1], hd->comment);
   name = name_file(hd->prog_name);
   if ((fd = open(name, O_WRONLY| O_CREAT , 0644)) == -1)
     exit(84);
-  write(fd, &i, sizeof(i));
-  remp_fd(hd, fd);
   return (fd);
 }

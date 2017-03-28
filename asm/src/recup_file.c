@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 17:20:31 2017 Maximilien Desnos
-** Last update Fri Mar 24 18:46:20 2017 Sahel Lucas--Saoudi
+** Last update Tue Mar 28 13:17:58 2017 maximilien desnos
 */
 
 #include	<unistd.h>
@@ -34,6 +34,21 @@ static int	count_line(char *av)
   return (i);
 }
 
+static char	*verif_comment(char *str)
+{
+  int		i;
+
+  i = 0;
+  while (str[i] != '\0' && str[i] != '/')
+    {
+      i++;
+      if (str[i] == '/' && str[i + 1] != '/')
+	i++;
+    }
+  str[i] = '\0';
+  return (str);
+}
+
 static void	remp_tab(char *av, char **tab)
 {
   int		i;
@@ -47,6 +62,7 @@ static void	remp_tab(char *av, char **tab)
     {
       if (verif_line(str) == 0)
 	{
+	  str = verif_comment(str);
 	  tab[i] = my_strdup(str);
 	  i++;
 	}

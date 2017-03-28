@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 17:13:56 2017 Maximilien Desnos
-** Last update Tue Mar 28 11:20:51 2017 Sahel Lucas--Saoudi
+** Last update Tue Mar 28 15:47:24 2017 maximilien desnos
 */
 
 #ifndef MY_H_
@@ -33,6 +33,7 @@ typedef struct	s_line
 
 unsigned int	reverse_add(unsigned int);
 unsigned int	reverse_add2(unsigned int);
+int		recup_pos_comment(char **);
 int		my_getnbr(char *);
 int		check_label(char *, t_line *);
 int		recup_pos_name(char **);
@@ -59,7 +60,7 @@ void		set_label(t_line *);
 void		aff_tab(char **);
 void		recup_op(char *, t_line *, int);
 void		recup_args(char *, t_line *, int);
+void		write_asm(t_line *, header_t *, int);
 t_line		*recup_lines(t_line *, char **);
-void		write_asm(t_line *);
 
 #endif /* MY_H_ */

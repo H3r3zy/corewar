@@ -5,8 +5,10 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 20:01:18 2017 Maximilien Desnos
-** Last update Fri Mar 24 21:01:52 2017 Maximilien Desnos
+** Last update Tue Mar 28 15:51:14 2017 maximilien desnos
 */
+
+#include	"op.h"
 
 int		recup_pos_name(char **tab)
 {
@@ -16,10 +18,31 @@ int		recup_pos_name(char **tab)
 
   i = 0;
   j = 0;
-  tmp = ".name";
+  tmp = NAME_CMD_STRING;
   while (tab[0][i] != '.')
     i++;
   while (tab[0][i] == tmp[j])
+    {
+      i++;
+      j++;
+    }
+  if (tmp[j] == '\0')
+    return (0);
+  return (1);
+}
+
+int		recup_pos_comment(char **tab)
+{
+  int                   i;
+  int                   j;
+  char                  *tmp;
+
+  i = 0;
+  j = 0;
+  tmp = COMMENT_CMD_STRING;
+  while (tab[1][i] != '.')
+    i++;
+  while (tab[1][i] == tmp[j])
     {
       i++;
       j++;

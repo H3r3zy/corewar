@@ -5,7 +5,7 @@
 ## Login   <sahel.lucas-saoudi@epitech.eu>
 ## 
 ## Started on  Wed Mar 29 13:32:44 2017 Sahel Lucas--Saoudi
-## Last update Wed Mar 29 12:23:11 2017 Martin Januario
+## Last update Wed Mar 29 16:10:40 2017 Sahel Lucas--Saoudi
 ##
 
 SRC	=	src/asm/main.c			\
@@ -66,7 +66,7 @@ OBJ	=	$(BASICS:.c=.o)			\
 
 CFLAGS	=	-Wall -Wextra -I include/
 
-NAME	=	asm2
+NAME	=	asm/asm
 
 all:		$(NAME)
 
@@ -76,14 +76,12 @@ debug:		fclean all
 
 $(NAME):	$(OBJ)
 		gcc -o $(NAME) $(OBJ)
-		cp $(NAME) ./asm/asm
 
 clean:
 		rm -f $(OBJ)
 
 fclean:		clean
 		rm -f $(NAME)
-		rm -f ./asm/asm
 
 re:		fclean all
 

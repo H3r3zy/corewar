@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sun Mar 26 18:18:57 2017 maximilien desnos
-** Last update Wed Mar 29 08:34:06 2017 Sahel Lucas--Saoudi
+** Last update Wed Mar 29 16:05:34 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
@@ -46,7 +46,7 @@ static void	recup_reg(char *arg, t_line *op, int j)
       i++;
     }
   tmp[i - 1] = '\0';
-  op->ret[j] = my_getnbr(tmp);
+  op->ret[j] = my_getlongnbr(tmp);
 }
 
 static void	recup_dir(char *arg, t_line *op, int j)
@@ -66,10 +66,7 @@ static void	recup_dir(char *arg, t_line *op, int j)
       i++;
     }
   tmp[i - 1] = '\0';
-  if (my_getnbr(tmp) < 0)
-    i = my_getnbr(tmp);
-  else
-    i = my_getnbr(tmp);
+  i = my_getlongnbr(tmp);
   change_overf(j, i, op);
 }
 
@@ -94,10 +91,7 @@ void		remp_int(t_line *op)
 	recup_dir(op->arg[i], op, i);
       else
 	{
-	  if (my_getnbr(op->arg[i]) < 0)
-	    tmp = my_getnbr(op->arg[i]);
-	  else
-	    tmp = my_getnbr(op->arg[i]);
+	  tmp = my_getlongnbr(op->arg[i]);
 	  change_overf(i, tmp, op);
 	}
       i++;

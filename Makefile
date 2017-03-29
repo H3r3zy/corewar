@@ -5,7 +5,7 @@
 ## Login   <sahel.lucas-saoudi@epitech.eu>
 ## 
 ## Started on  Wed Mar 29 13:32:44 2017 Sahel Lucas--Saoudi
-## Last update Wed Mar 29 14:11:00 2017 Martin Van Elslande
+## Last update Wed Mar 29 12:23:11 2017 Martin Januario
 ##
 
 SRC	=	src/asm/main.c			\
@@ -83,6 +83,7 @@ clean:
 
 fclean:		clean
 		rm -f $(NAME)
+		rm -f ./asm/asm
 
 re:		fclean all
 

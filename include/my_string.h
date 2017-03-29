@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 19:49:54 2017 Martin Januario
-** Last update Mon Mar 27 18:07:39 2017 Martin Van Elslande
+** Last update Wed Mar 29 13:18:07 2017 Martin Januario
 */
 
 #ifndef		MY_STRING_H_
@@ -35,5 +35,6 @@ int		my_str_is_alpha(char *);
 void		my_putchar(char);
 char		**parse_(char *, char);
 int		my_putnbr(int);
+long long int	my_getlongnbr(char *);
 
 #endif		/* !MY_STRING_H_ */

@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 17:13:56 2017 Maximilien Desnos
-** Last update Tue Mar 28 14:37:44 2017 Sahel Lucas--Saoudi
+** Last update Wed Mar 29 13:35:49 2017 Sahel Lucas--Saoudi
 */
 
 #ifndef MY_H_
@@ -42,7 +42,7 @@ int		match(char *, char *);
 int		verif_line(char *);
 int		my_strlen(char *);
 int		my_power_rec(int, int);
-int		recup_header(char **, header_t *);
+void		recup_header(char **, header_t *);
 int		my_strcmp(char *, char *);
 char		*my_strdup(char *);
 char		**recup_file(char *);
@@ -52,6 +52,8 @@ char		*my_nbr_to_str(int);
 char		*convert_base(char *, char *, char *);
 char		*get_next_line_fd(int);
 char		*my_strdup(char *);
+char		*my_realloc_gnl(char *, char *, int *);
+char		*without_before_(char *, char);
 void		remp_int(t_line *);
 void		set_byte(t_line *);
 void		set_label(t_line *);

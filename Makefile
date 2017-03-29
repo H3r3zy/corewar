@@ -1,11 +1,11 @@
 ##
-## Makefile for  in /home/januar_m/delivery/CPE/CPE_2016_corewar/martin/error_handling
+## Makefile for corewar in /home/sahel/rendu/CPE/CPE_2016_corewar
 ## 
-## Made by Martin Januario
-## Login   <martin.januario@epitech.eu>
+## Made by Sahel Lucas--Saoudi
+## Login   <sahel.lucas-saoudi@epitech.eu>
 ## 
-## Started on  Fri Mar 24 19:22:19 2017 
-## Last update Wed Mar 29 13:17:45 2017 Martin Januario
+## Started on  Wed Mar 29 13:32:44 2017 Sahel Lucas--Saoudi
+## Last update Wed Mar 29 13:33:23 2017 Sahel Lucas--Saoudi
 ##
 
 SRC	=	src/asm/main.c			\
@@ -31,7 +31,8 @@ SRC	=	src/asm/main.c			\
 		src/asm/reverse_add.c		\
 		src/asm/set_label.c		\
 		src/asm/take_bit.c		\
-		src/asm/verif_line.c
+		src/asm/verif_line.c		\
+		src/asm/without_before_.c
 
 BASICS	=	utils/my_strlen.c		\
 		utils/my_putstr.c		\

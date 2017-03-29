@@ -1,14 +1,24 @@
 /*
-** my_strlen.c for  in /home/januar_m/delivery/PSU/PSU_2016_minishell2
+** my_strlen.c for corewar in /home/sahel/rendu/CPE/CPE_2016_corewar
 ** 
-** Made by Martin Januario
-** Login   <martin.januario@epitech.eu>
+** Made by Sahel Lucas--Saoudi
+** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
-** Started on  Tue Mar 14 12:55:52 2017 
-** Last update Thu Mar 16 14:11:09 2017 
+** Started on  Wed Mar 29 13:24:10 2017 Sahel Lucas--Saoudi
+** Last update Wed Mar 29 13:46:15 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
+
+int		sp_len(char *str, char c)
+{
+  int		l;
+
+  l = 0;
+  while (str && str[l] && str[l] != c)
+    l++;
+  return (l);
+}
 
 int		my_strlen(char *str)
 {

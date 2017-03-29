@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 19:49:54 2017 Martin Januario
-** Last update Wed Mar 29 13:18:07 2017 Martin Januario
+** Last update Wed Mar 29 13:36:16 2017 Sahel Lucas--Saoudi
 */
 
 #ifndef		MY_STRING_H_
@@ -14,6 +14,7 @@
 # include	<stdio.h>
 
 int		my_strlen(char *);
+int		sp_len(char *, char);
 int		my_str_is_num(char *);
 int		my_putstr(int, char *, ...);
 int		my_strcmp(char *, char *);

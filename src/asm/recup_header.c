@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 18:29:45 2017 Maximilien Desnos
-** Last update Tue Mar 28 21:51:44 2017 Sahel Lucas--Saoudi
+** Last update Wed Mar 29 13:20:40 2017 Sahel Lucas--Saoudi
 */
 
 #include	<sys/types.h>
@@ -102,14 +102,8 @@ void			remp_fd(header_t *hd, int fd, t_line *op)
     }
 }
 
-int			recup_header(char **tab, header_t *hd)
+void			recup_header(char **tab, header_t *hd)
 {
-  int		fd;
-  char		*name;
-
   recup_name(tab, hd);
-  name = name_file(hd->prog_name);
-  if ((fd = open(name, O_WRONLY| O_CREAT | O_TRUNC, 0644)) == -1)
-    exit(84);
-  return (fd);
+  name_file(hd->prog_name);
 }

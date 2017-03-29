@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Thu Mar 23 19:23:53 2017 Martin Van Elslande
-** Last update Wed Mar 29 08:14:51 2017 Sahel Lucas--Saoudi
+** Last update Wed Mar 29 13:48:28 2017 Sahel Lucas--Saoudi
 */
 
 #include	<unistd.h>
@@ -84,6 +84,22 @@ int		read_file(int fd, t_label *label)
   return (1);
 }
 
+int		take_fd_cor(char *path)
+{
+  char		*name;
+  int		i;
+  int		fd;
+
+  i = 0;
+  name = strdup(path);
+  while (sp_len(name, '/') != my_strlen(name))
+    name = without_before_(name, '/');
+  name[my_strlen(name) - 1] = '\0';
+  name = my_realloc_gnl(name, "cor", &i);
+  fd = open(name, O_CREAT | O_WRONLY | O_TRUNC, 00644);
+  return (fd);
+}
+
 int		main(int ac, char **av)
 {
   int		fl;
@@ -97,15 +113,17 @@ int		main(int ac, char **av)
     return (help(1, 0));
   else if (T_REG != 1 || T_DIR != 2 || T_IND != 4)
     return (my_putstr(2, "AHAHAHAHAHAHAHAHAHAH\n"));
-  //else if (check_file(av[1]) == 84)
-  //return (84);
+  else if (check_file(av[1]) == 84)
+    return (84);
   fd = recup_file(av[1]);
   op = malloc(sizeof(t_line));
   hd = malloc(sizeof(header_t));
-  if (!op || !hd)
+  fl = take_fd_cor(av[1]);
+  printf("%d\n", fl);
+  if (!op || !hd || fl == -1)
     return (84);
   op = recup_lines(op, fd);
-  fl = recup_header(fd, hd);
+  recup_header(fd, hd);
   write_asm(op, hd, fl);
   return (0);
 }

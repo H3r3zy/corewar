@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Thu Mar 23 19:23:53 2017 Martin Van Elslande
-** Last update Wed Mar 29 14:15:36 2017 Martin Van Elslande
+** Last update Wed Mar 29 14:24:27 2017 Martin Van Elslande
 */
 
 #include	<unistd.h>
@@ -90,7 +90,7 @@ int		take_fd_cor(char *path)
   int		fd;
 
   i = 0;
-  name = strdup(path);
+  name = my_strdup(path);
   while (sp_len(name, '/') != my_strlen(name))
     name = without_before_(name, '/');
   name[my_strlen(name) - 1] = '\0';

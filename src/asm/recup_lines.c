@@ -5,9 +5,10 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 15:07:35 2017 maximilien desnos
-** Last update Wed Mar 29 08:32:33 2017 Sahel Lucas--Saoudi
+** Last update Wed Mar 29 14:25:46 2017 Martin Van Elslande
 */
 
+#include	<stdio.h>
 #include	<unistd.h>
 #include	<stdlib.h>
 #include	"my.h"
@@ -46,7 +47,7 @@ static t_line	*find_info(char *fd)
 void		write_asm(t_line *op, header_t *hd, int fd)
 {
   int		i;
-
+  //retire tes printfs !
   remp_fd(hd, fd, op);
   while (op)
     {

@@ -5,10 +5,12 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 16:00:10 2017 maximilien desnos
-** Last update Tue Mar 28 14:32:33 2017 Sahel Lucas--Saoudi
+** Last update Wed Mar 29 17:57:46 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
+#include	"op.h"
+#include	"my_string.h"
 
 int		count_space(char *str)
 {
@@ -20,9 +22,9 @@ int		count_space(char *str)
   if (str != NULL)
     while (str[i] != '\0')
       {
-	if (str[i] == ',')
+	if (str[i] == SEPARATOR_CHAR)
 	  {
-	    while (str[i] == ','  || str[i] == ' ' || str[i] == '\t')
+	    while (str[i] == SEPARATOR_CHAR  || str[i] == ' ' || str[i] == '\t')
 	      i++;
 	    j++;
 	  }
@@ -34,7 +36,7 @@ int		count_space(char *str)
 
 int		sin_space(int i, char *str)
 {
-  while (str[i] == ',' || str[i] == ' ' || str[i] == '\t')
+  while (str[i] == SEPARATOR_CHAR || str[i] == ' ' || str[i] == '\t')
     i++;
   return (i);
 }
@@ -45,12 +47,12 @@ int		add_word_tab(int i, char *str, char **tab, int j)
 
   size = 0;
   i = sin_space(i, str);
-  while (str[i + size] != '\0' && str[i + size] != ',')
+  while (str[i + size] != '\0' && str[i + size] != SEPARATOR_CHAR)
     size++;
   if ((tab[j] = malloc(sizeof(char) * (size + 1))) == NULL)
     exit(84);
   size = 0;
-  while (str[i] != '\0' && str[i] != ',' && str[i] != ' ' && str[i] != '\t')
+  while (str[i] != '\0' && str[i] != SEPARATOR_CHAR && str[i] != ' ' && str[i] != '\t')
     {
       tab[j][size] = str[i];
       i = i + 1;
@@ -71,6 +73,7 @@ char		**my_str_to_arg(char *str)
   j = 0;
   i = 0;
   size = count_space(str) + 2;
+  str[sp_len(str, COMMENT_CHAR)] = '\0';
   if ((tab = malloc(sizeof(char *) * (size + 1))) == NULL)
     exit(84);
   if (str != NULL)

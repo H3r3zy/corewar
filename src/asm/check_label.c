@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 15:30:07 2017 maximilien desnos
-** Last update Sat Mar 25 16:12:24 2017 maximilien desnos
+** Last update Wed Mar 29 17:48:28 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
@@ -19,9 +19,9 @@ int		check_label(char *fd, t_line *op)
 
   j = 0;
   i = 0;
-  while (fd[i] != '%' && fd[i] != ':' && fd[i] != '\0')
+  while (fd[i] != DIRECT_CHAR && fd[i] != LABEL_CHAR && fd[i] != '\0')
     i++;
-  if (fd[i] != ':')
+  if (fd[i] != LABEL_CHAR)
     {
       op->label = NULL;
       return (-1);
@@ -31,7 +31,7 @@ int		check_label(char *fd, t_line *op)
   i = 0;
   while (fd[i] == ' ' || fd[i] == '\t')
     i++;
-  while (fd[i] != '%' && fd[i] != ':' && fd[i] != '\0')
+  while (fd[i] != DIRECT_CHAR && fd[i] != LABEL_CHAR && fd[i] != '\0')
     {
       op->label[j] = fd[i];
       i++;

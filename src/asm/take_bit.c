@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Sat Mar 25 14:16:23 2017 Sahel Lucas--Saoudi
-** Last update Tue Mar 28 22:26:16 2017 Sahel Lucas--Saoudi
+** Last update Wed Mar 29 17:46:50 2017 Sahel Lucas--Saoudi
 */
 
 #include <stdlib.h>
@@ -67,14 +67,14 @@ void	set_byte(t_line *line)
 	  line->bytes += 1;
 	  line->byte[i] = 1;
 	}
-      else if (i < tablen_(line->arg) && match(line->arg[i], "%*")) // Direct
+      else if (i < tablen_(line->arg) && line->arg[i][0] == DIRECT_CHAR) // Direct
 	{
 	  coding_byte[i * 2] = '1';
 	  coding_byte[i * 2 + 1] = '0';
 	  line->bytes += (is_idx == 0) ? (DIR_SIZE) : (2);
 	  line->byte[i] = (is_idx == 0) ? (DIR_SIZE) : (2);
 	}
-      else if (i < tablen_(line->arg) && ((line->arg[i][0] >= '0' && line->arg[i][0] <= '9') || line->arg[i][0] == '-')) // indirect
+      else if (i < tablen_(line->arg)) // indirect
 	{
 	  coding_byte[i * 2] = '1';
 	  coding_byte[i * 2 + 1] = '1';

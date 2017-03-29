@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Thu Mar 23 19:23:53 2017 Martin Van Elslande
-** Last update Wed Mar 29 14:24:27 2017 Martin Van Elslande
+** Last update Wed Mar 29 18:05:20 2017 Sahel Lucas--Saoudi
 */
 
 #include	<unistd.h>
@@ -118,11 +118,11 @@ int		main(int ac, char **av)
   op = malloc(sizeof(t_line));
   hd = malloc(sizeof(header_t));
   fl = take_fd_cor(av[1]);
-  printf("%d\n", fl);
   if (!op || !hd || fl == -1)
     return (84);
   op = recup_lines(op, fd);
   recup_header(fd, hd);
   write_asm(op, hd, fl);
+  my_putstr(1, "Compilation done [%s] .\n", av[1]);
   return (0);
 }

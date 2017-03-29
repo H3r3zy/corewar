@@ -5,12 +5,12 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 19:06:59 2017 Martin Van Elslande
-** Last update Tue Mar 28 16:59:38 2017 Martin Januario
+** Last update Wed Mar 29 14:13:41 2017 Martin Van Elslande
 */
 
 #include	<fcntl.h>
+#include	<stdlib.h>
 #include	<unistd.h>
-#include	"utils.h"
 #include	"parse.h"
 #include	"my_string.h"
 

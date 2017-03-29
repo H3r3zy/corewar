@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 20:13:29 2017 Martin Januario
-** Last update Tue Mar 28 17:31:13 2017 Martin Januario
+** Last update Tue Mar 28 22:26:28 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
@@ -17,7 +17,6 @@ int		name_comment(char *str, int nb_line)
 {
   char		**tmp;
 
-  printf("line: %s\n", str);
   if ((tmp = my_str_to_wordtab(str)) == NULL)
     return (0);
   if (my_tablen(tmp) != 2)

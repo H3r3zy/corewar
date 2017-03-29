@@ -98,8 +98,8 @@ torp:		live	%42
 		fork	%:torp2
 		live	%42
 		fork	%:torp3
-		ld	%57672448,r3		#03 70 03 00
-		ld	%318992390,r6		#13 03 70 06
+		ld	%57672448,r3
+		ld	%318992390,r6
 		ld	%0,r15
 		zjmp	%:launch
 	

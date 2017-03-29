@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 15:07:35 2017 maximilien desnos
-** Last update Tue Mar 28 15:34:11 2017 Sahel Lucas--Saoudi
+** Last update Wed Mar 29 08:32:33 2017 Sahel Lucas--Saoudi
 */
 
 #include	<unistd.h>
@@ -52,17 +52,20 @@ void		write_asm(t_line *op, header_t *hd, int fd)
     {
       if (op->exist)
 	{
-	  //	  write(fd, "new_line\n", 9); 
+	  if (op->exist)
+	    printf("%s | cb : %i\n", op->op.mnemonique, op->have_cb);
 	  write(fd, &op->op.code, sizeof(char));
 	  if (op->have_cb == 1)
 	    write(fd, &op->cb, sizeof(char));
 	  i = 0;
 	  while (op->arg[i])
 	    {
+	      if (match(op->op.mnemonique, "ld"))
+		printf("==> %u in %i bytes\n", op->ret[i], op->byte[i]);
 	      if (op->byte[i] == 2)
-		op->ret[i] = reverse_add2(op->ret[i]);
+		op->ret[i] = (unsigned short) reverse_add2(op->ret[i]);
 	      else if (op->byte[i] == 4)
-		op->ret[i] = reverse_add(op->ret[i]);
+		op->ret[i] = (unsigned int) reverse_add(op->ret[i]);
 	      write(fd, &op->ret[i], op->byte[i]);
 	      i++;
 	    }

@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Sat Mar 25 14:16:23 2017 Sahel Lucas--Saoudi
-** Last update Tue Mar 28 16:45:39 2017 Sahel Lucas--Saoudi
+** Last update Tue Mar 28 22:26:16 2017 Sahel Lucas--Saoudi
 */
 
 #include <stdlib.h>
@@ -60,8 +60,6 @@ void	set_byte(t_line *line)
     }
   while (i < MAX_ARGS_NUMBER)
     {
-      if (i < tablen_(line->arg))
-	printf("%s\n", line->arg[i]);
       if (i < tablen_(line->arg) && line->arg[i][0] == 'r') // Registre
 	{
 	  coding_byte[i * 2] = '0';
@@ -89,12 +87,9 @@ void	set_byte(t_line *line)
 	  coding_byte[i * 2 + 1] = '0';
 	  line->byte[i] = 0;
 	}
-      printf("ARG byte : %i\n", line->byte[i]);
       i++;
     }
   
   coding_byte[i * 2 - 1] = '\0';
-  printf("%s\n", coding_byte);
   line->cb = transfo(coding_byte);
-  printf("CODING BYTE: %u\n", line->cb);
 }

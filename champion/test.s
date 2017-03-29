@@ -3,8 +3,8 @@
 
 	fork %:live
 	fork %:live
-	ld %1,r1
-	ld %1,r1
+	ld %57672448,r1
+	ld %318992390,r6
 	st r8,-400
 	st r8,-400
 	add r1,r1,r1

@@ -5,7 +5,7 @@
 ## Login   <martin.januario@epitech.eu>
 ## 
 ## Started on  Fri Mar 24 19:22:19 2017 
-## Last update Tue Mar 28 14:50:45 2017 Sahel Lucas--Saoudi
+## Last update Wed Mar 29 13:17:45 2017 Martin Januario
 ##
 
 SRC	=	src/asm/main.c			\
@@ -46,6 +46,7 @@ BASICS	=	utils/my_strlen.c		\
 		utils/my_str_is_num.c		\
 		utils/my_strdup.c		\
 		utils/file.c			\
+		utils/my_getlongnbr.c		\
 		utils/my_str_to_wordtab.c	\
 		utils/free_tab.c		\
 		utils/my_free.c			\

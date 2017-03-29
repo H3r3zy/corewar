@@ -5,8 +5,10 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 18:09:29 2017 Maximilien Desnos
-** Last update Fri Mar 24 18:17:33 2017 Maximilien Desnos
+** Last update Wed Mar 29 18:22:09 2017 Sahel Lucas--Saoudi
 */
+
+#include "op.h"
 
 int		my_char_is_alphanum(char str)
 {
@@ -23,7 +25,7 @@ int		verif_line(char *str)
 
   i = 0;
   j = 0;
-  if (str[0] == '#')
+  if (str[0] == COMMENT_CHAR)
     return (-1);
   while (str[i] != '\0' )
     {

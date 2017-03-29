@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 18:19:05 2017 maximilien desnos
-** Last update Tue Mar 28 14:34:49 2017 Sahel Lucas--Saoudi
+** Last update Wed Mar 29 18:08:12 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
@@ -34,7 +34,7 @@ static int	sin_space(char *fd, int i)
 
 static int	verif_lb(char *fd, int i)
 {
-  while (fd[i] != ':' && fd[i] != '\0')
+  while (fd[i] != LABEL_CHAR && fd[i] != '\0')
     i++;
   i++;
   return (i);

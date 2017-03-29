@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 18:43:31 2017 maximilien desnos
-** Last update Mon Mar 27 15:46:12 2017 Sahel Lucas--Saoudi
+** Last update Wed Mar 29 18:14:31 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
@@ -55,7 +55,7 @@ void		remp_op(char *fct, t_line *op)
 
 static int	verif_lb(char *fd, int i)
 {
-  while (fd[i] != ':')
+  while (fd[i] != LABEL_CHAR)
     i++;
   i++;
   return (i);

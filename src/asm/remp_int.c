@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sun Mar 26 18:18:57 2017 maximilien desnos
-** Last update Wed Mar 29 16:05:34 2017 Sahel Lucas--Saoudi
+** Last update Wed Mar 29 18:15:11 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
@@ -85,9 +85,9 @@ void		remp_int(t_line *op)
     {
       if (op->arg[i][0] == 'r')
 	recup_reg(op->arg[i], op, i);
-      else if (op->arg[i][0] == '%' && op->arg[i][1] == ':')
+      else if (op->arg[i][0] == DIRECT_CHAR && op->arg[i][1] == LABEL_CHAR)
 	op->ret[i] = 0;
-      else if (op->arg[i][0] == '%' && op->arg[i][1] != ':')
+      else if (op->arg[i][0] == DIRECT_CHAR && op->arg[i][1] != LABEL_CHAR)
 	recup_dir(op->arg[i], op, i);
       else
 	{

@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Sun Mar 26 15:04:37 2017 Martin Januario
-** Last update Tue Mar 28 14:23:27 2017 Sahel Lucas--Saoudi
+** Last update Wed Mar 29 18:19:03 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
@@ -24,7 +24,7 @@ int		check_type_ind(char *str, int nb_line)
 int		check_type_dir(char *str, int nb_line, t_label *label)
 {
   (void) nb_line;
-  if (my_strlen(str) <= 1 || str[0] != '%')
+  if (my_strlen(str) <= 1 || str[0] != DIRECT_CHAR)
     return (0);
   if (str[1] == LABEL_CHAR)
     return (check_label_error(&str[2], label));

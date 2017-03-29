@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Sun Mar 26 20:30:08 2017 Sahel Lucas--Saoudi
-** Last update Tue Mar 28 18:38:45 2017 Sahel Lucas--Saoudi
+** Last update Wed Mar 29 14:06:19 2017 Martin Van Elslande
 */
 
 #include <unistd.h>
@@ -19,6 +19,8 @@ static void	set_label_bytes(t_line *actual, t_line *first, int arg)
   int		label_line;
   int		i;
 
+  (void)i;
+  (void)label_line;
   byte = 0;
   while (first)
     {

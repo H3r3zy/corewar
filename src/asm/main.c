@@ -1,11 +1,11 @@
 /*
 ** main.c for corewar in /home/tsuna/Epitech/projects/corewar/error_handling
-**
+** 
 ** Made by Martin Van Elslande
 ** Login   <martin.van-elslande@epitech.eu>
-**
+** 
 ** Started on  Thu Mar 23 19:23:53 2017 Martin Van Elslande
-** Last update Thu Mar 30 13:31:54 2017 maximilien desnos
+** Last update Thu Mar 30 13:19:34 2017 Martin Van Elslande
 */
 
 #include	<unistd.h>
@@ -54,7 +54,7 @@ int		line_is_comment(char *str)
   return (0);
 }
 
-int		read_file(int fd, t_label *label)
+int		read_file(int fd, t_label *label, int *name_and_com)
 {
   t_buffer	buffer;
   int		size;
@@ -73,7 +73,7 @@ int		read_file(int fd, t_label *label)
       if (my_strlen(champ[idx]) && nb_space(champ[idx]) != my_strlen(champ[idx])
 	  && !line_is_comment(champ[idx]))
 	{
-	  if (!convert_and_check(champ[idx], idx, label))
+	  if (!convert_and_check(champ[idx], idx, label, name_and_com))
 	    return (0);
 	  idx++;
 	  champ[idx] = NULL;
@@ -105,15 +105,24 @@ int		main(int ac, char **av)
   char		**fd;
   t_line	*op;
   header_t	*hd;
+  int		*name_and_com;
 
+  if ((name_and_com = malloc(sizeof(int) * 2)) == NULL)
+    return (my_putstr(2, "Malloc error\n"));
+  name_and_com[0] = 0;
+  name_and_com[1] = 0;
   if (ac != 2)
     return (help(2, 84));
   else if (my_strcmp(av[1], "-h") == 0)
     return (help(1, 0));
+  else if (REG_NUMBER > 255)
+    return (my_putstr(2, "FAILED\nToo many registers\n"));
   else if (T_REG != 1 || T_DIR != 2 || T_IND != 4)
-    return (my_putstr(2, "AHAHAHAHAHAHAHAHAHAH\n"));
-  /*  else if (check_file(av[1]) == 84)
-      return (84);*/
+    return (my_putstr(2, "FAILED\nwrong args types\n"));
+  else if (check_file(av[1], name_and_com) == 84)
+    return (84);
+  else if (name_and_com[0] != 1 || name_and_com[1] > 1)
+    return (my_putstr(2, "Error with name or comment.\n"));
   fd = recup_file(av[1]);
   op = malloc(sizeof(t_line));
   hd = malloc(sizeof(header_t));
@@ -123,6 +132,6 @@ int		main(int ac, char **av)
   op = recup_lines(op, fd);
   recup_header(fd, hd);
   write_asm(op, hd, fl);
-  my_putstr(1, "Compilation done [%s] .\n", av[1]);
+  my_putstr(1, "Compilation done [%s].\n", av[1]);
   return (0);
 }

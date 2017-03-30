@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 19:06:59 2017 Martin Van Elslande
-** Last update Wed Mar 29 14:13:41 2017 Martin Van Elslande
+** Last update Thu Mar 30 12:01:08 2017 Martin Van Elslande
 */
 
 #include	<fcntl.h>
@@ -28,7 +28,7 @@ int		check_folder(char *file)
   return (1);
 }
 
-int		check_file(char *file)
+int		check_file(char *file, int *name_and_com)
 {
   int		fd;
   int		nb;
@@ -45,7 +45,7 @@ int		check_file(char *file)
   fd = open(file, O_RDONLY);
   if (fd == -1)
     return (my_putstr(2, "Error while opening the file.\n"));
-  nb = read_file(fd, label);
+  nb = read_file(fd, label, name_and_com);
   if (!nb)
     return (84);
   while (label->next != NULL)

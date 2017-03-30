@@ -5,7 +5,7 @@
 ## Login   <sahel.lucas-saoudi@epitech.eu>
 ## 
 ## Started on  Wed Mar 29 13:32:44 2017 Sahel Lucas--Saoudi
-## Last update Thu Mar 30 13:26:02 2017 maximilien desnos
+## Last update Thu Mar 30 13:37:52 2017 Martin Van Elslande
 ##
 
 SRC	=	src/asm/main.c			\
@@ -32,6 +32,7 @@ SRC	=	src/asm/main.c			\
 		src/asm/set_label.c		\
 		src/asm/take_bit.c		\
 		src/asm/verif_line.c		\
+		src/asm/errors.c		\
 		src/asm/without_before_.c
 
 BASICS	=	utils/my_strlen.c		\

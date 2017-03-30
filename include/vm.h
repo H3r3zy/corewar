@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 00:03:13 2017 Sahel Lucas--Saoudi
-** Last update Thu Mar 30 00:46:40 2017 Sahel Lucas--Saoudi
+** Last update Thu Mar 30 10:50:32 2017 Sahel Lucas--Saoudi
 */
 
 #ifndef VM_H_
@@ -13,18 +13,12 @@
 
 # include "op.h"
 
-typedef struct		s_coord
-{
-  int			x;
-  int			y;
-}			t_coord;
-
 typedef struct		s_action
 {
   op_t			op;
   int			cycle;
   int			line;
-  t_coord		pos_in_memory;
+  int			pos;
   int			*arg;
   struct s_action	*parra;
   struct s_action	*previous;

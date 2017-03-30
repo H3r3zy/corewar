@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Thu Mar 23 19:23:53 2017 Martin Van Elslande
-** Last update Thu Mar 30 15:24:48 2017 Sahel Lucas--Saoudi
+** Last update Thu Mar 30 15:26:18 2017 Sahel Lucas--Saoudi
 */
 
 #include	<unistd.h>
@@ -133,6 +133,6 @@ int		main(int ac, char **av)
   recup_header(fd, hd);
   write_asm(op, hd, fl);
   my_putstr(1, "Compilation done [%s].\n", av[1]);
-  close(fd);
+  close(fl);
   return (0);
 }

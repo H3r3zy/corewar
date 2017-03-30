@@ -5,12 +5,12 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 14:35:55 2017 Sahel Lucas--Saoudi
-** Last update Thu Mar 30 14:44:24 2017 Sahel Lucas--Saoudi
+** Last update Thu Mar 30 14:46:06 2017 Sahel Lucas--Saoudi
 */
 
 #include <stdlib.h>
 
-char	**to_tab(char *str)
+char	**my_str_to_wordtab(char *str)
 {
   char	**tab;
   int	tab_i;

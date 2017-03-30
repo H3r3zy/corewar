@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 17:20:31 2017 Maximilien Desnos
-** Last update Tue Mar 28 14:27:36 2017 Sahel Lucas--Saoudi
+** Last update Thu Mar 30 15:55:16 2017 Sahel Lucas--Saoudi
 */
 
 #include	<unistd.h>
@@ -69,6 +69,7 @@ static void	remp_tab(char *av, char **tab)
       free(str);
     }
   tab[i] = NULL;
+  close(fd);
 }
 
 char		**recup_file(char *av)

@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 15:30:07 2017 maximilien desnos
-** Last update Wed Mar 29 17:48:28 2017 Sahel Lucas--Saoudi
+** Last update Thu Mar 30 16:13:27 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
@@ -19,9 +19,11 @@ int		check_label(char *fd, t_line *op)
 
   j = 0;
   i = 0;
-  while (fd[i] != DIRECT_CHAR && fd[i] != LABEL_CHAR && fd[i] != '\0')
+  if (!fd)
+    return (0);
+  while (fd && fd[i] != DIRECT_CHAR && fd[i] != LABEL_CHAR && fd[i] != '\0')
     i++;
-  if (fd[i] != LABEL_CHAR)
+  if (fd && fd[i] != LABEL_CHAR)
     {
       op->label = NULL;
       return (-1);

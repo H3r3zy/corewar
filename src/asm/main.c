@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Thu Mar 23 19:23:53 2017 Martin Van Elslande
-** Last update Thu Mar 30 15:26:18 2017 Sahel Lucas--Saoudi
+** Last update Thu Mar 30 16:18:25 2017 Sahel Lucas--Saoudi
 */
 
 #include	<unistd.h>
@@ -30,14 +30,15 @@ int		help(int out, int ret)
 
 int		my_filelen(int fd)
 {
-  t_buffer	buffer;
   char		*str;
   int		idx;
 
-  idx = 0;
-  ini_gnl(&buffer);
-  while ((str = get_next_line(fd, &buffer)) != NULL)
-    idx++;
+  idx = 1;
+  while ((str = get_next_line_fd(fd)) != NULL)
+    {
+      free(str);
+      idx++;
+    }
   return (idx);
 }
 
@@ -129,10 +130,11 @@ int		main(int ac, char **av)
   fl = take_fd_cor(av[1]);
   if (!op || !hd || fl == -1)
     return (84);
-  op = recup_lines(op, fd);
+  op = recup_lines(op, fd, 0);
   recup_header(fd, hd);
   write_asm(op, hd, fl);
   my_putstr(1, "Compilation done [%s].\n", av[1]);
+  printf("%d\n", fl);
   close(fl);
   return (0);
 }

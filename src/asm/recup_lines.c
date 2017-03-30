@@ -6,7 +6,7 @@
 **
 ** Started on  Sat Mar 25 15:07:35 2017 maximilien desnos
 <<<<<<< HEAD
-** Last update Thu Mar 30 12:02:46 2017 Sahel Lucas--Saoudi
+** Last update Thu Mar 30 16:18:13 2017 Sahel Lucas--Saoudi
 =======
 ** Last update Thu Mar 30 14:04:28 2017 maximilien desnos
 >>>>>>> 08c3d69d8d421deca1b4de2b616e2e780c6d62ae
@@ -16,6 +16,7 @@
 #include	<stdlib.h>
 #include	"my.h"
 #include	"op.h"
+#include	"my_string.h"
 
 static void	add_op(t_line *op, t_line *op2)
 {
@@ -75,22 +76,21 @@ void		write_asm(t_line *op, header_t *hd, int fd)
     }
 }
 
-t_line		*recup_lines(t_line *op, char **fd)
+t_line		*recup_lines(t_line *op, char **fd, int i)
 {
   t_line	*op2;
-  int		i;
-
-  i = 3;
+  
   op->nb_bytes_tot = 0;
   if ((op2 = malloc(sizeof(t_line))) == NULL)
     exit(84);
   op->arg = NULL;
   op->previous = NULL;
-  op = find_info(fd[2]);
+  op = find_info(fd[i]);
+  i++;
   op->nb_bytes_tot = op->bytes;
   op->next = NULL;
   op->previous = NULL;
-  while (fd[i] != NULL)
+  while (i < tablen_(fd))
     {
       op2 = find_info(fd[i]);
       add_op(op, op2);

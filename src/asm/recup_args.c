@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 18:19:05 2017 maximilien desnos
-** Last update Wed Mar 29 18:08:12 2017 Sahel Lucas--Saoudi
+** Last update Thu Mar 30 16:19:10 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
@@ -27,14 +27,14 @@ static int	size_arg(char *fd, int i)
 
 static int	sin_space(char *fd, int i)
 {
-  while (fd[i] == ' ' || fd[i] == '\t')
+  while (fd && (fd[i] == ' ' || fd[i] == '\t'))
     i++;
   return (i);
 }
 
 static int	verif_lb(char *fd, int i)
 {
-  while (fd[i] != LABEL_CHAR && fd[i] != '\0')
+  while (fd && fd[i] != LABEL_CHAR && fd[i] != '\0')
     i++;
   i++;
   return (i);

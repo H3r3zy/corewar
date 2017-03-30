@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 17:13:56 2017 Maximilien Desnos
-** Last update Thu Mar 30 13:36:58 2017 maximilien desnos
+** Last update Thu Mar 30 16:18:42 2017 Sahel Lucas--Saoudi
 */
 
 #ifndef MY_H_
@@ -63,6 +63,6 @@ void		recup_op(char *, t_line *, int);
 void		recup_args(char *, t_line *, int);
 void		write_asm(t_line *, header_t *, int);
 void		remp_fd(header_t *, int, t_line *);
-t_line		*recup_lines(t_line *, char **);
+t_line		*recup_lines(t_line *, char **, int);
 
 #endif /* MY_H_ */

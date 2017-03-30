@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 19:06:59 2017 Martin Van Elslande
-** Last update Thu Mar 30 15:35:51 2017 Sahel Lucas--Saoudi
+** Last update Thu Mar 30 15:55:38 2017 Sahel Lucas--Saoudi
 */
 
 #include	<fcntl.h>
@@ -25,7 +25,6 @@ int		check_folder(char *file)
       close(fd);
       return (0);
     }
-  close(fd);
   return (1);
 }
 

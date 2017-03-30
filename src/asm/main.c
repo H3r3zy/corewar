@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Thu Mar 23 19:23:53 2017 Martin Van Elslande
-** Last update Thu Mar 30 13:18:29 2017 Martin Januario
+** Last update Thu Mar 30 15:24:48 2017 Sahel Lucas--Saoudi
 */
 
 #include	<unistd.h>
@@ -95,7 +95,7 @@ int		take_fd_cor(char *path)
     name = without_before_(name, '/');
   name[my_strlen(name) - 1] = '\0';
   name = my_realloc_gnl(name, "cor", &i);
-  fd = open(name, O_CREAT | O_WRONLY | O_TRUNC, 00644);
+  fd = open(name, O_CREAT | O_WRONLY | O_TRUNC, 0644);
   return (fd);
 }
 

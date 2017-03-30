@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Sat Mar 25 11:05:25 2017 Martin Januario
-** Last update Sun Mar 26 22:38:45 2017 Martin Januario
+** Last update Wed Mar 29 18:32:04 2017 Martin Van Elslande
 */
 
 #include	<stdlib.h>
@@ -20,12 +20,12 @@ int		my_len_space(char *str)
 
   idx = 0;
   result = 0;
-    while (str[idx] != '\0')
-      {
-	if (str[idx] != ' ' && str[idx] != '\t')
-	  result++;
-	idx++;
-      }
+  while (str[idx] != '\0')
+    {
+      if (str[idx] != ' ' && str[idx] != '\t')
+	result++;
+      idx++;
+    }
   return (result);
 }
 
@@ -59,19 +59,18 @@ int		id_command(char *str, int nb_line, int i, t_label *label)
   int		idx;
 
   idx = 0;
-  (void) nb_line;
   if ((new = epur_command(str)) == NULL)
-    return (0);
+    return (error_messages(0, nb_line));
   if ((arg = parse_(new, SEPARATOR_CHAR)) == NULL)
-    return (0);
+    return (error_messages(0, nb_line));
   if (my_tablen(arg) != op_tab[i].nbr_args)
-    return (0);
+    return (error_messages(3, nb_line));
   while (arg[idx] != NULL && idx < op_tab[i].nbr_args)
     {
       if (op_tab[i].type[idx] == 0)
-	return (0);
+	return (error_messages(1, nb_line));
       if (check_type(arg, i, idx, label) == 0)
-	return (0);
+	return (error_messages(2, nb_line));
       idx++;
     } 
   return (1);
@@ -101,7 +100,7 @@ int		check_command(char *str, int nb_line,
   idx = 0;
   if ((tmp = my_str_to_wordtab(str)) == NULL ||
       my_tablen(tmp) == 0)
-    return (0);
+    return (error_messages(0, nb_line));
   while (op_tab[idx].mnemonique != NULL)
     {
       if (my_strcmp(tmp[0], op_tab[idx].mnemonique) == 0)
@@ -109,7 +108,7 @@ int		check_command(char *str, int nb_line,
       idx++;
     }
   if ((new = epur_command(str)) == NULL)
-    return (0);
+    return (error_messages(0, nb_line));
   if (new[my_strlen(new) - 1] == LABEL_CHAR)
     return (add_label(label, new));
   free_tab(tmp);

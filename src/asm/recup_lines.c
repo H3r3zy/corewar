@@ -5,7 +5,11 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 15:07:35 2017 maximilien desnos
+<<<<<<< HEAD
 ** Last update Thu Mar 30 12:02:46 2017 Sahel Lucas--Saoudi
+=======
+** Last update Thu Mar 30 14:04:28 2017 maximilien desnos
+>>>>>>> 08c3d69d8d421deca1b4de2b616e2e780c6d62ae
 */
 
 #include	<unistd.h>

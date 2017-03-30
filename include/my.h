@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 17:13:56 2017 Maximilien Desnos
-** Last update Wed Mar 29 16:07:00 2017 Sahel Lucas--Saoudi
+** Last update Thu Mar 30 13:36:58 2017 maximilien desnos
 */
 
 #ifndef MY_H_
@@ -37,7 +37,7 @@ unsigned int	reverse_add2(unsigned int);
 int		recup_pos_comment(char **);
 int		my_getnbr(char *);
 int		check_label(char *, t_line *);
-int		recup_pos_name(char **);
+int		recup_pos_name(char **, int, int, char *);
 int		count_size_header_str(char *);
 int		match(char *, char *);
 int		verif_line(char *);

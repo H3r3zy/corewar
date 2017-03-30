@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 19:06:59 2017 Martin Van Elslande
-** Last update Thu Mar 30 15:00:43 2017 Martin Januario
+** Last update Thu Mar 30 15:35:51 2017 Sahel Lucas--Saoudi
 */
 
 #include	<fcntl.h>
@@ -25,6 +25,7 @@ int		check_folder(char *file)
       close(fd);
       return (0);
     }
+  close(fd);
   return (1);
 }
 
@@ -48,14 +49,24 @@ char		**check_file(char *file, int *name_and_com)
       return (NULL);
     }
   if ((tmp = read_file(fd, label, name_and_com)) == NULL)
-    return (NULL);
+    {
+      close(fd);
+      return (NULL);
+    }
   while (label->next != NULL)
     {
       if (label->here == 0 && label->name != NULL)
-	return (NULL);
+	{
+	  close(fd);
+	  return (NULL);
+	}
       label = label->next;
     }
   if ((label->here == 0 && label->name != NULL))
-    return (NULL);
+    {
+      close(fd);
+      return (NULL);
+    }
+  close(fd);
   return (tmp);
 }

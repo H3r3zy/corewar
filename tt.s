@@ -1,5 +1,5 @@
 	.name "l"
 	.comment "l"
 
-	ld %42,r3
+	st r3,42
 	live %1

@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 14:35:55 2017 Sahel Lucas--Saoudi
-** Last update Thu Mar 30 14:46:06 2017 Sahel Lucas--Saoudi
+** Last update Thu Mar 30 16:47:22 2017 Sahel Lucas--Saoudi
 */
 
 #include <stdlib.h>
@@ -19,11 +19,11 @@ char	**my_str_to_wordtab(char *str)
 
   tab_i = 0;
   str_i = 0;
-  tab = malloc(sizeof(char *) * (strlen(str)));
+  tab = malloc(sizeof(char *) * (strlen(str) + 1));
   while (str[str_i])
     {
       tab_i_i = 0;
-      tab[tab_i] = malloc(strlen(str));
+      tab[tab_i] = malloc(strlen(str) + 1);
       while (str[str_i] && (str[str_i] == ' ' || str[str_i] == '\t'))
 	str_i++;
       if (str[str_i] == '\"')

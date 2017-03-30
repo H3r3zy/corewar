@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 20:01:18 2017 Maximilien Desnos
-** Last update Thu Mar 30 16:28:50 2017 Sahel Lucas--Saoudi
+** Last update Thu Mar 30 16:52:55 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
@@ -16,18 +16,14 @@ int		recup_pos_name(char **tab, int z, int j, char *tmp)
   int                   i;
 
   i = 0;
-  printf("%s\n", tmp);
   while (tmp[j] != '\0' && tab[z] != NULL)
     {
       j = 0;
-      printf("%s\n", tab[z]);
-      printf("%c\n", tab[z][i]);
-      while (tab[z][i] != '\0' && tab[z][i] != tmp[0])
+      while (tab[z] && tab[z][i] != '\0' && tab[z][i] != tmp[0])
 	{
-	  printf("%s\n", tab[z]);
 	  while (tab[z][i] != tmp[0] && tab[z][i] != '\0')
 	    i++;
-	  if (tab[z][i] == '\0')
+	  if (tab[z][i] == '\0' && tab[z + 1])
 	    {
 	      i = 0;
 	      z++;

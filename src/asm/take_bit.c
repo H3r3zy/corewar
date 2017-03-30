@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Sat Mar 25 14:16:23 2017 Sahel Lucas--Saoudi
-** Last update Wed Mar 29 17:46:50 2017 Sahel Lucas--Saoudi
+** Last update Thu Mar 30 13:19:18 2017 Martin Januario
 */
 
 #include <stdlib.h>
@@ -89,7 +89,6 @@ void	set_byte(t_line *line)
 	}
       i++;
     }
-  
   coding_byte[i * 2 - 1] = '\0';
   line->cb = transfo(coding_byte);
 }

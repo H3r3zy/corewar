@@ -5,23 +5,28 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 00:00:08 2017 Sahel Lucas--Saoudi
-** Last update Thu Mar 30 00:29:45 2017 Sahel Lucas--Saoudi
+** Last update Thu Mar 30 11:15:51 2017 Sahel Lucas--Saoudi
 */
 
 #include <stdlib.h>
 #include "op.h"
+#include "vm.h"
 
 char		*create_memory_map()
 {
   char		*str;
   int		i;
 
-  str = malloc(MEM_SIZE);
+  str = malloc(MEM_SIZE + 2);
   if (!str)
     return (NULL);
   i = 0;
   while (i <= MEM_SIZE)
-    str[i] = '0';
+    {
+      str[i] = '0';
+      i++;
+    }
+  str[i] = '\0';
   return (str);
 }
 
@@ -50,6 +55,6 @@ int		main(int ac, char **av)
   if (ac != 3)
     return (84);
   game = init_game();
-  init_player(game);
+  init_player(av);
   return (0);
 }

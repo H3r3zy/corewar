@@ -1,5 +1,5 @@
-.name "tst"
-.comment "zoukzouk"
+.name 		"tst"
+.comment 	"zoukzouk"
 
 	fork %:live
 	fork %:live

@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 00:29:58 2017 Sahel Lucas--Saoudi
-** Last update Thu Mar 30 14:33:06 2017 Sahel Lucas--Saoudi
+** Last update Thu Mar 30 21:31:10 2017 Sahel Lucas--Saoudi
 */
 
 #include <stdlib.h>
@@ -17,7 +17,7 @@
 #include "vm.h"
 #include "my.h"
 
-char	*in_binary(char cb)
+char	*in_binary(unsigned char cb)
 {
   char	*cb_b;
   int	i;
@@ -65,14 +65,20 @@ t_action	*get_action(t_player *player)
   action->op = op_tab[ac - 1];
   action->cycle = action->op.nbr_cycles;
   action->byte = 1;
-  if (ac != 1 && ac != 9 && ac != 12 && ac != 15) // get cb
+  if (ac != 1 && ac != 9 && ac != 12 && ac != 15) 
     {
       read(player->fd, &cb, sizeof(char));
       action->byte++;
     }
-  if (ac == 11 || ac == 9 || ac == 10 || ac == 12 || ac == 15) // know if index or direct and indirect
+  if (ac == 11 || ac == 9 || ac == 10 || ac == 12 || ac == 15)
     is_idx = 1;
   cb_b = NULL;
+  i = 0;
+  while (i < MAX_ARGS_NUMBER)
+    {
+      arg[i] = 0;
+      i++;
+    }
   i = 0;
   if (cb != 0)
     {
@@ -84,7 +90,7 @@ t_action	*get_action(t_player *player)
 	      read(player->fd, &arg[i], sizeof(char));
 	      action->byte++;
 	    }
-	  else if (cb_b[i * 2] == '1' && cb_b[i * 2 + 1] == '0') // a commencer
+	  else if (cb_b[i * 2] == '1' && cb_b[i * 2 + 1] == '0')
 	    {
 	      read(player->fd, &arg[i], (is_idx == 0) ? (DIR_SIZE) : (2));
 	      action->byte += (is_idx == 0) ? (DIR_SIZE) : (2);
@@ -94,10 +100,33 @@ t_action	*get_action(t_player *player)
 	      read(player->fd, &arg[i], (is_idx == 0) ? (IND_SIZE) : (2));
 	      action->byte += (is_idx == 0) ? (IND_SIZE) : (2);
 	    }
-	  else
-	    arg[i] = 0;
 	  i++;
 	}
+    }
+  else if (ac == 1)
+    {
+      action->byte += DIR_SIZE;
+      read(player->fd, &arg[0], DIR_SIZE);
+    }
+  else if (ac == 9)
+    {
+      action->byte += 2;
+      read(player->fd, &arg[0], 2);
+    }
+  else if (ac == 12)
+    {
+      action->byte += 2;
+      read(player->fd, &arg[0], 2);
+    }
+  else if (ac == 15)
+    {
+      action->byte += 2;
+      read(player->fd, &arg[0], 2);
+    }
+  else if (ac == 16)
+    {
+      action->byte++;
+      read(player->fd, &arg[0], 1);
     }
   if (player->action)
     {
@@ -114,7 +143,7 @@ t_action	*get_action(t_player *player)
   printf("\t|-> Pos C\t:%i\n", action->pos);
   printf("\t|-> Pos M\t:%i\n", action->pos_m);
   printf("\t|-> Cycle\t:%i\n", action->cycle);
-  printf("\t|-> Byte\t:%i\n", action->byte);
+  printf("\t|-> Byte\t:%u\n", action->byte);
   if (cb)
     printf("\t|-> Coding Byte\t:%i | %s\n", cb, cb_b);
   return (action);

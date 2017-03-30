@@ -1,11 +1,11 @@
 /*
 ** main.c for corewar in /home/tsuna/Epitech/projects/corewar/error_handling
-** 
+**
 ** Made by Martin Van Elslande
 ** Login   <martin.van-elslande@epitech.eu>
-** 
+**
 ** Started on  Thu Mar 23 19:23:53 2017 Martin Van Elslande
-** Last update Wed Mar 29 18:05:20 2017 Sahel Lucas--Saoudi
+** Last update Thu Mar 30 13:31:54 2017 maximilien desnos
 */
 
 #include	<unistd.h>
@@ -105,15 +105,15 @@ int		main(int ac, char **av)
   char		**fd;
   t_line	*op;
   header_t	*hd;
-  
+
   if (ac != 2)
     return (help(2, 84));
   else if (my_strcmp(av[1], "-h") == 0)
     return (help(1, 0));
   else if (T_REG != 1 || T_DIR != 2 || T_IND != 4)
     return (my_putstr(2, "AHAHAHAHAHAHAHAHAHAH\n"));
-  else if (check_file(av[1]) == 84)
-    return (84);
+  /*  else if (check_file(av[1]) == 84)
+      return (84);*/
   fd = recup_file(av[1]);
   op = malloc(sizeof(t_line));
   hd = malloc(sizeof(header_t));

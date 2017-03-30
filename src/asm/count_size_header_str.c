@@ -5,30 +5,42 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 20:01:18 2017 Maximilien Desnos
-** Last update Tue Mar 28 15:51:14 2017 maximilien desnos
+** Last update Thu Mar 30 14:20:48 2017 maximilien desnos
 */
 
+#include	<stdlib.h>
 #include	"op.h"
 
-int		recup_pos_name(char **tab)
+int		recup_pos_name(char **tab, int z, int j, char *tmp)
 {
   int                   i;
-  int                   j;
-  char                  *tmp;
 
   i = 0;
-  j = 0;
-  tmp = NAME_CMD_STRING;
-  while (tab[0][i] != '.')
-    i++;
-  while (tab[0][i] == tmp[j])
+  while (tmp[j] != '\0' && tab[z] != NULL)
     {
-      i++;
-      j++;
+      j = 0;
+      while (tab[z][i] != '\0' && tab[z][i] != tmp[0])
+	{
+	  while (tab[z][i] != tmp[0] && tab[z][i] != '\0')
+	    i++;
+	  if (tab[z][i] == '\0')
+	    {
+	      i = 0;
+	      z++;
+	    }
+	}
+      while (tab[z][i] == tmp[j])
+	{
+	  i++;
+	  j++;
+	}
+      if (tmp[j] != '\0')
+	{
+	  i = 0;
+	  z++;
+	}
     }
-  if (tmp[j] == '\0')
-    return (0);
-  return (1);
+  return (z);
 }
 
 int		recup_pos_comment(char **tab)

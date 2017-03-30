@@ -5,7 +5,7 @@
 ## Login   <sahel.lucas-saoudi@epitech.eu>
 ## 
 ## Started on  Wed Mar 29 13:32:44 2017 Sahel Lucas--Saoudi
-## Last update Wed Mar 29 16:10:40 2017 Sahel Lucas--Saoudi
+## Last update Thu Mar 30 13:26:02 2017 maximilien desnos
 ##
 
 SRC	=	src/asm/main.c			\
@@ -64,7 +64,7 @@ OBJ	=	$(BASICS:.c=.o)			\
 		$(GNL:.c=.o)			\
 		$(SRC:.c=.o)
 
-CFLAGS	=	-Wall -Wextra -I include/
+CFLAGS	=	-Wall -Wextra -I include/ -g
 
 NAME	=	asm/asm
 

@@ -1,6 +1,5 @@
-.name "tst"
-.comment "zoukzouk"
 
+.comment "zoukzouk"
 	fork %:live
 	fork %:live
 	ld %57672448,r1
@@ -20,6 +19,7 @@
 	zjmp %:live
 	zjmp %:live
 	ldi r1,r1,r1
+.name "tst"
 	ldi r1,r1,r1
 	sti r1,%:live,%0
 	sti r1,%:live,%0
@@ -63,3 +63,4 @@ live:
 	st r8,-400
 	fork %:live
 	fork %:live
+

@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 18:29:45 2017 Maximilien Desnos
-** Last update Wed Mar 29 13:20:40 2017 Sahel Lucas--Saoudi
+** Last update Thu Mar 30 14:25:54 2017 maximilien desnos
 */
 
 #include	<sys/types.h>
@@ -42,10 +42,16 @@ static int     		recup_name(char **tab, header_t *hd)
 {
   int			i;
 
-  i = recup_pos_name(tab);
-  recup_str_header(tab[0], hd->prog_name);
-  i = recup_pos_comment(tab);
-  recup_str_header(tab[1], hd->comment);
+  i = 0;
+  i = recup_pos_name(tab, i, 0, NAME_CMD_STRING);
+  recup_str_header(tab[i], hd->prog_name);
+  i = recup_pos_name(tab, 0, 0, COMMENT_CMD_STRING);
+  if (tab[i] != NULL)
+    recup_str_header(tab[i], hd->comment);
+  else
+    {
+      hd->comment[0] = '\0';
+    }
   return (i);
 }
 
@@ -80,7 +86,7 @@ void			remp_fd(header_t *hd, int fd, t_line *op)
 {
   int			i;
   int			j;
-  int			tmp;
+  unsigned int		tmp;
 
   tmp = reverse_add(COREWAR_EXEC_MAGIC);
   i = my_strlen(hd->prog_name);

@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 00:29:58 2017 Sahel Lucas--Saoudi
-** Last update Thu Mar 30 21:31:10 2017 Sahel Lucas--Saoudi
+** Last update Fri Mar 31 00:35:15 2017 Sahel Lucas--Saoudi
 */
 
 #include <stdlib.h>
@@ -50,6 +50,7 @@ t_action	*get_action(t_player *player)
   char		ac;
   char		cb;
   int		i;
+  int		size;
   char		is_idx;
   char		*cb_b;
   int		*arg[MAX_ARGS_NUMBER];
@@ -61,7 +62,9 @@ t_action	*get_action(t_player *player)
     lseek(player->fd, COMMENT_LENGTH + PROG_NAME_LENGTH + 16, SEEK_SET);
   else
     lseek(player->fd, COMMENT_LENGTH + PROG_NAME_LENGTH + 16 + player->action->pos + player->action->byte, SEEK_SET);
-  read(player->fd, &ac, sizeof(char));
+  size = read(player->fd, &ac, sizeof(char));
+  if (size == 0)
+    return (NULL);
   action->op = op_tab[ac - 1];
   action->cycle = action->op.nbr_cycles;
   action->byte = 1;
@@ -166,6 +169,8 @@ t_player	*set_player(char **av, int i)
   read(player->fd, &player->prog_size, sizeof(int));
   read(player->fd, &player->comment, COMMENT_LENGTH);
   read(player->fd, &tmp, sizeof(int));
+  player->magic = reverse_add(player->magic);
+  player->prog_size = reverse_add(player->prog_size);
   player->carry = 1;
   player->live = 0;
   player->p = p;
@@ -178,14 +183,22 @@ t_player	*set_player(char **av, int i)
   return (player);
 }
 
-t_player	*init_player(char **av)
+t_player	*init_player(t_game *game, char **av)
 {
   t_player	*p1;
   int		i;
+  int		prog_size;
 
   p1 = set_player(av, 1);
   if (!p1)
     return (NULL);
+  prog_size = p1->prog_size;
+  while (prog_size > 0)
+    {
+      printf("%i\n", game->max_size * (p1->p - 1) + prog_size);
+      game->memory[game->max_size * (p1->p - 1) + prog_size] = p1->p + 48;
+      prog_size--;
+    }
   p1->next = NULL;
   p1->previous = NULL;
   i = 2;
@@ -194,6 +207,12 @@ t_player	*init_player(char **av)
       p1->next = set_player(av, i);
       if (!p1->next)
 	return (NULL);
+      prog_size = p1->next->prog_size;
+      while (prog_size > 0)
+	{
+	  game->memory[game->max_size * (p1->next->p - 1) + prog_size] = p1->next->p + 48;
+	  prog_size--;
+	}
       p1->next->previous = p1;
       i++;
       p1 = p1->next;

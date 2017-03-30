@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 20:43:07 2017 Sahel Lucas--Saoudi
-** Last update Thu Mar 30 21:34:45 2017 Sahel Lucas--Saoudi
+** Last update Fri Mar 31 00:36:28 2017 Sahel Lucas--Saoudi
 */
 
 #include "vm.h"
@@ -35,6 +35,8 @@ void		action_loop(t_player *player)
 	{
 	  //exec_action(player, i);
 	  change_action(player, i);
+	  if (!player->action)
+	    player->is_dead = 1;
 	}
       else
 	tmp->cycle--;
@@ -52,13 +54,10 @@ int	player_loop(t_player *player)
   dead = 0;
   while (player)
     {
-      if (player->is_dead)
+      if (player->is_dead || !player->action)
 	dead++;
       else
-	{
-	  action_loop(player);
-	  
-	}
+	action_loop(player);
       player = player->next;
     }
   return (dead);
@@ -66,11 +65,23 @@ int	player_loop(t_player *player)
 
 void	start_game(t_game *game)
 {
-  while (game->end != game->nb_j - 1)
+  int	cycle;
+
+  cycle = 0;
+  while (game->end < game->nb_j - 1)
     {
       printf("\n####~~\n\tNEW CYCLE\n####~~\n");
       game->end = player_loop(game->player);
-      
-      usleep(50000);
+      cycle++;
+      //      usleep(50000);
     }
+  while (game->player && game->player->is_dead != 0)
+    {
+      game->player = game->player->next;
+    }
+  printf("%s\n", game->memory);
+  if (!game->player)
+    printf("EGALITE\n");
+  else
+    printf("## %i Cycles ##\nThe winner is the player %i:\n%s\n\"%s\"\n", cycle, game->player->p, game->player->name, game->player->comment);
 }

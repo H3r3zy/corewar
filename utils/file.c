@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 19:06:59 2017 Martin Van Elslande
-** Last update Thu Mar 30 12:01:08 2017 Martin Van Elslande
+** Last update Thu Mar 30 15:00:43 2017 Martin Januario
 */
 
 #include	<fcntl.h>
@@ -28,33 +28,34 @@ int		check_folder(char *file)
   return (1);
 }
 
-int		check_file(char *file, int *name_and_com)
+char		**check_file(char *file, int *name_and_com)
 {
+  char		**tmp;
   int		fd;
-  int		nb;
   t_label       *label;
 
-  nb = 0;
   if (NULL == (label = malloc(sizeof(t_label) * 1)))
-    return (84);
+    return (NULL);
   label->name =	NULL;
   label->next = NULL;
   label->here = 0;
   if (!check_folder(file))
-    return (84);
+    return (NULL);
   fd = open(file, O_RDONLY);
   if (fd == -1)
-    return (my_putstr(2, "Error while opening the file.\n"));
-  nb = read_file(fd, label, name_and_com);
-  if (!nb)
-    return (84);
+    {
+      my_putstr(2, "Error while opening the file.\n");
+      return (NULL);
+    }
+  if ((tmp = read_file(fd, label, name_and_com)) == NULL)
+    return (NULL);
   while (label->next != NULL)
     {
       if (label->here == 0 && label->name != NULL)
-	return (84);
+	return (NULL);
       label = label->next;
     }
-  if (!nb || (label->here == 0 && label->name != NULL))
-    return (84);
-  return (0);
+  if ((label->here == 0 && label->name != NULL))
+    return (NULL);
+  return (tmp);
 }

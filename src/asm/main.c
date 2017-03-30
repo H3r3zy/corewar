@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Thu Mar 23 19:23:53 2017 Martin Van Elslande
-** Last update Thu Mar 30 13:19:34 2017 Martin Van Elslande
+** Last update Thu Mar 30 14:59:52 2017 Martin Januario
 */
 
 #include	<unistd.h>
@@ -54,7 +54,7 @@ int		line_is_comment(char *str)
   return (0);
 }
 
-int		read_file(int fd, t_label *label, int *name_and_com)
+char		**read_file(int fd, t_label *label, int *name_and_com)
 {
   t_buffer	buffer;
   int		size;
@@ -64,23 +64,23 @@ int		read_file(int fd, t_label *label, int *name_and_com)
   ini_gnl(&buffer);
   idx = 0;
   if ((size = my_filelen(fd)) == 0)
-    return (0);
+    return (NULL);
   lseek(fd, 0, SEEK_SET);
   if ((champ = malloc(sizeof(char *) * (size + 1))) == NULL)
-    return (1);
+    return (NULL);
   while ((champ[idx] = get_next_line(fd, &buffer)) != NULL)
     {
       if (my_strlen(champ[idx]) && nb_space(champ[idx]) != my_strlen(champ[idx])
 	  && !line_is_comment(champ[idx]))
 	{
 	  if (!convert_and_check(champ[idx], idx, label, name_and_com))
-	    return (0);
+	    return (NULL);
 	  idx++;
 	  champ[idx] = NULL;
 	}
     }
   champ[idx] = NULL;
-  return (1);
+  return (champ);
 }
 
 int		take_fd_cor(char *path)
@@ -119,11 +119,11 @@ int		main(int ac, char **av)
     return (my_putstr(2, "FAILED\nToo many registers\n"));
   else if (T_REG != 1 || T_DIR != 2 || T_IND != 4)
     return (my_putstr(2, "FAILED\nwrong args types\n"));
-  else if (check_file(av[1], name_and_com) == 84)
+  else if ((fd = check_file(av[1], name_and_com)) == NULL)
     return (84);
   else if (name_and_com[0] != 1 || name_and_com[1] > 1)
     return (my_putstr(2, "Error with name or comment.\n"));
-  fd = recup_file(av[1]);
+  // fd = recup_file(av[1]);
   op = malloc(sizeof(t_line));
   hd = malloc(sizeof(header_t));
   fl = take_fd_cor(av[1]);

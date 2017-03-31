@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 00:03:13 2017 Sahel Lucas--Saoudi
-** Last update Thu Mar 30 14:33:59 2017 Sahel Lucas--Saoudi
+** Last update Fri Mar 31 00:24:59 2017 Sahel Lucas--Saoudi
 */
 
 #ifndef VM_H_
@@ -43,22 +43,26 @@ typedef struct		s_player
 
 typedef struct		s_reg
 {
-int			value;
-struct s_reg		*next;
-struct s_reg		*previous;
+  int			value;
+  struct s_reg		*next;
+  struct s_reg		*previous;
 }			t_reg;
 
 typedef struct		s_game
 {
-int			nb_live;
-int			actual_cycle;
-int			cycle_to_die;
-int			cycle_delta;
-char			*memory;
-t_player		*player;
-
+  int			max_size;
+  int			nb_live;
+  int			actual_cycle;
+  int			cycle_to_die;
+  int			cycle_delta;
+  char			*memory;
+  t_player		*player;
+  int			end;
+  int			nb_j;
 }			t_game;
 
-t_player	*init_player(char **);
+t_player	*init_player(t_game *, char **);
+t_action	*get_action(t_player *);
+void		start_game(t_game *);
 
 #endif /* !VM_H_ */

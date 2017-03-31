@@ -5,7 +5,7 @@
 ## Login   <sahel.lucas-saoudi@epitech.eu>
 ## 
 ## Started on  Fri Mar 31 14:22:41 2017 Sahel Lucas--Saoudi
-## Last update Fri Mar 31 14:29:53 2017 Sahel Lucas--Saoudi
+## Last update Fri Mar 31 15:21:56 2017 Sahel Lucas--Saoudi
 ##
 
 SRC	=	../src/vm/main.c		\
@@ -15,9 +15,10 @@ SRC	=	../src/vm/main.c		\
 		../src/vm/instructions/live.c	\
 		../src/vm/instructions/zjmp.c	\
 		../src/asm/my_power_rec.c	\
-		../src/asm/reverse_add.c
+		../src/asm/reverse_add.c	\
+		../src/asm/op.c
 
-OBJ	=	$(SRC=.c:.o)
+OBJ	=	$(SRC:.c=.o)
 
 CFLAGS	=	-Wall -Wextra -I../include
 

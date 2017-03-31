@@ -5,9 +5,10 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Fri Mar 31 13:29:02 2017 Sahel Lucas--Saoudi
-** Last update Fri Mar 31 13:37:42 2017 Sahel Lucas--Saoudi
+** Last update Fri Mar 31 15:21:32 2017 Sahel Lucas--Saoudi
 */
 
+#include <stdlib.h>
 #include "vm.h"
 #include "op.h"
 

@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Wed Feb  1 22:13:46 2017 
-** Last update Fri Mar 31 13:59:38 2017 Martin Januario
+** Last update Fri Mar 31 14:23:10 2017 Sahel Lucas--Saoudi
 */
 
 #include		<stdlib.h>
@@ -50,7 +50,7 @@ sfVector2i		size_win(sfVector2i size)
   return (size_max);
 }
 
-int			ini_window(char **map)
+int			ini_window(char *str)
 {
   sfVector2i		size;
   t_core_window		needs;
@@ -58,15 +58,6 @@ int			ini_window(char **map)
   int			tmp;
   sfEvent		event;
 
-  int	idx = 0;
-  char *str;
-#include	<string.h>
-  str = malloc(30000);
-  while (map[idx] != NULL)
-    {
-      strcat(str, map[idx]);
-      idx++;
-    }
   size.x = sqrt(strlen(str));
   size.y = size.x;
   tmp = size.y;

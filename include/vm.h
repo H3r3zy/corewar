@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 00:03:13 2017 Sahel Lucas--Saoudi
-** Last update Fri Mar 31 00:24:59 2017 Sahel Lucas--Saoudi
+** Last update Fri Mar 31 13:33:57 2017 Sahel Lucas--Saoudi
 */
 
 #ifndef VM_H_
@@ -30,12 +30,13 @@ typedef struct		s_player
   char			is_dead;
   char			name[PROG_NAME_LENGTH + 1];
   char			comment[COMMENT_LENGTH + 1];
+  int			max_size;
   int			magic;
   int			prog_size;
   int			carry;
   int			live;
-  int			**champ;
   int			fd;
+  int			*reg;
   struct s_player	*previous;
   struct s_player	*next;
   t_action		*action;
@@ -63,6 +64,11 @@ typedef struct		s_game
 
 t_player	*init_player(t_game *, char **);
 t_action	*get_action(t_player *);
+int		*init_register(t_player *);
+unsigned int	reverse_add2(unsigned int);
+unsigned int	reverse_add(unsigned int);
 void		start_game(t_game *);
+void		live(t_player *, t_action *);
+void		zjmp(t_player *, t_action *);
 
 #endif /* !VM_H_ */

@@ -5,9 +5,10 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 00:29:58 2017 Sahel Lucas--Saoudi
-** Last update Fri Mar 31 00:35:15 2017 Sahel Lucas--Saoudi
+** Last update Fri Mar 31 13:42:48 2017 Sahel Lucas--Saoudi
 */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -53,7 +54,7 @@ t_action	*get_action(t_player *player)
   int		size;
   char		is_idx;
   char		*cb_b;
-  int		*arg[MAX_ARGS_NUMBER];
+  int		arg[MAX_ARGS_NUMBER];
   
   cb = 0;
   is_idx = 0;
@@ -97,11 +98,13 @@ t_action	*get_action(t_player *player)
 	    {
 	      read(player->fd, &arg[i], (is_idx == 0) ? (DIR_SIZE) : (2));
 	      action->byte += (is_idx == 0) ? (DIR_SIZE) : (2);
+	      arg[i] = (is_idx == 0) ? (reverse_add(arg[i])) : (reverse_add2(arg[i]));
 	    }
 	  else if (cb_b[i * 2] == '1' && cb_b[i * 2 + 1] == '1')
 	    {
 	      read(player->fd, &arg[i], (is_idx == 0) ? (IND_SIZE) : (2));
 	      action->byte += (is_idx == 0) ? (IND_SIZE) : (2);
+	      arg[i] = reverse_add2(arg[i]);
 	    }
 	  i++;
 	}
@@ -110,21 +113,27 @@ t_action	*get_action(t_player *player)
     {
       action->byte += DIR_SIZE;
       read(player->fd, &arg[0], DIR_SIZE);
+      arg[0] = reverse_add(arg[0]);
     }
   else if (ac == 9)
     {
       action->byte += 2;
       read(player->fd, &arg[0], 2);
+      printf("AVANT REVERSE : %i\n", (short) arg[0]);
+      arg[0] = (short) reverse_add2(arg[0]);
+      printf("APRES REVERSE : %i\n", arg[0]);
     }
   else if (ac == 12)
     {
       action->byte += 2;
       read(player->fd, &arg[0], 2);
+      arg[0] = reverse_add2(arg[0]);
     }
   else if (ac == 15)
     {
       action->byte += 2;
       read(player->fd, &arg[0], 2);
+      arg[0] = reverse_add2(arg[0]);
     }
   else if (ac == 16)
     {
@@ -133,14 +142,19 @@ t_action	*get_action(t_player *player)
     }
   if (player->action)
     {
-      action->pos = player->action->pos + player->action->byte;
-      action->pos_m = player->action->pos_m + player->action->byte; 
+      printf("ACTION BYTE %i\n", player->action->byte);
+      printf("LAST POSM %i\n", player->action->pos_m);
+      action->pos = (player->action->pos + player->action->byte) % player->prog_size;
+      action->pos_m = (player->action->pos_m + player->action->byte) % MEM_SIZE;
+      printf("POSM %i\n", action->pos_m);
     }
   else
     {
       action->pos = 0;
-      action->pos_m = 1024 * (player->p - 1);
+      action->pos_m = player->max_size * (player->p - 1);
+      printf("NEW POSM%i\n", action->pos_m);
     }
+  action->arg = arg;
   action->parra = NULL;
   printf("Player %s\n|-> Action:\n", player->name);
   printf("\t|-> Pos C\t:%i\n", action->pos);
@@ -152,7 +166,7 @@ t_action	*get_action(t_player *player)
   return (action);
 }
 
-t_player	*set_player(char **av, int i)
+t_player	*set_player(t_game *game, char **av, int i)
 {
   t_player	*player;
   static int	p = 1;
@@ -174,6 +188,10 @@ t_player	*set_player(char **av, int i)
   player->carry = 1;
   player->live = 0;
   player->p = p;
+  player->max_size = game->max_size;
+  player->reg = init_register(player);
+  if (player->reg)
+    return (NULL);
   p++;
   player->is_dead = 0;
   player->previous = NULL;
@@ -189,7 +207,7 @@ t_player	*init_player(t_game *game, char **av)
   int		i;
   int		prog_size;
 
-  p1 = set_player(av, 1);
+  p1 = set_player(game, av, 1);
   if (!p1)
     return (NULL);
   prog_size = p1->prog_size;
@@ -204,7 +222,7 @@ t_player	*init_player(t_game *game, char **av)
   i = 2;
   while (av[i])
     {
-      p1->next = set_player(av, i);
+      p1->next = set_player(game, av, i);
       if (!p1->next)
 	return (NULL);
       prog_size = p1->next->prog_size;

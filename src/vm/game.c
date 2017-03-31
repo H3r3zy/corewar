@@ -5,11 +5,25 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 20:43:07 2017 Sahel Lucas--Saoudi
-** Last update Fri Mar 31 00:36:28 2017 Sahel Lucas--Saoudi
+** Last update Fri Mar 31 11:53:58 2017 Sahel Lucas--Saoudi
 */
 
+#include <stdio.h>
 #include "vm.h"
 #include "op.h"
+
+void		exec_action(t_player *player, int i)
+{
+  while (i > 0)
+    {
+      player->action = player->action->parra;
+      i--;
+    }
+  if (player->action->op.code == 1)
+    live(player, player->action);
+  if (player->action->op.code == 9)
+    zjmp(player, player->action);
+}
 
 void		change_action(t_player *player, int i)
 {
@@ -33,7 +47,7 @@ void		action_loop(t_player *player)
     {
       if (tmp->cycle == 0)
 	{
-	  //exec_action(player, i);
+	  exec_action(player, i);
 	  change_action(player, i);
 	  if (!player->action)
 	    player->is_dead = 1;
@@ -73,8 +87,14 @@ void	start_game(t_game *game)
       printf("\n####~~\n\tNEW CYCLE\n####~~\n");
       game->end = player_loop(game->player);
       cycle++;
+      /*update_map(buffer, game->memory, (sfVector2i) {79,79});
+      sfTexture_updateFormPixels(ns->texture, buffer->pixels, buffer->width, buffer->height, 0, 0);
+      sfRenderWindow_clear(ns->window, sfBlack);
+      sfRenderWindow_drawSprite(ns->window, ns->sprite, NULL);
+      sfRenderWindow_display(ns->window);*/
       //      usleep(50000);
     }
+  //sfRednerWindow_destroy(ns->window);
   while (game->player && game->player->is_dead != 0)
     {
       game->player = game->player->next;
@@ -83,5 +103,5 @@ void	start_game(t_game *game)
   if (!game->player)
     printf("EGALITE\n");
   else
-    printf("## %i Cycles ##\nThe winner is the player %i:\n%s\n\"%s\"\n", cycle, game->player->p, game->player->name, game->player->comment);
+    printf("## %i Cycles ##\nThe winner is the player %i:\n%s\nWith %i lives\n\"%s\"\n", cycle, game->player->p, game->player->name, game->player->live, game->player->comment);
 }

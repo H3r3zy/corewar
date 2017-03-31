@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 00:00:08 2017 Sahel Lucas--Saoudi
-** Last update Fri Mar 31 00:30:02 2017 Sahel Lucas--Saoudi
+** Last update Fri Mar 31 11:03:17 2017 Sahel Lucas--Saoudi
 */
 
 #include <stdlib.h>
@@ -77,6 +77,8 @@ int		main(int ac, char **av)
   game = init_game(av);
   game->player = init_player(game, av);
   game->nb_j = count_player(game->player);
+  //ini_window(game);
   start_game(game);
+  
   return (0);
 }

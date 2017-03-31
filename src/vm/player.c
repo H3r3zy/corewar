@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 00:29:58 2017 Sahel Lucas--Saoudi
-** Last update Fri Mar 31 13:42:48 2017 Sahel Lucas--Saoudi
+** Last update Fri Mar 31 15:37:03 2017 Sahel Lucas--Saoudi
 */
 
 #include <stdio.h>
@@ -190,7 +190,7 @@ t_player	*set_player(t_game *game, char **av, int i)
   player->p = p;
   player->max_size = game->max_size;
   player->reg = init_register(player);
-  if (player->reg)
+  if (!player->reg)
     return (NULL);
   p++;
   player->is_dead = 0;

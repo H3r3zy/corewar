@@ -5,17 +5,17 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Wed Feb  1 21:01:24 2017 
-** Last update Thu Mar 30 12:03:36 2017 Martin Januario
+** Last update Fri Mar 31 12:29:14 2017 Martin Januario
 */
 
 #include	<stdlib.h>
 #include	"my.h"
 
-int		main(void)
+int		main(int argc, char **argv)
 {
   char		**map;
 
-  if ((map = create_map()) == NULL)
+  if ((map = create_map(argv[1])) == NULL)
     return (84);
   if (ini_window(map) == 84)
     return (84);

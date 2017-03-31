@@ -5,11 +5,13 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Wed Feb  1 22:13:46 2017 
-** Last update Thu Mar 30 21:41:04 2017 Martin Januario
+** Last update Fri Mar 31 13:59:38 2017 Martin Januario
 */
 
 #include		<stdlib.h>
+#include		<math.h> // A ENLVER
 #include		"my.h"
+#include		"op.h"
 
 int			my_strlen(char *str)
 {
@@ -39,8 +41,8 @@ sfVector2i		size_win(sfVector2i size)
 {
   sfVector2i		size_max;
 
-  size_max.x = 1920 - size.x;
-  size_max.y = 1080 - size.y;
+  size_max.x = 1920 - size.x * 2;
+  size_max.y = 1080 - size.y * 2;
   if (size_max.x % size.x != 0)
     size_max.x -= size_max.x % size.x;
   if (size_max.y % size.y != 0)
@@ -53,24 +55,36 @@ int			ini_window(char **map)
   sfVector2i		size;
   t_core_window		needs;
   t_my_framebuffer	*buffer;
+  int			tmp;
   sfEvent		event;
 
-  size.x = my_strlen(map[0]);
-  size.y = my_tablen(map);
+  int	idx = 0;
+  char *str;
+#include	<string.h>
+  str = malloc(30000);
+  while (map[idx] != NULL)
+    {
+      strcat(str, map[idx]);
+      idx++;
+    }
+  size.x = sqrt(strlen(str));
+  size.y = size.x;
+  tmp = size.y;
   if (size.x == 0 || size.y == 0)
     return (0);
+  printf("size: %d\n", tmp);
   size = size_win(size);
-  printf("x: %d\ny: %d\n", size.x, size.y);
-  if ((buffer = my_framebuffer_create(1920, 1080)) == NULL ||
+  printf("size.x: %d & size.y: %d\n", size.x, size.y);
+  if ((buffer = my_framebuffer_create(size.x, size.y)) == NULL ||
       (needs.window = create_window("VM Corewar", buffer->width,
 				    buffer->height)) == NULL)
     return (84);
-  size.x /=  my_strlen(map[0]);
-  size.y /= my_tablen(map);
+  size.x /= tmp;
+  size.y /= tmp;
   sfRenderWindow_pollEvent(needs.window, &event);
   needs.sprite = sfSprite_create();
   needs.texture = sfTexture_create(buffer->width, buffer->height);
   sfSprite_setTexture(needs.sprite, needs.texture, sfTrue);
-  creator_loop(buffer, &needs, map, size);
+  creator_loop(buffer, &needs, str, size);
   return (0);
 }

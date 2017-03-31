@@ -5,13 +5,14 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 18:48:57 2017 Martin Januario
-** Last update Fri Mar 31 10:49:49 2017 Martin Januario
+** Last update Fri Mar 31 12:28:15 2017 Martin Januario
 */
 
 #include        <SFML/Graphics/RenderWindow.h>
 #include        <SFML/Graphics/Texture.h>
 #include        <SFML/Graphics/Sprite.h>
 #include	<stdlib.h>
+#include	<string.h> // A enlever
 #include	"framefuffer.h"
 #include	"my.h"
 
@@ -33,18 +34,42 @@ void		draw_square(t_my_framebuffer *buffer, sfVector2i from,
     }  
 }
 
-int		update_map(t_my_framebuffer *buffer, char **map,
+char		**my_str_to_wordmap(char *mem)
+{
+  char		**tab;
+  int		nb;
+  int		idx;
+  int		tmp;
+
+  idx = 0;
+  tmp = 0;
+  nb = sqrt(my_strlen(mem));
+  if ((tab = malloc(sizeof(char *) * (nb + 1))) == NULL)
+    return (NULL);
+  while (idx < nb)
+    {
+      tab[idx] = strndup(&mem[tmp], nb);
+      tmp += nb;
+      idx++;
+    }
+  tab[idx] = NULL;
+  return (tab);
+}
+
+int		update_map(t_my_framebuffer *buffer, char *mem,
 			   sfVector2i size)
 {
   sfColor	(*color[5])(void) = {c_white, c_red, c_blue, c_green, c_yellow};
   sfVector2i	idx;
+  char		**map;
   sfVector2i	tmp;
 
+  if ((map = my_str_to_wordmap(mem)) == NULL)
+    return (84);
   idx.y = 0;
   tmp.y = 0;
   size.x--;
   size.y--;
-  printf("size:\nx: %d\ny: %d\n", size.x, size.y);
   while (idx.y < 1080 && map[tmp.y] != NULL)
     {
       tmp.x = 0;
@@ -55,9 +80,10 @@ int		update_map(t_my_framebuffer *buffer, char **map,
 	  idx.x += size.x + 1;
 	  tmp.x++;
 	}
-      printf("width: %d\n", tmp.x);
+      printf("last: %d\n", idx.x);
       tmp.y++;
       idx.y += size.y + 1;
     }
+  printf("width: %d\n", tmp.x);
   return (0);
 }

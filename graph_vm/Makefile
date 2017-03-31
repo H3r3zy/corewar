@@ -5,7 +5,7 @@
 ## Login   <martin.januario@epitech.eu>
 ## 
 ## Started on  Thu Mar 30 11:17:40 2017 Martin Januario
-## Last update Thu Mar 30 20:58:04 2017 Martin Januario
+## Last update Fri Mar 31 11:29:30 2017 Martin Januario
 ##
 
 SRC	=	src/create_window.c		\
@@ -33,7 +33,7 @@ NAME	=	vm_graph
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
-		gcc -o $(NAME) $(OBJ) -lc_graph_prog
+		gcc -o $(NAME) $(OBJ) -lc_graph_prog -lm
 
 clean:
 		rm -f $(OBJ)

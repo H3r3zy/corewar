@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 20:13:29 2017 Martin Januario
-** Last update Thu Mar 30 13:33:59 2017 Martin Van Elslande
+** Last update Fri Mar 31 16:33:54 2017 Martin Januario
 */
 
 #include	<stdlib.h>
@@ -19,7 +19,7 @@ int		name_comment(char *str, int nb_line, int *name_and_com)
 
   if ((tmp = my_str_to_wordtab(str)) == NULL)
     return (0);
-  if (my_tablen(tmp) != 2)
+  if (my_tablen(tmp) != 2 || !tmp[1][0])
     return (free_tab(tmp));
   if (my_strcmp(tmp[0], NAME_CMD_STRING) &&
       my_strcmp(tmp[0], COMMENT_CMD_STRING))

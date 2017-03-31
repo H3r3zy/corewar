@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 00:03:13 2017 Sahel Lucas--Saoudi
-** Last update Fri Mar 31 10:12:28 2017 Sahel Lucas--Saoudi
+** Last update Fri Mar 31 13:33:57 2017 Sahel Lucas--Saoudi
 */
 
 #ifndef VM_H_
@@ -35,8 +35,8 @@ typedef struct		s_player
   int			prog_size;
   int			carry;
   int			live;
-  int			**champ;
   int			fd;
+  int			*reg;
   struct s_player	*previous;
   struct s_player	*next;
   t_action		*action;
@@ -64,6 +64,11 @@ typedef struct		s_game
 
 t_player	*init_player(t_game *, char **);
 t_action	*get_action(t_player *);
+int		*init_register(t_player *);
+unsigned int	reverse_add2(unsigned int);
+unsigned int	reverse_add(unsigned int);
 void		start_game(t_game *);
+void		live(t_player *, t_action *);
+void		zjmp(t_player *, t_action *);
 
 #endif /* !VM_H_ */

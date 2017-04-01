@@ -5,12 +5,16 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 20:43:07 2017 Sahel Lucas--Saoudi
-** Last update Fri Mar 31 11:53:58 2017 Sahel Lucas--Saoudi
+** Last update Fri Mar 31 16:58:46 2017 Sahel Lucas--Saoudi
 */
 
+#include <SFML/Graphics.h>
 #include <stdio.h>
+#include "framebuffer.h"
 #include "vm.h"
+#include "csfml.h"
 #include "op.h"
+#include "my.h"
 
 void		exec_action(t_player *player, int i)
 {
@@ -77,7 +81,7 @@ int	player_loop(t_player *player)
   return (dead);
 }
 
-void	start_game(t_game *game)
+void	start_game(t_game *game, t_my_framebuffer *buffer, t_core_window *ns, sfVector2i size)
 {
   int	cycle;
 
@@ -87,14 +91,14 @@ void	start_game(t_game *game)
       printf("\n####~~\n\tNEW CYCLE\n####~~\n");
       game->end = player_loop(game->player);
       cycle++;
-      /*update_map(buffer, game->memory, (sfVector2i) {79,79});
-      sfTexture_updateFormPixels(ns->texture, buffer->pixels, buffer->width, buffer->height, 0, 0);
+      update_map(buffer, game->memory, size);
+      sfTexture_updateFromPixels(ns->texture, buffer->pixels, buffer->width, buffer->height, 0, 0);
       sfRenderWindow_clear(ns->window, sfBlack);
       sfRenderWindow_drawSprite(ns->window, ns->sprite, NULL);
-      sfRenderWindow_display(ns->window);*/
+      sfRenderWindow_display(ns->window);
       //      usleep(50000);
     }
-  //sfRednerWindow_destroy(ns->window);
+  sfRenderWindow_destroy(ns->window);
   while (game->player && game->player->is_dead != 0)
     {
       game->player = game->player->next;

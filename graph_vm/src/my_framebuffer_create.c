@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Wed Feb  1 21:07:26 2017 
-** Last update Wed Feb  1 21:07:27 2017 
+** Last update Fri Mar 31 18:21:01 2017 Sahel Lucas--Saoudi
 */
 
 #include	<SFML/Graphics/RenderWindow.h>
@@ -13,7 +13,7 @@
 #include	<SFML/Graphics/Sprite.h>
 #include	<stdlib.h>
 #include	<stdio.h>
-#include	"framefuffer.h"
+#include	"framebuffer.h"
 
 t_my_framebuffer	*my_framebuffer_create(int width, int height)
 {

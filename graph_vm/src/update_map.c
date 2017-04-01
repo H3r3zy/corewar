@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 18:48:57 2017 Martin Januario
-** Last update Fri Mar 31 12:28:15 2017 Martin Januario
+** Last update Fri Mar 31 18:32:01 2017 Sahel Lucas--Saoudi
 */
 
 #include        <SFML/Graphics/RenderWindow.h>
@@ -13,8 +13,8 @@
 #include        <SFML/Graphics/Sprite.h>
 #include	<stdlib.h>
 #include	<string.h> // A enlever
-#include	"framefuffer.h"
-#include	"my.h"
+#include	"framebuffer.h"
+#include	"csfml.h"
 
 void		draw_square(t_my_framebuffer *buffer, sfVector2i from,
 			    sfVector2i to, sfColor color)
@@ -59,7 +59,7 @@ char		**my_str_to_wordmap(char *mem)
 int		update_map(t_my_framebuffer *buffer, char *mem,
 			   sfVector2i size)
 {
-  sfColor	(*color[5])(void) = {c_white, c_red, c_blue, c_green, c_yellow};
+  sfColor	color[5] = {sfWhite, sfRed, sfBlue, sfGreen, sfYellow};
   sfVector2i	idx;
   char		**map;
   sfVector2i	tmp;
@@ -76,7 +76,7 @@ int		update_map(t_my_framebuffer *buffer, char *mem,
       idx.x = 0;
       while (idx.x < 1920 && map[tmp.y][tmp.x] != '\0')
 	{
-	  draw_square(buffer, idx, size, color[map[tmp.y][tmp.x] - '0']());
+	  draw_square(buffer, idx, size, color[map[tmp.y][tmp.x] - '0']);
 	  idx.x += size.x + 1;
 	  tmp.x++;
 	}

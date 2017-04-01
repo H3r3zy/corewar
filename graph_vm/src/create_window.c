@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Wed Feb  1 21:06:25 2017 
-** Last update Thu Mar 30 21:38:20 2017 Martin Januario
+** Last update Fri Mar 31 18:20:40 2017 Sahel Lucas--Saoudi
 */
 
 #include	<SFML/Graphics/RenderWindow.h>
@@ -13,7 +13,7 @@
 #include	<SFML/Graphics/Sprite.h>
 #include	<stdlib.h>
 #include	<stdio.h>
-#include	"framefuffer.h"
+#include	"framebuffer.h"
 #include	"my.h"
 
 sfRenderWindow		*create_window(char *name, int width, int height)

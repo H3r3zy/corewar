@@ -5,11 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 15:07:35 2017 maximilien desnos
-<<<<<<< HEAD
-** Last update Thu Mar 30 16:18:13 2017 Sahel Lucas--Saoudi
-=======
-** Last update Thu Mar 30 14:04:28 2017 maximilien desnos
->>>>>>> 08c3d69d8d421deca1b4de2b616e2e780c6d62ae
+** Last update Sun Apr  2 01:01:51 2017 Sahel Lucas--Saoudi
 */
 
 #include	<unistd.h>
@@ -90,7 +86,7 @@ t_line		*recup_lines(t_line *op, char **fd, int i)
   op->nb_bytes_tot = op->bytes;
   op->next = NULL;
   op->previous = NULL;
-  while (i < tablen_(fd))
+  while (i < my_tablen(fd))
     {
       op2 = find_info(fd[i]);
       add_op(op, op2);

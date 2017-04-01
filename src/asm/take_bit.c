@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Sat Mar 25 14:16:23 2017 Sahel Lucas--Saoudi
-** Last update Thu Mar 30 21:30:39 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 00:45:49 2017 Sahel Lucas--Saoudi
 */
 
 #include <stdlib.h>
@@ -53,8 +53,7 @@ void	set_byte(t_line *line)
       match(line->op.mnemonique, "lldi") || match(line->op.mnemonique, "lfork"))
     is_idx = 1;
   if (!match(line->op.mnemonique, "live") && !match(line->op.mnemonique, "zjmp") &&
-      !match(line->op.mnemonique, "fork") && !match(line->op.mnemonique, "lfork") &&
-      !match(line->op.mnemonique, "aff"))
+      !match(line->op.mnemonique, "fork") && !match(line->op.mnemonique, "lfork"))
     {
       line->bytes += 1;
       line->have_cb = 1;

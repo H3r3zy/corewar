@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Wed Feb  1 21:07:03 2017 
-** Last update Wed Feb  1 21:07:04 2017 
+** Last update Fri Mar 31 18:23:41 2017 Sahel Lucas--Saoudi
 */
 
 #include	<SFML/Graphics/RenderWindow.h>
@@ -13,8 +13,8 @@
 #include	<SFML/Graphics/Sprite.h>
 #include	<stdlib.h>
 #include	<stdio.h>
-#include	"framefuffer.h"
-#include	"my.h"
+#include	"framebuffer.h"
+#include	"csfml.h"
 
 void	my_put_pixel(t_my_framebuffer *frame_buffer, int x, int y,
 		     sfColor color)

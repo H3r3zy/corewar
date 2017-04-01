@@ -5,13 +5,14 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Wed Feb  1 22:13:46 2017 
-** Last update Fri Mar 31 14:23:10 2017 Sahel Lucas--Saoudi
+** Last update Fri Mar 31 17:50:46 2017 Sahel Lucas--Saoudi
 */
 
 #include		<stdlib.h>
 #include		<math.h> // A ENLVER
-#include		"my.h"
+#include		"csfml.h"
 #include		"op.h"
+#include		"vm.h"
 
 int			my_strlen(char *str)
 {
@@ -50,7 +51,7 @@ sfVector2i		size_win(sfVector2i size)
   return (size_max);
 }
 
-int			ini_window(char *str)
+int			ini_window(t_game *game, char *str)
 {
   sfVector2i		size;
   t_core_window		needs;
@@ -76,6 +77,7 @@ int			ini_window(char *str)
   needs.sprite = sfSprite_create();
   needs.texture = sfTexture_create(buffer->width, buffer->height);
   sfSprite_setTexture(needs.sprite, needs.texture, sfTrue);
-  creator_loop(buffer, &needs, str, size);
+  //  creator_loop(buffer, &needs, str, size);
+  start_game(game, buffer, &needs, size);
   return (0);
 }

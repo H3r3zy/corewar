@@ -5,12 +5,13 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 00:00:08 2017 Sahel Lucas--Saoudi
-** Last update Fri Mar 31 11:03:17 2017 Sahel Lucas--Saoudi
+** Last update Fri Mar 31 18:02:24 2017 Sahel Lucas--Saoudi
 */
 
 #include <stdlib.h>
 #include "op.h"
 #include "vm.h"
+#include "csfml.h"
 
 char		*create_memory_map()
 {
@@ -77,8 +78,8 @@ int		main(int ac, char **av)
   game = init_game(av);
   game->player = init_player(game, av);
   game->nb_j = count_player(game->player);
-  //ini_window(game);
-  start_game(game);
+  ini_window(game, game->memory);
+  //start_game(game);
   
   return (0);
 }

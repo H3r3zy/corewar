@@ -5,18 +5,19 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 11:17:03 2017 Martin Januario
-** Last update Fri Mar 31 12:29:26 2017 Martin Januario
+** Last update Fri Mar 31 18:15:02 2017 Sahel Lucas--Saoudi
 */
 
-#ifndef MY_H_
-# define MY_H_
+#ifndef CSFML_H_
+# define CSFML_H_
 
 # include	<SFML/Graphics/RenderWindow.h>
 # include	<SFML/Graphics/Texture.h>
 # include	<SFML/Graphics/Sprite.h>
 # include	<SFML/Graphics/Color.h>
 # include	<SFML/Audio.h>
-# include	"framefuffer.h"
+# include	"framebuffer.h"
+/*# include	"vm.h"*/
 
 typedef struct		s_core_window
 {
@@ -31,7 +32,7 @@ sfMusic			*start_music(char *);
 int			destroy_music(sfMusic *);
 void			creator_loop(t_my_framebuffer *, t_core_window *, char *,
 				     sfVector2i);
-int			ini_window(char **);
+//int			ini_window(t_game *, char *);
 int			update_map(t_my_framebuffer *, char *, sfVector2i);
 sfColor			c_white(void);
 sfColor			c_red(void);
@@ -41,4 +42,4 @@ sfColor			c_yellow(void);
 //	TMP
 char	**create_map(char *);
 
-#endif /* !MY_H_ */
+#endif /* !CSFML_H_ */

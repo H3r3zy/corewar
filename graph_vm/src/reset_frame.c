@@ -5,12 +5,12 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Wed Feb  1 21:07:41 2017 
-** Last update Wed Feb  1 21:07:47 2017 
+** Last update Fri Mar 31 18:23:59 2017 Sahel Lucas--Saoudi
 */
 
 #include	<SFML/Graphics/RenderWindow.h>
-#include	"framefuffer.h"
-#include	"my.h"
+#include	"framebuffer.h"
+#include	"csfml.h"
 
 void		reset_frame(t_my_framebuffer *pixel_buffer)
 {

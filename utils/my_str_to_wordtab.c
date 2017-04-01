@@ -1,44 +1,112 @@
 /*
-** totab.c for corewar in /home/sahel/rendu/CPE/CPE_2016_corewar
+** my_str_to_wordtab.c for  in /home/januar_m/delivery/CPE/CPE_2016_corewar/tmp
 ** 
-** Made by Sahel Lucas--Saoudi
-** Login   <sahel.lucas-saoudi@epitech.eu>
+** Made by Martin Januario
+** Login   <martin.januario@epitech.eu>
 ** 
-** Started on  Thu Mar 30 14:35:55 2017 Sahel Lucas--Saoudi
-** Last update Thu Mar 30 16:47:22 2017 Sahel Lucas--Saoudi
+** Started on  Thu Mar 30 13:45:43 2017 Martin Januario
+** Last update Sat Apr  1 22:52:30 2017 Martin Januario
 */
 
-#include <stdlib.h>
+#include	<stdio.h>
+#include	<string.h>
+#include	<stdlib.h>
+#include	"my_string.h"
 
-char	**my_str_to_wordtab(char *str)
+void		nb_words_next(char *str, int *idx, int *res)
 {
-  char	**tab;
-  int	tab_i;
-  int	tab_i_i;
-  int	str_i;
-
-  tab_i = 0;
-  str_i = 0;
-  tab = malloc(sizeof(char *) * (strlen(str) + 1));
-  while (str[str_i])
+  if (str[*idx] == ' ' || str[*idx] == '\t')
     {
-      tab_i_i = 0;
-      tab[tab_i] = malloc(strlen(str) + 1);
-      while (str[str_i] && (str[str_i] == ' ' || str[str_i] == '\t'))
-	str_i++;
-      if (str[str_i] == '\"')
+      (*res)++;
+      (*idx)++;
+    }
+  else
+    (*idx)++;
+}
+
+int		nb_words(char *str)
+{
+  int		qt[2];
+  int		idx;
+  int		res;
+
+  idx = 0;
+  res = 0;
+  qt[0] = 0;
+  qt[1] = 0;
+  while (str[idx] != '\0')
+    {
+      if (qt[0] == 0 && qt[1] == 0 && (str[idx] == ' ' || str[idx] == '\t'))
+	while (str[idx] != '\0' && (str[idx] == ' ' || str[idx] == '\t'))
+	  idx++;
+      else if ((qt[1] == 0 && str[idx] == '\"') || (qt[0] == 0 && str[idx] == '\''))
 	{
-	  str_i++;
-	  while (str[str_i] && str[str_i] != '\"')
-	    tab[tab_i][tab_i_i++] = str[str_i++];
-	  str_i++;
+	  qt[(str[idx] == '\'') ? 1 : 0] =
+	    (qt[(str[idx] == '\'') ? 1 : 0] + 1) % 2;
+	  idx++;
 	}
       else
-	while (str[str_i] && str[str_i] != ' ' && str[str_i] != '\t' && str[str_i] != '\"')
-	  tab[tab_i][tab_i_i++] = str[str_i++];
-      tab[tab_i][tab_i_i] = '\0';
-      tab_i++;
+	nb_words_next(str, &idx, &res);
     }
-  tab[tab_i] = NULL;
+  return (res);
+}
+
+char		*give_me_word(char *str, int *idx)
+{
+  char		*res;
+  int		cpt;
+  int		qt[2];
+
+  qt[0] = 0;
+  qt[1] = 0;
+  cpt = 0;
+  if ((res = malloc(strlen(&str[*idx]) + 1)) == NULL)
+    return (NULL);
+  while (str[*idx] != '\0')
+    {
+      if (qt[0] == 0 && qt[1] == 0 && (str[*idx] == ' ' || str[*idx] == '\t'))
+	{
+	  while (str[*idx] != '\0' && (str[*idx] == ' ' || str[*idx] == '\t'))
+	    (*idx)++;
+	  res[cpt] = '\0';
+	  return (res);
+	}
+      else if ((qt[1] == 0 && str[*idx] == '\"') || (qt[0] == 0 && str[*idx] == '\''))
+	{
+	  qt[(str[*idx] == '\'') ? 1 : 0] = (qt[(str[*idx] == '\'') ? 1 : 0] + 1) % 2;
+	  (*idx)++;
+	}
+      else
+	{
+	  res[cpt] = str[*idx];
+	  cpt++;
+	  (*idx)++;
+	}	
+    }
+  res[cpt] = '\0';
+  return (res);
+}
+
+char		**my_str_to_wordtab(char *str)
+{
+  char		**tab;
+  int		nb;
+  int		idx;
+  int		idx2;
+
+  tab = NULL;
+  idx = 0;
+  idx2 = 0;
+  nb = nb_words(str);
+  if ((tab = malloc(sizeof(char *) * (nb + 1))) == NULL)
+    return (NULL);
+  while (idx < nb)
+    {
+      if ((tab[idx] = give_me_word(str, &idx2)) == NULL)
+	return (NULL);
+      printf("idx2: %d\n", idx2);
+      idx++;
+    }
+  tab[idx] = NULL;
   return (tab);
 }

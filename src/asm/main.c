@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Thu Mar 23 19:23:53 2017 Martin Van Elslande
-** Last update Sun Apr  2 08:19:44 2017 Martin Januario
+** Last update Sun Apr  2 11:17:53 2017 Martin Van Elslande
 */
 
 #include	<unistd.h>
@@ -101,7 +101,7 @@ int		main(int ac, char **av)
     return (my_putstr(2, "Malloc error\n"));
   name_and_com[0] = 0;
   name_and_com[1] = 0;
-  if (ac != 2)
+  if (ac != 2 || my_strcmp(".s", &av[1][my_strlen(av[1]) - 2]))
     return (help(2, 84));
   else if (my_strcmp(av[1], "-h") == 0)
     return (help(1, 0));

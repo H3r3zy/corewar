@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 19:49:54 2017 Martin Januario
-** Last update Wed Mar 29 13:36:16 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 06:33:10 2017 Martin Van Elslande
 */
 
 #ifndef		MY_STRING_H_
@@ -37,5 +37,6 @@ void		my_putchar(char);
 char		**parse_(char *, char);
 int		my_putnbr(int);
 long long int	my_getlongnbr(char *);
+int		char_isalphanum(char);
 
 #endif		/* !MY_STRING_H_ */

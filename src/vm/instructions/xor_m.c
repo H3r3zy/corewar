@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sun Apr  2 04:13:09 2017 maximilien desnos
-** Last update Sun Apr  2 04:14:55 2017 maximilien desnos
+** Last update Sun Apr  2 06:30:32 2017 Martin Van Elslande
 */
 
 static void	*recup_arg1(t_player *player, t_action *actual)
@@ -42,7 +42,8 @@ void		xor_m(t_player *player, t_action *actual)
   int		j;
   int		k;
 
-  lseek(player->fd, COMMENT_LENGTH + PROG_NAME_LENGTH + 16 + actual->pos + 2, SEEK_SET);
+  lseek(player->fd, COMMENT_LENGTH + PROG_NAME_LENGTH + 16 + actual->pos + 2,
+	SEEK_SET);
   j = recup_arg1(player, actual);
   if (actual->bytes[0] != 4)
     (char)j;
@@ -57,6 +58,6 @@ void		xor_m(t_player *player, t_action *actual)
       read(player->fd, &k, sizeof(k));
     }
   read(player->fd, &i, sizeof(i));
-  player->reg[i] = player->reg[j] &| player->reg[k];
+  player->reg[i] = player->reg[j] ^ player->reg[k];
   verif_carry(player, i);
 }

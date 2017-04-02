@@ -5,20 +5,11 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Sun Apr  2 04:32:10 2017 Martin Van Elslande
-** Last update Sun Apr  2 07:36:06 2017 Martin Januario
+** Last update Sun Apr  2 07:41:48 2017 Martin Van Elslande
 */
 
 #include	<stdlib.h>
 #include	"my_string.h"
-
-int	char_isalphanum(char c)
-{
-  if ((c >= 'a' && c <= 'z') ||
-      (c >= 'A' && c <= 'Z') ||
-      (c >= '0' && c <= '9'))
-    return (1);
-  return (0);
-}
 
 int	count_words(char *str)
 {

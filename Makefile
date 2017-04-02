@@ -5,7 +5,7 @@
 ## Login   <sahel.lucas-saoudi@epitech.eu>
 ## 
 ## Started on  Wed Mar 29 13:32:44 2017 Sahel Lucas--Saoudi
-## Last update Thu Mar 30 13:37:52 2017 Martin Van Elslande
+## Last update Sun Apr  2 06:33:28 2017 Martin Van Elslande
 ##
 
 SRC	=	src/asm/main.c			\
@@ -56,6 +56,7 @@ BASICS	=	utils/my_strlen.c		\
 		utils/my_strncmp.c		\
 		utils/my_putnbr.c		\
 		utils/my_putchar.c		\
+		utils/char_isalphanum.c		\
 		utils/my_strcmp.c
 
 GNL	=	gnl/get_next_line.c		\
@@ -65,7 +66,7 @@ OBJ	=	$(BASICS:.c=.o)			\
 		$(GNL:.c=.o)			\
 		$(SRC:.c=.o)
 
-CFLAGS	=	-Wall -Wextra -I include/ -g
+CFLAGS	=	-Wall -Wextra -I include/
 
 NAME	=	asm/asm
 

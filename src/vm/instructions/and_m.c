@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sun Apr  2 02:24:09 2017 maximilien desnos
-** Last update Sun Apr  2 03:58:33 2017 maximilien desnos
+** Last update Sun Apr  2 06:31:00 2017 Martin Van Elslande
 */
 
 #include	<sys/types.h>
@@ -46,7 +46,8 @@ void		and_m(t_player *player, t_action *actual)
   int		j;
   int		k;
 
-  lseek(player->fd, COMMENT_LENGTH + PROG_NAME_LENGTH + 16 + actual->pos + 2, SEEK_SET);
+  lseek(player->fd, COMMENT_LENGTH + PROG_NAME_LENGTH + 16 + actual->pos + 2,
+	SEEK_SET);
   j = recup_arg1(player, actual);
   if (actual->bytes[0] != 4)
     (char)j;

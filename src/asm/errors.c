@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Wed Mar 29 18:19:06 2017 Martin Van Elslande
-** Last update Thu Mar 30 12:54:21 2017 Martin Van Elslande
+** Last update Thu Mar 30 20:48:29 2017 Martin Van Elslande
 */
 
 #include	"my_string.h"
@@ -20,7 +20,7 @@ int		error_messages(int nb_err, int nb_line)
   else if (nb_err == 2)
     my_putstr(2, "line %d, Incorrect type in parameters.\n", nb_line);
   else if (nb_err == 3)
-    my_putstr(2, "line %d, Too few arguments.\n", nb_line);
+    my_putstr(2, "line %d, Invalid number of arguments.\n", nb_line);
   else if (nb_err == 4)
     my_putstr(2, "line %d, Unknown keyword.\n", nb_line);
   else if (nb_err == 5)

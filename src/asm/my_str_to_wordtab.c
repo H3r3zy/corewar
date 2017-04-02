@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 16:00:10 2017 maximilien desnos
-** Last update Sun Apr  2 07:31:27 2017 Martin Januario
+** Last update Sun Apr  2 08:27:11 2017 Martin Januario
 */
 
 #include	<stdlib.h>
@@ -74,7 +74,7 @@ char		**my_str_to_arg(char *str)
 
   j = 0;
   i = 0;
-  size = count_space(str) + 2; // A revoir
+  size = count_space(str) + 2;
   str[sp_len(str, COMMENT_CHAR)] = '\0';
   if ((tab = malloc(sizeof(char *) * (size + 1))) == NULL)
     exit(84);

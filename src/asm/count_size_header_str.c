@@ -5,11 +5,20 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 20:01:18 2017 Maximilien Desnos
-** Last update Sun Apr  2 02:23:36 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 08:32:22 2017 Martin Januario
 */
 
 #include	<stdlib.h>
 #include	"op.h"
+
+void		recup_pos_name_next(char *tmp, int *i, int j, int *z)
+{
+  if (tmp[j] != '\0')
+    {
+      *i = 0;
+      (*z)++;
+    }
+}
 
 int		recup_pos_name(char **tab, int z, int j, char *tmp)
 {
@@ -34,11 +43,7 @@ int		recup_pos_name(char **tab, int z, int j, char *tmp)
 	  i++;
 	  j++;
 	}
-      if (tmp[j] != '\0')
-	{
-	  i = 0;
-	  z++;
-	}
+      recup_pos_name_next(tmp, &i, j, &z);
     }
   return (z);
 }

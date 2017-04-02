@@ -5,13 +5,39 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Sun Mar 26 20:30:08 2017 Sahel Lucas--Saoudi
-** Last update Sun Apr  2 06:37:25 2017 Martin Januario
+** Last update Sun Apr  2 07:51:58 2017 Martin Januario
 */
 
 #include <unistd.h>
 #include "op.h"
 #include "my.h"
 #include "my_string.h"
+
+int		set_label_next(t_line *actual, t_line *first, int byte, int arg)
+{
+  if (first->line <= actual->line)
+    {
+      while (first->line < actual->line)
+	{
+	  if (first->exist)
+	    byte -= first->bytes;
+	  first = first->next;
+	}
+    }
+  else
+    {
+      first = first->previous;
+      while (first->line > actual->line)
+	{
+	  if (first->exist)
+	    byte += first->bytes;
+	  first = first->previous;
+	}
+      byte += actual->bytes;
+    }
+  actual->ret[arg] = byte;
+  return (0);
+}
 
 static void	set_label_bytes(t_line *actual, t_line *first, int arg)
 {
@@ -21,30 +47,7 @@ static void	set_label_bytes(t_line *actual, t_line *first, int arg)
   while (first)
     {
       if (first->label && match(first->label, &actual->arg[arg][2]))
-	{
-	  if (first->line <= actual->line)
-	    {
-	      while (first->line < actual->line)
-		{
-		  if (first->exist)
-		    byte -= first->bytes;
-		  first = first->next;
-		}
-	    }
-	  else
-	    {
-	      first = first->previous;
-	      while (first->line > actual->line)
-		{
-		  if (first->exist)
-		    byte += first->bytes;
-		  first = first->previous;
-		}
-	      byte += actual->bytes;
-	    }
-	  actual->ret[arg] = byte;
-	  return ;
-	}
+	set_label_next(actual, first, byte, arg);
       first = first->next;
     }
 }

@@ -5,21 +5,28 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 15:30:07 2017 maximilien desnos
-** Last update Thu Mar 30 16:13:27 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 08:26:00 2017 Martin Januario
 */
 
 #include	<stdlib.h>
 #include	"op.h"
 #include	"my.h"
 
+int		check_label_next(int *i, int *j, char *fd)
+{
+  *j = 0;
+  *i = 0;
+  if (!fd)
+    return (0);
+  return (1);
+}
+
 int		check_label(char *fd, t_line *op)
 {
   int		i;
   int		j;
 
-  j = 0;
-  i = 0;
-  if (!fd)
+  if (check_label_next(&i, &j, fd) != 1)
     return (0);
   while (fd && fd[i] != DIRECT_CHAR && fd[i] != LABEL_CHAR && fd[i] != '\0')
     i++;

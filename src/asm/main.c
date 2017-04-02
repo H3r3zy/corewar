@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Thu Mar 23 19:23:53 2017 Martin Van Elslande
-** Last update Sun Apr  2 02:24:10 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 08:19:44 2017 Martin Januario
 */
 
 #include	<unistd.h>
@@ -16,31 +16,6 @@
 #include	"my_string.h"
 #include	"op.h"
 #include	"get_next_line.h"
-
-int		help(int out, int ret)
-{
-  my_putstr(out, "USAGE\n");
-  my_putstr(out, "\t./asm file_name[.s]\n\n");
-  my_putstr(out, "DESCRIPTION\n");
-  my_putstr(out, "\tfile_name\tfile in assembly language to be converted ");
-  my_putstr(out, "into file_name.cor, an executable in the Virtual Machine).\n"
-	    );
-  return (ret);
-}
-
-int		my_filelen(int fd)
-{
-  char		*str;
-  int		idx;
-
-  idx = 1;
-  while ((str = get_next_line_fd(fd)) != NULL)
-    {
-      free(str);
-      idx++;
-    }
-  return (idx);
-}
 
 int		line_is_comment(char *str)
 {
@@ -71,8 +46,8 @@ char		**read_file(int fd, t_label *label, int *name_and_com)
     return (NULL);
   while ((champ[idx] = get_next_line(fd, &buffer)) != NULL)
     {
-      if (my_strlen(champ[idx]) && nb_space(champ[idx]) != my_strlen(champ[idx])
-	  && !line_is_comment(champ[idx]))
+      if (my_strlen(champ[idx]) && nb_space(champ[idx]) !=
+	  my_strlen(champ[idx]) && !line_is_comment(champ[idx]))
 	{
 	  if (!convert_and_check(champ[idx], idx, label, name_and_com))
 	    return (NULL);
@@ -100,12 +75,26 @@ int		take_fd_cor(char *path)
   return (fd);
 }
 
+int		main_next(int fl, char **fd)
+{
+  t_line	*op;
+  header_t	*hd;
+
+  op = malloc(sizeof(t_line));
+  hd = malloc(sizeof(header_t));
+  if (!op || !hd || fl == -1)
+    return (84);
+  op = recup_lines(op, fd, 0);
+  recup_header(fd, hd);
+  write_asm(op, hd, fl);
+  close(fl);
+  return (0);
+}
+
 int		main(int ac, char **av)
 {
   int		fl;
   char		**fd;
-  t_line	*op;
-  header_t	*hd;
   int		*name_and_com;
 
   if ((name_and_com = malloc(sizeof(int) * 2)) == NULL)
@@ -124,15 +113,8 @@ int		main(int ac, char **av)
     return (84);
   else if (name_and_com[0] != 1 || name_and_com[1] > 1)
     return (my_putstr(2, "Error with name or comment.\n"));
-  op = malloc(sizeof(t_line));
-  hd = malloc(sizeof(header_t));
   fl = take_fd_cor(av[1]);
-  if (!op || !hd || fl == -1)
+  if (main_next(fl, fd) == 84)
     return (84);
-  op = recup_lines(op, fd, 0);
-  recup_header(fd, hd);
-  write_asm(op, hd, fl);
-  my_putstr(1, "Compilation done [%s].\n", av[1]);
-  close(fl);
-  return (0);
+  return (my_putstr(1, "Compilation done [%s].\n", av[1]));
 }

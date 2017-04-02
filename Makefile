@@ -5,7 +5,7 @@
 ## Login   <sahel.lucas-saoudi@epitech.eu>
 ## 
 ## Started on  Wed Mar 29 13:32:44 2017 Sahel Lucas--Saoudi
-## Last update Sun Apr  2 06:33:28 2017 Martin Van Elslande
+## Last update Sun Apr  2 08:21:37 2017 Martin Januario
 ##
 
 SRC	=	src/asm/main.c			\
@@ -19,6 +19,7 @@ SRC	=	src/asm/main.c			\
 		src/asm/get_next_line.c		\
 		src/asm/check_label.c		\
 		src/asm/count_size_header_str.c	\
+		src/asm/help.c			\
 		src/asm/my_nbr_to_str.c		\
 		src/asm/my_power_rec.c		\
 		src/asm/my_str_to_wordtab.c	\

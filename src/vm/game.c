@@ -1,11 +1,11 @@
 /*
 ** game.c for corewar in /home/sahel/rendu/CPE/CPE_2016_corewar
-** 
+**
 ** Made by Sahel Lucas--Saoudi
 ** Login   <sahel.lucas-saoudi@epitech.eu>
-** 
+**
 ** Started on  Thu Mar 30 20:43:07 2017 Sahel Lucas--Saoudi
-** Last update Sun Apr  2 10:47:20 2017 Martin Januario
+** Last update Sun Apr  2 11:10:12 2017 maximilien desnos
 */
 
 #include <SFML/Graphics.h>
@@ -27,6 +27,18 @@ void		exec_action(t_player *player, int i)
     live(player, player->action);
   if (player->action->op.code == 9)
     zjmp(player, player->action);
+  if (player->action->op.code == 4)
+    add_m(player, player->action);
+  if (player->action->op.code == 5)
+    sub_m(player, player->action);
+  if (player->action->op.code == 6)
+    and_m(player, player->action);
+  if (player->action->op.code == 7)
+    or_m(player, player->action);
+  if (player->action->op.code == 8)
+    xor_m(player, player->action);
+  if (player->action->op.code == 12)
+    fork_m(player, player->action);
 }
 
 void		change_action(t_player *player, int i)

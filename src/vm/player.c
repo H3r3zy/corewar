@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 00:29:58 2017 Sahel Lucas--Saoudi
-** Last update Sun Apr  2 02:13:11 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 10:47:01 2017 Martin Januario
 */
 
 #include <stdio.h>
@@ -166,7 +166,7 @@ t_player	*init_player(t_game *game, char **av)
   prog_size = p1->prog_size;
   while (prog_size > 0)
     {
-      printf("%i\n", game->max_size * (p1->p - 1) + prog_size);
+      my_putstr("%i\n", game->max_size * (p1->p - 1) + prog_size);
       game->memory[game->max_size * (p1->p - 1) + prog_size] = p1->p + 48;
       prog_size--;
     }

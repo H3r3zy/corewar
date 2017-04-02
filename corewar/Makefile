@@ -5,32 +5,35 @@
 ## Login   <sahel.lucas-saoudi@epitech.eu>
 ## 
 ## Started on  Fri Mar 31 14:22:41 2017 Sahel Lucas--Saoudi
-## Last update Sun Apr  2 10:51:53 2017 Martin Januario
+## Last update Sun Apr  2 11:12:27 2017 Martin Januario
 ##
 
-SRC	=	../src/vm/main.c		\
-		../src/vm/player.c		\
-		../src/vm/register.c		\
-		../src/vm/game.c		\
-		../src/vm/instructions/live.c	\
-		../src/vm/instructions/zjmp.c	\
-		../src/vm/instructions/fork.c	\
-		../src/vm/instructions/sub_m.c	\
-		../src/vm/instructions/add_m.c	\
-		../src/vm/instructions/and_m.c	\
-		../src/vm/instructions/or_m.c	\
-		../src/vm/instructions/xor_m.c	\
-		../src/asm/my_power_rec.c	\
-		../src/asm/reverse_add.c	\
-		../src/asm/op.c			\
-		../utils/my_putstr.c		\
-		../utils/my_putnbr.c		\
-		../utils/my_putchar.c		\
-		../utils/my_strncmp.c		\
-		../graph_vm/src/ini_window.c	\
-		../graph_vm/src/check_env.c	\
-		../graph_vm/src/match.c		\
-		../graph_vm/src/create_window.c	\
+SRC	=	../src/vm/main.c			\
+		../src/vm/player.c			\
+		../src/vm/register.c			\
+		../src/vm/game.c			\
+		../src/vm/instructions/live.c		\
+		../src/vm/instructions/zjmp.c		\
+		../src/vm/instructions/fork.c		\
+		../src/vm/instructions/sub_m.c		\
+		../src/vm/instructions/add_m.c		\
+		../src/vm/instructions/and_m.c		\
+		../src/vm/instructions/or_m.c		\
+		../src/vm/instructions/xor_m.c		\
+		../src/asm/my_power_rec.c		\
+		../src/asm/reverse_add.c		\
+		../src/asm/op.c				\
+		../utils/my_putstr.c			\
+		../utils/my_strdup.c			\
+		../utils/my_strcpy.c			\
+		../utils/my_putnbr.c			\
+		../utils/my_putchar.c			\
+		../utils/my_strncmp.c			\
+		../graph_vm/src/ini_window.c		\
+		../graph_vm/src/check_env.c		\
+		../graph_vm/src/match.c			\
+		../graph_vm/src/create_window.c		\
+		../graph_vm/src/my_square_root.c	\
 		../graph_vm/src/my_framebuffer_create.c	\
 		../graph_vm/src/update_map.c		\
 		../graph_vm/src/my_put_pixel.c		\

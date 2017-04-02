@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Wed Feb  1 22:13:46 2017 
-** Last update Sun Apr  2 02:05:14 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 11:09:43 2017 Martin Januario
 */
 
 #include		<stdlib.h>
@@ -59,7 +59,7 @@ int			ini_window(t_game *game, char *str)
   int			tmp;
   sfEvent		event;
 
-  size.x = sqrt(strlen(str));
+  size.x = my_square_root(my_strlen(str));
   size.y = size.x;
   tmp = size.y;
   if (size.x == 0 || size.y == 0)

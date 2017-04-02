@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Sun Apr  2 04:32:10 2017 Martin Van Elslande
-** Last update Sun Apr  2 07:41:48 2017 Martin Van Elslande
+** Last update Sun Apr  2 10:42:54 2017 Martin Januario
 */
 
 #include	<stdlib.h>
@@ -85,7 +85,8 @@ int	set_line(char *str, char **tab, int i, int j)
   int	wordlen;
 
   wordlen = get_word_length(&str[i]);
-  tab[j] = malloc(sizeof(char) * (wordlen + 1));
+  if ((tab[j] = malloc(sizeof(char) * (wordlen + 1))) == NULL)
+    exit(84);
   my_strcpy_word(&str[i], tab[j]);
   if (str[i] != '\"')
     i += wordlen + 1;
@@ -105,7 +106,8 @@ char	**my_str_to_wordtab(char *str)
   if (nb_words == 0)
     return (NULL);
   tab = NULL;
-  tab = malloc(sizeof(char *) * (count_words(str) + 1));
+  if ((tab = malloc(sizeof(char *) * (count_words(str) + 1))) == NULL)
+    exit(84);
   i = 0;
   j = 0;
   while (str && i < my_strlen(str) && str[i])

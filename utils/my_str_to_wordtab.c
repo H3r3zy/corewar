@@ -5,10 +5,11 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Sun Apr  2 04:32:10 2017 Martin Van Elslande
-** Last update Sun Apr  2 07:26:48 2017 Martin Januario
+** Last update Sun Apr  2 07:36:06 2017 Martin Januario
 */
 
 #include	<stdlib.h>
+#include	"my_string.h"
 
 int	char_isalphanum(char c)
 {

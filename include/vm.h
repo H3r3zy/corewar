@@ -1,11 +1,11 @@
 /*
 ** vm.h for corewar in /home/sahel/rendu/CPE/CPE_2016_corewar
-** 
+**
 ** Made by Sahel Lucas--Saoudi
 ** Login   <sahel.lucas-saoudi@epitech.eu>
-** 
+**
 ** Started on  Thu Mar 30 00:03:13 2017 Sahel Lucas--Saoudi
-** Last update Sun Apr  2 11:35:06 2017 Martin Januario
+** Last update Sun Apr  2 11:42:38 2017 maximilien desnos
 */
 
 #ifndef VM_H_
@@ -75,5 +75,11 @@ void		start_game(t_game *, t_my_framebuffer *,
 			   t_core_window *, sfVector2i);
 void		live(t_player *, t_action *);
 void		zjmp(t_player *, t_action *);
+void		add_m(t_player *, t_action *);
+void		and_m(t_player *, t_action *);
+void		or_m(t_player *, t_action *);
+void		sub_m(t_player *, t_action *);
+void		fork_m(t_player *, t_action *);
+void		xor_m(t_player *, t_action *);
 
 #endif /* !VM_H_ */

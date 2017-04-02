@@ -5,14 +5,14 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sun Apr  2 02:24:09 2017 maximilien desnos
-** Last update Sun Apr  2 06:31:00 2017 Martin Van Elslande
+** Last update Sun Apr  2 10:24:48 2017 maximilien desnos
 */
 
 #include	<sys/types.h>
 #include	<unistd.h>
 #include	"vm.h"
 
-static void	*recup_arg1(t_player *player, t_action *actual)
+static int	recup_arg1(t_player *player, t_action *actual)
 {
   int		j;
 
@@ -23,7 +23,6 @@ static void	*recup_arg1(t_player *player, t_action *actual)
     }
   else
     {
-      (char)j;
       read(player->fd, &j, sizeof(j));
     }
   return (j);
@@ -49,16 +48,13 @@ void		and_m(t_player *player, t_action *actual)
   lseek(player->fd, COMMENT_LENGTH + PROG_NAME_LENGTH + 16 + actual->pos + 2,
 	SEEK_SET);
   j = recup_arg1(player, actual);
-  if (actual->bytes[0] != 4)
-    (char)j;
   if (actual->bytes[1] == 4)
     read(player->fd, &k, sizeof(k));
   else
     {
-      (char)i;
       read(player->fd, &k, sizeof(k));
     }
   read(player->fd, &i, sizeof(i));
-  player->reg[i] = player->reg[j] & player->reg[k];
+  player->reg[(int)i] = player->reg[j] & player->reg[k];
   verif_carry(player, i);
 }

@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Fri Mar 31 20:49:24 2017 maximilien desnos
-** Last update Sun Apr  2 02:10:15 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 02:53:10 2017 maximilien desnos
 */
 
 #include	<sys/types.h>
@@ -24,8 +24,8 @@ void		sub_m(t_player *player, t_action *actual)
   read(player->fd, &i, sizeof(i));
   read(player->fd, &j, sizeof(j));
   read(player->fd, &k, sizeof(k));
-  player->reg[k] = player->reg[j] - player->reg[i];
-  if (player->reg[k] == 0)
+  player->reg[(int)k] = player->reg[(int)j] - player->reg[(int)i];
+  if (player->reg[(int)k] == 0)
     {
       if (player->carry == 0)
 	player->carry = 1;

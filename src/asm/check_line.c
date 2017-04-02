@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 20:13:29 2017 Martin Januario
-** Last update Sun Apr  2 07:19:34 2017 Martin Januario
+** Last update Sun Apr  2 14:18:20 2017 Martin Van Elslande
 */
 
 #include	<stdlib.h>
@@ -13,10 +13,25 @@
 #include	"parse.h"
 #include	"my_string.h"
 
-int		name_comment(char *str, int nb_line, int *name_and_com)
+int		check_next_character(char *str)
+{
+  int		i;
+
+  i = 0;
+  while (str[i] <= 32 && str[i] != '\n')
+    i++;
+  if (str[i] != '\"')
+    return (0);
+  return (1);
+}
+
+int		name_comment(char *str, int nb_line,
+			     int *name_and_com, int len)
 {
   char		**tmp;
 
+  if (!check_next_character(&str[len]))
+    return (0);
   if ((tmp = my_str_to_wordtab(str)) == NULL)
     return (0);
   if (my_tablen(tmp) != 2 || !tmp[1][0])
@@ -72,9 +87,10 @@ int		check_line(char *line, int nb_line, t_label *label,
     i++;
   if (!line[i])
     return (1);
-  if (my_strncmp(&line[i], NAME_CMD_STRING, namelen) ||
-      my_strncmp(&line[i], COMMENT_CMD_STRING, comlen))
-    return (name_comment(&line[i], nb_line, name_and_com));
+  if (my_strncmp(&line[i], NAME_CMD_STRING, namelen))
+    return (name_comment(&line[i], nb_line, name_and_com, namelen));
+  if (my_strncmp(&line[i], COMMENT_CMD_STRING, comlen))
+    return (name_comment(&line[i], nb_line, name_and_com, comlen));
   return (check_command(&line[i], nb_line, label));
 }
 

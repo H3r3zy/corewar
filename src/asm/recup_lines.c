@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 15:07:35 2017 maximilien desnos
-** Last update Sun Apr  2 02:16:24 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 10:39:03 2017 Martin Januario
 */
 
 #include	<unistd.h>
@@ -29,7 +29,8 @@ static t_line	*find_info(char *fd)
   static int	nb_line = 0;
   t_line	*op;
 
-  op = malloc(sizeof(t_line));
+  if ((op = malloc(sizeof(t_line))) == NULL)
+    exit(84);
   op->exist = 1;
   op->bytes = 0;
   lb = check_label(fd, op);

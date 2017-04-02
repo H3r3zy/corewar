@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 18:48:57 2017 Martin Januario
-** Last update Sun Apr  2 02:07:21 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 11:11:33 2017 Martin Januario
 */
 
 #include        <SFML/Graphics/RenderWindow.h>
@@ -14,6 +14,7 @@
 #include	<stdlib.h>
 #include	"framebuffer.h"
 #include	"csfml.h"
+#include	"my.h"
 
 void		draw_square(t_my_framebuffer *buffer, sfVector2i from,
 			    sfVector2i to, sfColor color)
@@ -42,12 +43,12 @@ char		**my_str_to_wordmap(char *mem)
 
   idx = 0;
   tmp = 0;
-  nb = sqrt(my_strlen(mem));
+  nb = my_square_root(my_strlen(mem));
   if ((tab = malloc(sizeof(char *) * (nb + 1))) == NULL)
     return (NULL);
   while (idx < nb)
     {
-      tab[idx] = strndup(&mem[tmp], nb);
+      tab[idx] = my_strndup(&mem[tmp], nb);
       tmp += nb;
       idx++;
     }

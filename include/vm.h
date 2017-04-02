@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 00:03:13 2017 Sahel Lucas--Saoudi
-** Last update Sun Apr  2 01:53:14 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 10:06:06 2017 Martin Januario
 */
 
 #ifndef VM_H_
@@ -17,6 +17,7 @@
 
 typedef struct		s_action
 {
+  struct s_action	*parra;
   op_t			op;
   int			cycle;
   int			pos;
@@ -24,11 +25,12 @@ typedef struct		s_action
   int			byte;
   int			bytes[MAX_ARGS_NUMBER];
   int			*arg;
-  struct s_action	*parra;
 }			t_action;
 
 typedef struct		s_player
 {
+  struct s_player	*previous;
+  struct s_player	*next;
   char		        p;
   char			is_dead;
   char			name[PROG_NAME_LENGTH + 1];
@@ -40,16 +42,14 @@ typedef struct		s_player
   int			live;
   int			fd;
   int			*reg;
-  struct s_player	*previous;
-  struct s_player	*next;
   t_action		*action;
 }			t_player;
 
 typedef struct		s_reg
 {
-  int			value;
   struct s_reg		*next;
   struct s_reg		*previous;
+  int			value;
 }			t_reg;
 
 typedef struct		s_game

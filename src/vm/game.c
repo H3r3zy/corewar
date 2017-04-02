@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 20:43:07 2017 Sahel Lucas--Saoudi
-** Last update Sun Apr  2 10:47:20 2017 Martin Januario
+** Last update Sun Apr  2 11:14:40 2017 Martin Januario
 */
 
 #include <SFML/Graphics.h>
@@ -101,7 +101,7 @@ void	start_game(t_game *game, t_my_framebuffer *buffer,
       game->player = game->player->next;
     }
   if (!game->player)
-    my_putstr("EGALITE\n");
+    my_putstr(1, "EGALITE\n");
   else
-    my_putstr("## %i Cycles ##\nThe winner is the player %i:\n%s\nWith %i lives\n\"%s\"\n", cycle, game->player->p, game->player->name, game->player->live, game->player->comment);
+    my_putstr(1, "## %i Cycles ##\nThe winner is the player %i:\n%s\nWith %i lives\n\"%s\"\n", cycle, game->player->p, game->player->name, game->player->live, game->player->comment);
 }

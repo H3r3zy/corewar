@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 19:10:44 2017 Martin Van Elslande
-** Last update Sun Apr  2 01:54:24 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 08:19:26 2017 Martin Januario
 */
 
 #ifndef		PARSE_H_
@@ -18,6 +18,8 @@ typedef struct		s_label
   int			here;
 }			t_label;
 
+int		help(int, int);
+int		my_filelen(int);
 char		**read_file(int, t_label *, int *);
 char		**check_file(char *, int *);
 int		check_line(char *, int, t_label *, int *);

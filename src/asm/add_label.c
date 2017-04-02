@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Sun Mar 26 18:23:02 2017 Martin Januario
-** Last update Sun Apr  2 00:15:20 2017 Martin Januario
+** Last update Sun Apr  2 06:18:48 2017 Martin Januario
 */
 
 #include	<stdlib.h>
@@ -13,13 +13,10 @@
 #include	"my_string.h"
 #include	"op.h"
 
-int		add_label(t_label *label, char *str)
+int		check_label_name(char *str)
 {
-  t_label	*new;
-  char		*tmp;
   int		idx;
 
-  new = NULL;
   idx = 0;
   while (idx < my_strlen(str) - 1)
     {
@@ -27,8 +24,16 @@ int		add_label(t_label *label, char *str)
 	return (0);
       idx++;
     }
-  tmp = malloc(sizeof(char) * (my_strlen(str)));
-  if (tmp == NULL)
+  return (1);
+}
+
+int		add_label(t_label *label, char *str)
+{
+  t_label	*new;
+  char		*tmp;
+
+  if (check_label_name(str) == 0 ||
+      (tmp = malloc(sizeof(char) * (my_strlen(str)))) == NULL)
     return (0);
   my_strncpy(tmp, str, my_strlen(str) - 1);
   while (label->next != NULL && my_strcmp(label->name, tmp) != 0)

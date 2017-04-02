@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 17:13:56 2017 Maximilien Desnos
-** Last update Thu Mar 30 16:18:42 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 10:09:01 2017 Martin Januario
 */
 
 #ifndef MY_H_
@@ -15,6 +15,8 @@
 
 typedef struct	s_line
 {
+  struct s_line	*previous;
+  struct s_line	*next;
   op_t		op;
   char		**arg;
   char		*label;
@@ -27,8 +29,6 @@ typedef struct	s_line
   int		byte[MAX_ARGS_NUMBER];
   int		exist;
   unsigned int	*ret;
-  struct s_line	*previous;
-  struct s_line	*next;
 }		t_line;
 
 long long int	my_getlongnbr(char *);

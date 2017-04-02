@@ -5,10 +5,10 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Sun Apr  2 06:32:07 2017 Martin Van Elslande
-** Last update Sun Apr  2 06:32:23 2017 Martin Van Elslande
+** Last update Sun Apr  2 08:53:22 2017 Martin Januario
 */
 
-int     char_isalphanum(char c)
+int	char_isalphanum(char c)
 {
   if ((c >= 'a' && c <= 'z') ||
       (c >= 'A' && c <= 'Z') ||

@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 19:06:59 2017 Martin Van Elslande
-** Last update Thu Mar 30 15:55:38 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 08:51:40 2017 Martin Januario
 */
 
 #include	<fcntl.h>
@@ -26,6 +26,26 @@ int		check_folder(char *file)
       return (0);
     }
   return (1);
+}
+
+char		*check_file_next(t_label *label, int fd)
+{
+  while (label->next != NULL)
+    {
+      if (label->here == 0 && label->name != NULL)
+	{
+	  close(fd);
+	  return (NULL);
+	}
+      label = label->next;
+    }
+  if ((label->here == 0 && label->name != NULL))
+    {
+      close(fd);
+      return (NULL);
+    }
+  close(fd);
+  return ("ok");
 }
 
 char		**check_file(char *file, int *name_and_com)
@@ -52,20 +72,7 @@ char		**check_file(char *file, int *name_and_com)
       close(fd);
       return (NULL);
     }
-  while (label->next != NULL)
-    {
-      if (label->here == 0 && label->name != NULL)
-	{
-	  close(fd);
-	  return (NULL);
-	}
-      label = label->next;
-    }
-  if ((label->here == 0 && label->name != NULL))
-    {
-      close(fd);
-      return (NULL);
-    }
-  close(fd);
+  if (check_file_next(label, fd) == NULL)
+    return (NULL);
   return (tmp);
 }

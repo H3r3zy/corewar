@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Sun Apr  2 11:43:02 2017 Martin Januario
-** Last update Sun Apr  2 12:01:27 2017 Martin Januario
+** Last update Sun Apr  2 21:50:33 2017 Sahel Lucas--Saoudi
 */
 
 #include <SFML/Graphics.h>
@@ -94,7 +94,7 @@ int	player_loop(t_player *player, t_core_window *ns)
 void	start_game(t_game *game, t_my_framebuffer *buffer,
 		   t_core_window *ns, sfVector2i size)
 {
-  int   cycle;
+  int	cycle;
 
   cycle = 0;
   while (game->end < game->nb_j - 1)

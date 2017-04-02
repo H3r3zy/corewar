@@ -5,7 +5,7 @@
 ## Login   <sahel.lucas-saoudi@epitech.eu>
 ## 
 ## Started on  Fri Mar 31 14:22:41 2017 Sahel Lucas--Saoudi
-## Last update Sun Apr  2 12:06:01 2017 maximilien desnos
+## Last update Sun Apr  2 12:21:44 2017 maximilien desnos
 ##
 
 SRC	=	../src/vm/main.c			\
@@ -16,6 +16,7 @@ SRC	=	../src/vm/main.c			\
 		../src/vm/instructions/zjmp.c		\
 		../src/vm/instructions/fork.c		\
 		../src/vm/instructions/sub_m.c		\
+		../src/vm/instructions/st_m.c		\
 		../src/vm/instructions/add_m.c		\
 		../src/vm/instructions/and_m.c		\
 		../src/vm/instructions/or_m.c		\

@@ -5,10 +5,14 @@
 ** Login   <desnos_m@epitech.net>
 **
 ** Started on  Sun Apr  2 10:45:49 2017 maximilien desnos
-** Last update Sun Apr  2 12:03:09 2017 maximilien desnos
+** Last update Sun Apr  2 12:19:01 2017 maximilien desnos
 */
 
-static void     verif_carry(t_player *player, int k)
+#include	<sys/types.h>
+#include	<unistd.h>
+#include	"vm.h"
+
+static void	verif_carry(t_player *player, int k)
 {
   if (player->reg[k] == 0)
     {

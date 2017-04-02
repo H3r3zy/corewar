@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 **
 ** Started on  Thu Mar 30 00:03:13 2017 Sahel Lucas--Saoudi
-** Last update Sun Apr  2 12:06:19 2017 maximilien desnos
+** Last update Sun Apr  2 12:22:00 2017 maximilien desnos
 */
 
 #ifndef VM_H_
@@ -82,5 +82,6 @@ void		sub_m(t_player *, t_action *);
 void		fork_m(t_player *, t_action *);
 void		xor_m(t_player *, t_action *);
 void		ld_m(t_player *, t_action *);
+void		st_m(t_player *, t_action *);
 
 #endif /* !VM_H_ */

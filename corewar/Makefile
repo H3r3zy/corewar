@@ -5,7 +5,7 @@
 ## Login   <sahel.lucas-saoudi@epitech.eu>
 ## 
 ## Started on  Fri Mar 31 14:22:41 2017 Sahel Lucas--Saoudi
-## Last update Sun Apr  2 03:44:32 2017 maximilien desnos
+## Last update Sun Apr  2 02:58:35 2017 maximilien desnos
 ##
 
 SRC	=	../src/vm/main.c		\
@@ -19,6 +19,7 @@ SRC	=	../src/vm/main.c		\
 		../src/vm/instructions/add_m.c	\
 		../src/vm/instructions/and_m.c	\
 		../src/vm/instructions/or_m.c	\
+		../src/vm/instructions/xor_m.c	\
 		../src/asm/my_power_rec.c	\
 		../src/asm/reverse_add.c	\
 		../src/asm/op.c			\

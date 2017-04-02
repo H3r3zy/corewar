@@ -5,7 +5,7 @@
 ## Login   <sahel.lucas-saoudi@epitech.eu>
 ## 
 ## Started on  Fri Mar 31 14:22:41 2017 Sahel Lucas--Saoudi
-## Last update Sun Apr  2 12:21:44 2017 maximilien desnos
+## Last update Sun Apr  2 14:33:19 2017 Sahel Lucas--Saoudi
 ##
 
 SRC	=	../src/vm/main.c			\
@@ -39,7 +39,8 @@ SRC	=	../src/vm/main.c			\
 		../graph_vm/src/my_framebuffer_create.c	\
 		../graph_vm/src/update_map.c		\
 		../graph_vm/src/my_put_pixel.c		\
-		../graph_vm/src/reset_frame.c
+		../graph_vm/src/reset_frame.c		\
+		../src/vm/bit.c
 
 OBJ	=	$(SRC:.c=.o)
 

@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 00:29:58 2017 Sahel Lucas--Saoudi
-** Last update Sun Apr  2 11:15:06 2017 Martin Januario
+** Last update Sun Apr  2 14:42:59 2017 Sahel Lucas--Saoudi
 */
 
 #include <stdio.h>
@@ -50,20 +50,15 @@ t_action	*get_action(t_player *player)
   t_action	*action;
   char		ac;
   char		cb;
-  int		i;
   int		size;
   char		is_idx;
-  char		*cb_b;
-  int		arg[MAX_ARGS_NUMBER];
 
   cb = 0;
-  is_idx = 0;
   size = COMMENT_LENGTH + PROG_NAME_LENGTH + 16;
   action = malloc(sizeof(t_action));
   lseek(player->fd, (!player->action) ? (size) :
 	(size + player->action->pos + player->action->byte), SEEK_SET);
-  size = read(player->fd, &ac, sizeof(char));
-  if (size == 0)
+  if (read(player->fd, &ac, sizeof(char)) == 0)
     return (NULL);
   action->op = op_tab[ac - 1];
   action->cycle = action->op.nbr_cycles;
@@ -73,69 +68,35 @@ t_action	*get_action(t_player *player)
       read(player->fd, &cb, sizeof(char));
       action->byte++;
     }
-  if (ac == 11 || ac == 9 || ac == 10 || ac == 12 || ac == 15)
-    is_idx = 1;
-  cb_b = NULL;
-  i = 0;
-  while (i < MAX_ARGS_NUMBER)
-    arg[i++] = 0;
-  i = 0;
-  if (cb != 0)
-    {
-      cb_b = in_binary(cb);
-      while (i < MAX_ARGS_NUMBER)
-	{
-	  size = 0;
-	  if (cb_b[i * 2] == '0' && cb_b[i * 2 + 1] == '1')
-	    size = 1;
-	  else if (cb_b[i * 2] == '1' && cb_b[i * 2 + 1] == '0')
-	    size = (is_idx == 0) ? (DIR_SIZE) : (2);
-	  else if (cb_b[i * 2] == '1' && cb_b[i * 2 + 1] == '1')
-	    size = (is_idx == 0) ? (IND_SIZE) : (2);
-	  action->bytes[i] = size;
-	  action->byte += size;
-	  i++;
-	}
-    }
-  else if (ac == 1)
-    action->byte += DIR_SIZE;
-  else if (ac == 9 || ac == 12 || ac == 15)
-    action->byte += 2;
-  else if (ac == 16)
-    action->byte++;
-  if (player->action)
-    {
-      action->pos = (player->action->pos + player->action->byte) %
-	player->prog_size;
-      action->pos_m = (player->action->pos_m + player->action->byte) %
-	MEM_SIZE;
-    }
-  else
-    {
-      action->pos = 0;
-      action->pos_m = player->max_size * (player->p - 1);
-    }
-  action->arg = arg;
-  action->parra = NULL;
-  return (action);
+  is_idx = (ac == 11 || ac == 9 || ac == 10 || ac == 12 || ac == 15) ?
+    (1) : (0);
+  set_byte_action(action, cb, is_idx, ac);
+  return (set_pos_action(action, player));
 }
 
+t_player	*read_player(t_player *player)
+{
+  int		tmp;
+
+  read(player->fd, &player->magic, sizeof(int));
+  read(player->fd, &player->name, sizeof(int));
+  read(player->fd, &tmp, sizeof(int));
+  read(player->fd, &player->prog_size, sizeof(int));
+  read(player->fd, &player->comment, sizeof(int));
+  read(player->fd, &tmp, sizeof(int));
+  return (player);
+}
+  
 t_player	*set_player(t_game *game, char **av, int i)
 {
   t_player	*player;
   static int	p = 1;
-  int		tmp;
 
   player = malloc(sizeof(t_player));
   player->fd = open(av[i], O_RDONLY);
   if (!player || player->fd == -1)
     return (NULL);
-  read(player->fd, &player->magic, sizeof(int));
-  read(player->fd, &player->name, PROG_NAME_LENGTH);
-  read(player->fd, &tmp, sizeof(int));
-  read(player->fd, &player->prog_size, sizeof(int));
-  read(player->fd, &player->comment, COMMENT_LENGTH);
-  read(player->fd, &tmp, sizeof(int));
+  player = read_player(player);
   player->magic = reverse_add(player->magic);
   player->prog_size = reverse_add(player->prog_size);
   player->carry = 1;
@@ -160,18 +121,11 @@ t_player	*init_player(t_game *game, char **av)
   int		i;
   int		prog_size;
 
-  p1 = set_player(game, av, 1);
-  if (!p1)
+  if (!(p1 = set_player(game, av, 1)))
     return (NULL);
   prog_size = p1->prog_size;
   while (prog_size > 0)
-    {
-      my_putstr(1, "%i\n", game->max_size * (p1->p - 1) + prog_size);
-      game->memory[game->max_size * (p1->p - 1) + prog_size] = p1->p + 48;
-      prog_size--;
-    }
-  p1->next = NULL;
-  p1->previous = NULL;
+    game->memory[game->max_size * (p1->p - 1) + prog_size--] = p1->p + 48;
   i = 2;
   while (av[i])
     {
@@ -180,10 +134,7 @@ t_player	*init_player(t_game *game, char **av)
 	return (NULL);
       prog_size = p1->next->prog_size;
       while (prog_size > 0)
-	{
-	  game->memory[game->max_size * (p1->next->p - 1) + prog_size] = p1->next->p + 48;
-	  prog_size--;
-	}
+	game->memory[game->max_size * (p1->next->p - 1) + prog_size--] = p1->next->p + 48;
       p1->next->previous = p1;
       i++;
       p1 = p1->next;

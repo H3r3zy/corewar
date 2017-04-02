@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 **
 ** Started on  Thu Mar 30 00:03:13 2017 Sahel Lucas--Saoudi
-** Last update Sun Apr  2 12:22:00 2017 maximilien desnos
+** Last update Sun Apr  2 14:44:49 2017 Sahel Lucas--Saoudi
 */
 
 #ifndef VM_H_
@@ -65,9 +65,11 @@ typedef struct		s_game
   int			nb_j;
 }			t_game;
 
+char		*in_binary(unsigned char);
 int		ini_window(t_game *, char *);
 t_player	*init_player(t_game *, char **);
 t_action	*get_action(t_player *);
+t_action	*set_pos_action(t_action *, t_player *);
 int		*init_register(t_player *);
 unsigned int	reverse_add2(unsigned int);
 unsigned int	reverse_add(unsigned int);
@@ -83,5 +85,6 @@ void		fork_m(t_player *, t_action *);
 void		xor_m(t_player *, t_action *);
 void		ld_m(t_player *, t_action *);
 void		st_m(t_player *, t_action *);
+void		set_byte_action(t_action *, char, int, int);
 
 #endif /* !VM_H_ */

@@ -5,7 +5,7 @@
 ** Login   <desnos_m@epitech.net>
 **
 ** Started on  Sun Apr  2 10:45:49 2017 maximilien desnos
-** Last update Sun Apr  2 12:19:01 2017 maximilien desnos
+** Last update Sun Apr  2 14:45:11 2017 Sahel Lucas--Saoudi
 */
 
 #include	<sys/types.h>
@@ -26,7 +26,6 @@ static void	verif_carry(t_player *player, int k)
 void		ld_m(t_player *player, t_action *actual)
 {
   char		i;
-  int		j;
   int		k;
 
   lseek(player->fd, COMMENT_LENGTH + PROG_NAME_LENGTH + 16 + actual->pos + 2,

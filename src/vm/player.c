@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 00:29:58 2017 Sahel Lucas--Saoudi
-** Last update Sun Apr  2 14:42:59 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 21:45:08 2017 Sahel Lucas--Saoudi
 */
 
 #include <stdio.h>
@@ -78,15 +78,20 @@ t_player	*read_player(t_player *player)
 {
   int		tmp;
 
+  lseek(player->fd, 0, SEEK_SET);
   read(player->fd, &player->magic, sizeof(int));
-  read(player->fd, &player->name, sizeof(int));
+  read(player->fd, &player->name, PROG_NAME_LENGTH);
   read(player->fd, &tmp, sizeof(int));
-  read(player->fd, &player->prog_size, sizeof(int));
-  read(player->fd, &player->comment, sizeof(int));
+  tmp = 0;
   read(player->fd, &tmp, sizeof(int));
+  player->prog_size = (int) reverse_add(tmp);
+  read(player->fd, &player->comment, COMMENT_LENGTH);
+  read(player->fd, &tmp, sizeof(int));
+  player->magic = reverse_add(player->magic);
+  player->carry = 1;
   return (player);
 }
-  
+
 t_player	*set_player(t_game *game, char **av, int i)
 {
   t_player	*player;
@@ -96,10 +101,7 @@ t_player	*set_player(t_game *game, char **av, int i)
   player->fd = open(av[i], O_RDONLY);
   if (!player || player->fd == -1)
     return (NULL);
-  player = read_player(player);
-  player->magic = reverse_add(player->magic);
-  player->prog_size = reverse_add(player->prog_size);
-  player->carry = 1;
+  read_player(player);
   player->live = 0;
   player->p = p;
   player->max_size = game->max_size;
@@ -119,24 +121,24 @@ t_player	*init_player(t_game *game, char **av)
 {
   t_player	*p1;
   int		i;
-  int		prog_size;
+  int		ps;
 
   if (!(p1 = set_player(game, av, 1)))
     return (NULL);
-  prog_size = p1->prog_size;
-  while (prog_size > 0)
-    game->memory[game->max_size * (p1->p - 1) + prog_size--] = p1->p + 48;
+  ps = p1->prog_size;
+  while (ps > 0)
+    game->memory[game->max_size * (p1->p - 1) + ps--] = p1->p + 48;
   i = 2;
   while (av[i])
     {
-      p1->next = set_player(game, av, i);
+      p1->next = set_player(game, av, i++);
       if (!p1->next)
 	return (NULL);
-      prog_size = p1->next->prog_size;
-      while (prog_size > 0)
-	game->memory[game->max_size * (p1->next->p - 1) + prog_size--] = p1->next->p + 48;
+      ps = p1->next->prog_size;
+      while (ps > 0)
+	game->memory[game->max_size * (p1->next->p - 1) + ps--] =
+	  p1->next->p + 48;
       p1->next->previous = p1;
-      i++;
       p1 = p1->next;
     }
   while (p1->previous)

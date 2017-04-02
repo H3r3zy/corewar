@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 00:00:08 2017 Sahel Lucas--Saoudi
-** Last update Sun Apr  2 10:36:32 2017 Martin Januario
+** Last update Sun Apr  2 21:46:41 2017 Sahel Lucas--Saoudi
 */
 
 #include <stdlib.h>
@@ -72,7 +72,7 @@ int		main(int ac, char **av, char **env)
 {
   t_game	*game;
 
-  if (ac != 3 || check_env(env) != 0)
+  if (ac < 3 || check_env(env) != 0)
     return (84);
   game = init_game(av);
   game->player = init_player(game, av);

@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Sun Apr  2 04:32:10 2017 Martin Van Elslande
-** Last update Sun Apr  2 05:39:18 2017 Martin Van Elslande
+** Last update Sun Apr  2 07:26:48 2017 Martin Januario
 */
 
 #include	<stdlib.h>
@@ -112,10 +112,11 @@ char	**my_str_to_wordtab(char *str)
   nb_words = count_words(str);
   if (nb_words == 0)
     return (NULL);
+  tab = NULL;
   tab = malloc(sizeof(char *) * (count_words(str) + 1));
   i = 0;
   j = 0;
-  while (str[i])
+  while (str && i < my_strlen(str) && str[i])
     {
       while (str[i] && str[i] <= 32 && str[i] != '\"')
 	i++;

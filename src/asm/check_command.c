@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Sat Mar 25 11:05:25 2017 Martin Januario
-** Last update Sun Apr  2 02:23:50 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 07:05:16 2017 Martin Januario
 */
 
 #include	<stdlib.h>
@@ -98,6 +98,7 @@ int		check_command(char *str, int nb_line,
   int		idx;
 
   idx = 0;
+  write(1, str, strlen(str));
   if ((tmp = my_str_to_wordtab(str)) == NULL ||
       my_tablen(tmp) == 0)
     return (error_messages(0, nb_line));

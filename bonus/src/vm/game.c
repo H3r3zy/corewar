@@ -5,13 +5,14 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Sun Apr  2 11:43:02 2017 Martin Januario
-** Last update Sun Apr  2 22:31:32 2017 Martin Januario
+** Last update Sun Apr  2 22:21:59 2017 Martin Januario
 */
 
 #include <SFML/Graphics.h>
 #include <stdio.h>
 #include "framebuffer.h"
 #include "vm.h"
+#include "csfml.h"
 #include "op.h"
 #include "my.h"
 
@@ -73,11 +74,12 @@ void		action_loop(t_player *player)
     }
 }
 
-int	player_loop(t_player *player)
+int	player_loop(t_player *player, t_core_window *ns)
 {
   int	dead;
 
   dead = 0;
+  sfRenderWindow_clear(ns->window, sfBlack);
   while (player)
     {
       if (player->is_dead || !player->action)
@@ -89,16 +91,23 @@ int	player_loop(t_player *player)
   return (dead);
 }
 
-void	start_game(t_game *game)
+void	start_game(t_game *game, t_my_framebuffer *buffer,
+		   t_core_window *ns, sfVector2i size)
 {
   int	cycle;
 
   cycle = 0;
   while (game->end < game->nb_j - 1)
     {
-      game->end = player_loop(game->player);
+      game->end = player_loop(game->player, ns);
       cycle++;
+      update_map(buffer, game->memory, size);
+      sfTexture_updateFromPixels(ns->texture, buffer->pixels,
+                                 buffer->width, buffer->height, 0, 0);
+      sfRenderWindow_drawSprite(ns->window, ns->sprite, NULL);
+      sfRenderWindow_display(ns->window);
     }
+  sfRenderWindow_destroy(ns->window);
   while (game->player && game->player->is_dead != 0)
     game->player = game->player->next;
   if (!game->player)

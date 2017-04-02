@@ -5,7 +5,7 @@
 ## Login   <sahel.lucas-saoudi@epitech.eu>
 ## 
 ## Started on  Fri Mar 31 14:22:41 2017 Sahel Lucas--Saoudi
-## Last update Sun Apr  2 22:33:16 2017 Martin Januario
+## Last update Sun Apr  2 21:48:54 2017 Martin Januario
 ##
 
 SRC	=	../src/vm/main.c			\
@@ -27,11 +27,18 @@ SRC	=	../src/vm/main.c			\
 		../src/asm/op.c				\
 		../utils/my_putstr.c			\
 		../utils/my_strdup.c			\
-		../utils/my_strlen.c			\
 		../utils/my_strcpy.c			\
 		../utils/my_putnbr.c			\
 		../utils/my_putchar.c			\
 		../utils/my_strncmp.c			\
+		../graph_vm/src/ini_window.c		\
+		../graph_vm/src/check_env.c		\
+		../graph_vm/src/match.c			\
+		../graph_vm/src/create_window.c		\
+		../graph_vm/src/my_framebuffer_create.c	\
+		../graph_vm/src/update_map.c		\
+		../graph_vm/src/my_put_pixel.c		\
+		../graph_vm/src/reset_frame.c		\
 		../src/vm/bit.c
 
 OBJ	=	$(SRC:.c=.o)

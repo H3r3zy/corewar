@@ -5,10 +5,9 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Sun Apr  2 14:18:02 2017 Sahel Lucas--Saoudi
-** Last update Sun Apr  2 22:32:22 2017 Martin Januario
+** Last update Sun Apr  2 14:44:17 2017 Sahel Lucas--Saoudi
 */
 
-#include <stdlib.h>
 #include "vm.h"
 
 t_action	*set_pos_action(t_action *action, t_player *player)

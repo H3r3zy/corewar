@@ -5,13 +5,15 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 **
 ** Started on  Thu Mar 30 00:03:13 2017 Sahel Lucas--Saoudi
-** Last update Sun Apr  2 22:35:20 2017 Martin Januario
+** Last update Sun Apr  2 14:44:49 2017 Sahel Lucas--Saoudi
 */
 
 #ifndef VM_H_
 # define VM_H_
 
+# include <SFML/Graphics.h>
 # include "op.h"
+# include "csfml.h"
 
 typedef struct		s_action
 {
@@ -71,7 +73,8 @@ t_action	*set_pos_action(t_action *, t_player *);
 int		*init_register(t_player *);
 unsigned int	reverse_add2(unsigned int);
 unsigned int	reverse_add(unsigned int);
-void		start_game(t_game *);
+void		start_game(t_game *, t_my_framebuffer *,
+			   t_core_window *, sfVector2i);
 void		live(t_player *, t_action *);
 void		zjmp(t_player *, t_action *);
 void		add_m(t_player *, t_action *);
@@ -83,6 +86,5 @@ void		xor_m(t_player *, t_action *);
 void		ld_m(t_player *, t_action *);
 void		st_m(t_player *, t_action *);
 void		set_byte_action(t_action *, char, int, int);
-int		my_putstr(int, char *, ...);
 
 #endif /* !VM_H_ */

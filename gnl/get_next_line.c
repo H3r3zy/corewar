@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Tue Mar 14 12:53:43 2017 
-** Last update Wed Mar 29 13:14:09 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 02:24:45 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
@@ -58,7 +58,7 @@ char		*my_realloc_gnl(char *str, char *add_str, int *idx_res)
   return (new_str);
 }
 
-static char   	*put_excedent(char *buffer, int *idx_res)
+static char	*put_excedent(char *buffer, int *idx_res)
 {
   char		*str;
   int		idx;

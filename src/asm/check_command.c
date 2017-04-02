@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Sat Mar 25 11:05:25 2017 Martin Januario
-** Last update Sun Apr  2 02:15:02 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 02:23:50 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
@@ -72,7 +72,7 @@ int		id_command(char *str, int nb_line, int i, t_label *label)
       if (check_type(arg, i, idx, label) == 0)
 	return (error_messages(2, nb_line));
       idx++;
-    } 
+    }
   return (1);
 }
 

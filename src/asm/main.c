@@ -5,7 +5,7 @@
 ** Login   <martin.van-elslande@epitech.eu>
 ** 
 ** Started on  Thu Mar 23 19:23:53 2017 Martin Van Elslande
-** Last update Thu Mar 30 16:53:45 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 02:24:10 2017 Sahel Lucas--Saoudi
 */
 
 #include	<unistd.h>
@@ -124,7 +124,6 @@ int		main(int ac, char **av)
     return (84);
   else if (name_and_com[0] != 1 || name_and_com[1] > 1)
     return (my_putstr(2, "Error with name or comment.\n"));
-  // fd = recup_file(av[1]);
   op = malloc(sizeof(t_line));
   hd = malloc(sizeof(header_t));
   fl = take_fd_cor(av[1]);

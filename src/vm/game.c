@@ -6,7 +6,7 @@
 **
 ** Started on  Thu Mar 30 20:43:07 2017 Sahel Lucas--Saoudi
 <<<<<<< HEAD
-** Last update Sun Apr  2 11:10:12 2017 maximilien desnos
+** Last update Sun Apr  2 11:41:39 2017 Martin Januario
 =======
 ** Last update Sun Apr  2 11:14:40 2017 Martin Januario
 >>>>>>> 1a108a02cc6f93e2060ddb70806f316942567064
@@ -97,7 +97,7 @@ int	player_loop(t_player *player)
 void	start_game(t_game *game, t_my_framebuffer *buffer,
 		   t_core_window *ns, sfVector2i size)
 {
-  int	cycle;
+  int   cycle;
 
   cycle = 0;
   while (game->end < game->nb_j - 1)
@@ -106,18 +106,21 @@ void	start_game(t_game *game, t_my_framebuffer *buffer,
       cycle++;
       update_map(buffer, game->memory, size);
       sfTexture_updateFromPixels(ns->texture, buffer->pixels,
-				 buffer->width, buffer->height, 0, 0);
+                                 buffer->width, buffer->height, 0, 0);
       sfRenderWindow_clear(ns->window, sfBlack);
       sfRenderWindow_drawSprite(ns->window, ns->sprite, NULL);
       sfRenderWindow_display(ns->window);
     }
   sfRenderWindow_destroy(ns->window);
   while (game->player && game->player->is_dead != 0)
-    {
-      game->player = game->player->next;
-    }
+    game->player = game->player->next;
   if (!game->player)
     my_putstr(1, "EGALITE\n");
   else
-    my_putstr(1, "## %i Cycles ##\nThe winner is the player %i:\n%s\nWith %i lives\n\"%s\"\n", cycle, game->player->p, game->player->name, game->player->live, game->player->comment);
+    {
+      my_putstr(1, "## %d Cycles ##\nThe winner is the player %d",
+                cycle, game->player->p);
+      my_putstr(1, ":\n%s\nWith %d lives\n\"%s\"\n", game->player->name,
+                game->player->live, game->player->comment);
+    }
 }

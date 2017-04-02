@@ -1,112 +1,130 @@
 /*
-** my_str_to_wordtab.c for  in /home/januar_m/delivery/CPE/CPE_2016_corewar/tmp
+** my_str_to_wordtab.c for corewar in /home/tsuna/Epitech/projects/corewar/CPE_2016_corewar
 ** 
-** Made by Martin Januario
-** Login   <martin.januario@epitech.eu>
+** Made by Martin Van Elslande
+** Login   <martin.van-elslande@epitech.eu>
 ** 
-** Started on  Thu Mar 30 13:45:43 2017 Martin Januario
-** Last update Sat Apr  1 22:52:30 2017 Martin Januario
+** Started on  Sun Apr  2 04:32:10 2017 Martin Van Elslande
+** Last update Sun Apr  2 05:39:18 2017 Martin Van Elslande
 */
 
-#include	<stdio.h>
-#include	<string.h>
 #include	<stdlib.h>
-#include	"my_string.h"
 
-void		nb_words_next(char *str, int *idx, int *res)
+int	char_isalphanum(char c)
 {
-  if (str[*idx] == ' ' || str[*idx] == '\t')
+  if ((c >= 'a' && c <= 'z') ||
+      (c >= 'A' && c <= 'Z') ||
+      (c >= '0' && c <= '9'))
+    return (1);
+  return (0);
+}
+
+int	count_words(char *str)
+{
+  int	i;
+  int	nb_words;
+
+  i = 0;
+  nb_words = 0;
+  while (str[i])
     {
-      (*res)++;
-      (*idx)++;
+      if (str[i] == '\"')
+	{
+	  i++;
+	  while (str[i] && str[i] != '\"')
+	    i++;
+	  if (!str[i] || str[i + 1] > 32)
+	    return (0);
+	  nb_words++;
+	}
+      else if (str[i] > 32 && str[i + 1] <= 32)
+	nb_words++;
+      i++;
+    }
+  return (nb_words);
+}
+
+int	get_word_length(char *str)
+{
+  int	i;
+
+  i = 0;
+  if (str[i] == '\"')
+    {
+      i++;
+      while (str[i] != '\"')
+	i++;
+      i--;
     }
   else
-    (*idx)++;
+    while (str[i] > 32)
+      i++;
+  return (i);
 }
 
-int		nb_words(char *str)
+void	my_strcpy_word(char *str, char *cpy)
 {
-  int		qt[2];
-  int		idx;
-  int		res;
+  int	i;
 
-  idx = 0;
-  res = 0;
-  qt[0] = 0;
-  qt[1] = 0;
-  while (str[idx] != '\0')
+  i = 0;
+  if (str[i] == '\"')
     {
-      if (qt[0] == 0 && qt[1] == 0 && (str[idx] == ' ' || str[idx] == '\t'))
-	while (str[idx] != '\0' && (str[idx] == ' ' || str[idx] == '\t'))
-	  idx++;
-      else if ((qt[1] == 0 && str[idx] == '\"') || (qt[0] == 0 && str[idx] == '\''))
+      i++;
+      while (str[i] && str[i] != '\"')
 	{
-	  qt[(str[idx] == '\'') ? 1 : 0] =
-	    (qt[(str[idx] == '\'') ? 1 : 0] + 1) % 2;
-	  idx++;
+	  cpy[i - 1] = str[i];
+	  i++;
 	}
-      else
-	nb_words_next(str, &idx, &res);
+      cpy[i - 1] = 0;
     }
-  return (res);
+  else
+    {
+      while (str[i] && str[i] > 32)
+	{
+	  cpy[i] = str[i];
+	  i++;
+	}
+      cpy[i] = 0;
+    }
 }
 
-char		*give_me_word(char *str, int *idx)
+int	set_line(char *str, char **tab, int i, int j)
 {
-  char		*res;
-  int		cpt;
-  int		qt[2];
+  int	wordlen;
 
-  qt[0] = 0;
-  qt[1] = 0;
-  cpt = 0;
-  if ((res = malloc(strlen(&str[*idx]) + 1)) == NULL)
+  wordlen = get_word_length(&str[i]);
+  tab[j] = malloc(sizeof(char) * (wordlen + 1));
+  my_strcpy_word(&str[i], tab[j]);
+  if (str[i] != '\"')
+    i += wordlen + 1;
+  else
+    i += wordlen + 2;
+  return (i);
+}
+
+char	**my_str_to_wordtab(char *str)
+{
+  int	i;
+  int	j;
+  int	nb_words;
+  char	**tab;
+
+  nb_words = count_words(str);
+  if (nb_words == 0)
     return (NULL);
-  while (str[*idx] != '\0')
+  tab = malloc(sizeof(char *) * (count_words(str) + 1));
+  i = 0;
+  j = 0;
+  while (str[i])
     {
-      if (qt[0] == 0 && qt[1] == 0 && (str[*idx] == ' ' || str[*idx] == '\t'))
+      while (str[i] && str[i] <= 32 && str[i] != '\"')
+	i++;
+      if (str[i])
 	{
-	  while (str[*idx] != '\0' && (str[*idx] == ' ' || str[*idx] == '\t'))
-	    (*idx)++;
-	  res[cpt] = '\0';
-	  return (res);
+	  i = set_line(str, tab, i, j);
+	  j++;
 	}
-      else if ((qt[1] == 0 && str[*idx] == '\"') || (qt[0] == 0 && str[*idx] == '\''))
-	{
-	  qt[(str[*idx] == '\'') ? 1 : 0] = (qt[(str[*idx] == '\'') ? 1 : 0] + 1) % 2;
-	  (*idx)++;
-	}
-      else
-	{
-	  res[cpt] = str[*idx];
-	  cpt++;
-	  (*idx)++;
-	}	
     }
-  res[cpt] = '\0';
-  return (res);
-}
-
-char		**my_str_to_wordtab(char *str)
-{
-  char		**tab;
-  int		nb;
-  int		idx;
-  int		idx2;
-
-  tab = NULL;
-  idx = 0;
-  idx2 = 0;
-  nb = nb_words(str);
-  if ((tab = malloc(sizeof(char *) * (nb + 1))) == NULL)
-    return (NULL);
-  while (idx < nb)
-    {
-      if ((tab[idx] = give_me_word(str, &idx2)) == NULL)
-	return (NULL);
-      printf("idx2: %d\n", idx2);
-      idx++;
-    }
-  tab[idx] = NULL;
+  tab[j] = NULL;
   return (tab);
 }

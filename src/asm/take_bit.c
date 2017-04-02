@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Sat Mar 25 14:16:23 2017 Sahel Lucas--Saoudi
-** Last update Sun Apr  2 08:46:50 2017 Martin Januario
+** Last update Sun Apr  2 14:00:45 2017 Sahel Lucas--Saoudi
 */
 
 #include <stdlib.h>
@@ -87,7 +87,7 @@ void	set_byte(t_line *line)
   char	*coding_byte;
 
   set_byte_next(line, &i, &is_idx);
-  if ((coding_byte = malloc(MAX_ARGS_NUMBER + 1)) == NULL)
+  if ((coding_byte = malloc(MAX_ARGS_NUMBER * 2 + 1)) == NULL)
     exit(84);
   while (i < MAX_ARGS_NUMBER)
     {

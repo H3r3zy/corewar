@@ -1,11 +1,11 @@
 /*
-** game.c for corewar in /home/sahel/rendu/CPE/CPE_2016_corewar
+** game.c for  in /home/januar_m/delivery/CPE/CPE_2016_corewar/tmp/CPE_2016_corewar/src/vm
 ** 
-** Made by Sahel Lucas--Saoudi
-** Login   <sahel.lucas-saoudi@epitech.eu>
+** Made by Martin Januario
+** Login   <martin.januario@epitech.eu>
 ** 
-** Started on  Thu Mar 30 20:43:07 2017 Sahel Lucas--Saoudi
-** Last update Sun Apr  2 11:14:40 2017 Martin Januario
+** Started on  Sun Apr  2 11:43:02 2017 Martin Januario
+** Last update Sun Apr  2 12:01:27 2017 Martin Januario
 */
 
 #include <SFML/Graphics.h>
@@ -27,6 +27,18 @@ void		exec_action(t_player *player, int i)
     live(player, player->action);
   if (player->action->op.code == 9)
     zjmp(player, player->action);
+  if (player->action->op.code == 4)
+    add_m(player, player->action);
+  if (player->action->op.code == 5)
+    sub_m(player, player->action);
+  if (player->action->op.code == 6)
+    and_m(player, player->action);
+  if (player->action->op.code == 7)
+    or_m(player, player->action);
+  if (player->action->op.code == 8)
+    xor_m(player, player->action);
+  if (player->action->op.code == 12)
+    fork_m(player, player->action);
 }
 
 void		change_action(t_player *player, int i)
@@ -62,11 +74,12 @@ void		action_loop(t_player *player)
     }
 }
 
-int	player_loop(t_player *player)
+int	player_loop(t_player *player, t_core_window *ns)
 {
   int	dead;
 
   dead = 0;
+  sfRenderWindow_clear(ns->window, sfBlack);
   while (player)
     {
       if (player->is_dead || !player->action)
@@ -81,27 +94,29 @@ int	player_loop(t_player *player)
 void	start_game(t_game *game, t_my_framebuffer *buffer,
 		   t_core_window *ns, sfVector2i size)
 {
-  int	cycle;
+  int   cycle;
 
   cycle = 0;
   while (game->end < game->nb_j - 1)
     {
-      game->end = player_loop(game->player);
+      game->end = player_loop(game->player, ns);
       cycle++;
       update_map(buffer, game->memory, size);
       sfTexture_updateFromPixels(ns->texture, buffer->pixels,
-				 buffer->width, buffer->height, 0, 0);
-      sfRenderWindow_clear(ns->window, sfBlack);
+                                 buffer->width, buffer->height, 0, 0);
       sfRenderWindow_drawSprite(ns->window, ns->sprite, NULL);
       sfRenderWindow_display(ns->window);
     }
   sfRenderWindow_destroy(ns->window);
   while (game->player && game->player->is_dead != 0)
-    {
-      game->player = game->player->next;
-    }
+    game->player = game->player->next;
   if (!game->player)
     my_putstr(1, "EGALITE\n");
   else
-    my_putstr(1, "## %i Cycles ##\nThe winner is the player %i:\n%s\nWith %i lives\n\"%s\"\n", cycle, game->player->p, game->player->name, game->player->live, game->player->comment);
+    {
+      my_putstr(1, "## %d Cycles ##\nThe winner is the player %d",
+                cycle, game->player->p);
+      my_putstr(1, ":\n%s\nWith %d lives\n\"%s\"\n", game->player->name,
+                game->player->live, game->player->comment);
+    }
 }

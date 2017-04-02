@@ -5,7 +5,7 @@
 ## Login   <sahel.lucas-saoudi@epitech.eu>
 ## 
 ## Started on  Fri Mar 31 14:22:41 2017 Sahel Lucas--Saoudi
-## Last update Sun Apr  2 11:12:27 2017 Martin Januario
+## Last update Sun Apr  2 14:33:19 2017 Sahel Lucas--Saoudi
 ##
 
 SRC	=	../src/vm/main.c			\
@@ -16,10 +16,12 @@ SRC	=	../src/vm/main.c			\
 		../src/vm/instructions/zjmp.c		\
 		../src/vm/instructions/fork.c		\
 		../src/vm/instructions/sub_m.c		\
+		../src/vm/instructions/st_m.c		\
 		../src/vm/instructions/add_m.c		\
 		../src/vm/instructions/and_m.c		\
 		../src/vm/instructions/or_m.c		\
 		../src/vm/instructions/xor_m.c		\
+		../src/vm/instructions/ld_m.c		\
 		../src/asm/my_power_rec.c		\
 		../src/asm/reverse_add.c		\
 		../src/asm/op.c				\
@@ -37,7 +39,8 @@ SRC	=	../src/vm/main.c			\
 		../graph_vm/src/my_framebuffer_create.c	\
 		../graph_vm/src/update_map.c		\
 		../graph_vm/src/my_put_pixel.c		\
-		../graph_vm/src/reset_frame.c
+		../graph_vm/src/reset_frame.c		\
+		../src/vm/bit.c
 
 OBJ	=	$(SRC:.c=.o)
 

@@ -1,11 +1,11 @@
 /*
 ** vm.h for corewar in /home/sahel/rendu/CPE/CPE_2016_corewar
-** 
+**
 ** Made by Sahel Lucas--Saoudi
 ** Login   <sahel.lucas-saoudi@epitech.eu>
-** 
+**
 ** Started on  Thu Mar 30 00:03:13 2017 Sahel Lucas--Saoudi
-** Last update Sun Apr  2 10:06:06 2017 Martin Januario
+** Last update Sun Apr  2 14:44:49 2017 Sahel Lucas--Saoudi
 */
 
 #ifndef VM_H_
@@ -65,9 +65,11 @@ typedef struct		s_game
   int			nb_j;
 }			t_game;
 
+char		*in_binary(unsigned char);
 int		ini_window(t_game *, char *);
 t_player	*init_player(t_game *, char **);
 t_action	*get_action(t_player *);
+t_action	*set_pos_action(t_action *, t_player *);
 int		*init_register(t_player *);
 unsigned int	reverse_add2(unsigned int);
 unsigned int	reverse_add(unsigned int);
@@ -75,5 +77,14 @@ void		start_game(t_game *, t_my_framebuffer *,
 			   t_core_window *, sfVector2i);
 void		live(t_player *, t_action *);
 void		zjmp(t_player *, t_action *);
+void		add_m(t_player *, t_action *);
+void		and_m(t_player *, t_action *);
+void		or_m(t_player *, t_action *);
+void		sub_m(t_player *, t_action *);
+void		fork_m(t_player *, t_action *);
+void		xor_m(t_player *, t_action *);
+void		ld_m(t_player *, t_action *);
+void		st_m(t_player *, t_action *);
+void		set_byte_action(t_action *, char, int, int);
 
 #endif /* !VM_H_ */

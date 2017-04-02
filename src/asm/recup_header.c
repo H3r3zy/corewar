@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 18:29:45 2017 Maximilien Desnos
-** Last update Thu Mar 30 14:25:54 2017 maximilien desnos
+** Last update Sun Apr  2 02:13:57 2017 Sahel Lucas--Saoudi
 */
 
 #include	<sys/types.h>
@@ -38,7 +38,7 @@ static void		recup_str_header(char *tab, char *name)
   name[j] = '\0';
 }
 
-static int     		recup_name(char **tab, header_t *hd)
+static int		recup_name(char **tab, header_t *hd)
 {
   int			i;
 

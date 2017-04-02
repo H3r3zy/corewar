@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu@epitech.net>
 ** 
 ** Started on  Mon Mar 13 14:22:34 2017 Sahel
-** Last update Sat Mar 25 14:44:01 2017 Martin Januario
+** Last update Sun Apr  2 02:04:07 2017 Sahel Lucas--Saoudi
 */
 
 #include <stdlib.h>
@@ -60,13 +60,13 @@ char	**parse_(char *str, char c)
   int	tab_i;
   int	str_i;
 
-  if (!str || !*str || !(tab = malloc(sizeof(char *) * (nb_word(str, c) + 10))))
+  if (!str || !*str || !(tab = malloc(sizeof(char *) *
+				      (nb_word(str, c) + 10))))
     return (NULL);
   tab_i = 0;
   str_i = 0;
   while (str[str_i])
     {
-      
       tab[tab_i] = manage_str(str, &str_i, c);
       if (!tab || !tab[tab_i] || !*tab[tab_i]);
       else

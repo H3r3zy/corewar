@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 20:43:07 2017 Sahel Lucas--Saoudi
-** Last update Fri Mar 31 16:58:46 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 02:09:05 2017 Sahel Lucas--Saoudi
 */
 
 #include <SFML/Graphics.h>
@@ -44,7 +44,6 @@ void		action_loop(t_player *player)
   t_action	*tmp;
   int		i;
 
-  printf("\nTour joueur %i : %s\n", player->p, player->name);
   tmp = player->action;
   i = 0;
   while (tmp)
@@ -58,8 +57,6 @@ void		action_loop(t_player *player)
 	}
       else
 	tmp->cycle--;
-      printf("Action %i:\n\t|-> Function\t:%s\n\t|-> Cycle\t:%i\n", i, tmp->op.mnemonique, tmp->cycle);
-      printf("\t|-> Byte\t:%i\n", tmp->byte);
       tmp = tmp->parra;
       i++;
     }
@@ -81,29 +78,28 @@ int	player_loop(t_player *player)
   return (dead);
 }
 
-void	start_game(t_game *game, t_my_framebuffer *buffer, t_core_window *ns, sfVector2i size)
+void	start_game(t_game *game, t_my_framebuffer *buffer,
+		   t_core_window *ns, sfVector2i size)
 {
   int	cycle;
 
   cycle = 0;
   while (game->end < game->nb_j - 1)
     {
-      printf("\n####~~\n\tNEW CYCLE\n####~~\n");
       game->end = player_loop(game->player);
       cycle++;
       update_map(buffer, game->memory, size);
-      sfTexture_updateFromPixels(ns->texture, buffer->pixels, buffer->width, buffer->height, 0, 0);
+      sfTexture_updateFromPixels(ns->texture, buffer->pixels,
+				 buffer->width, buffer->height, 0, 0);
       sfRenderWindow_clear(ns->window, sfBlack);
       sfRenderWindow_drawSprite(ns->window, ns->sprite, NULL);
       sfRenderWindow_display(ns->window);
-      //      usleep(50000);
     }
   sfRenderWindow_destroy(ns->window);
   while (game->player && game->player->is_dead != 0)
     {
       game->player = game->player->next;
     }
-  printf("%s\n", game->memory);
   if (!game->player)
     printf("EGALITE\n");
   else

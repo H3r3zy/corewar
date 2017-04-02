@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Wed Feb  1 21:01:24 2017 
-** Last update Fri Mar 31 12:29:14 2017 Martin Januario
+** Last update Sun Apr  2 02:07:29 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
@@ -19,6 +19,5 @@ int		main(int argc, char **argv)
     return (84);
   if (ini_window(map) == 84)
     return (84);
-  //  free_tab(map);
   return (0);
 }

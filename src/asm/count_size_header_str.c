@@ -5,7 +5,7 @@
 ** Login   <desnosm@epitech.net>
 **
 ** Started on  Fri Mar 24 20:01:18 2017 Maximilien Desnos
-** Last update Thu Mar 30 16:52:55 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 02:14:27 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
@@ -13,7 +13,7 @@
 
 int		recup_pos_name(char **tab, int z, int j, char *tmp)
 {
-  int                   i;
+  int		i;
 
   i = 0;
   while (tmp[j] != '\0' && tab[z] != NULL)
@@ -45,9 +45,9 @@ int		recup_pos_name(char **tab, int z, int j, char *tmp)
 
 int		recup_pos_comment(char **tab)
 {
-  int                   i;
-  int                   j;
-  char                  *tmp;
+  int           i;
+  int           j;
+  char          *tmp;
 
   i = 0;
   j = 0;

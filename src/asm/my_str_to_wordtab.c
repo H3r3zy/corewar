@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 16:00:10 2017 maximilien desnos
-** Last update Wed Mar 29 17:57:46 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 02:14:47 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
@@ -24,7 +24,8 @@ int		count_space(char *str)
       {
 	if (str[i] == SEPARATOR_CHAR)
 	  {
-	    while (str[i] == SEPARATOR_CHAR  || str[i] == ' ' || str[i] == '\t')
+	    while (str[i] == SEPARATOR_CHAR  || str[i] == ' ' || str[i] ==
+		   '\t')
 	      i++;
 	    j++;
 	  }
@@ -52,7 +53,8 @@ int		add_word_tab(int i, char *str, char **tab, int j)
   if ((tab[j] = malloc(sizeof(char) * (size + 1))) == NULL)
     exit(84);
   size = 0;
-  while (str[i] != '\0' && str[i] != SEPARATOR_CHAR && str[i] != ' ' && str[i] != '\t')
+  while (str[i] != '\0' && str[i] != SEPARATOR_CHAR && str[i] != ' ' &&
+	 str[i] != '\t')
     {
       tab[j][size] = str[i];
       i = i + 1;

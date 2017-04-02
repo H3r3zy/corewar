@@ -5,11 +5,11 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Wed Feb  1 22:13:46 2017 
-** Last update Fri Mar 31 17:50:46 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 02:05:14 2017 Sahel Lucas--Saoudi
 */
 
 #include		<stdlib.h>
-#include		<math.h> // A ENLVER
+#include		<math.h>
 #include		"csfml.h"
 #include		"op.h"
 #include		"vm.h"
@@ -64,9 +64,7 @@ int			ini_window(t_game *game, char *str)
   tmp = size.y;
   if (size.x == 0 || size.y == 0)
     return (0);
-  printf("size: %d\n", tmp);
   size = size_win(size);
-  printf("size.x: %d & size.y: %d\n", size.x, size.y);
   if ((buffer = my_framebuffer_create(size.x, size.y)) == NULL ||
       (needs.window = create_window("VM Corewar", buffer->width,
 				    buffer->height)) == NULL)
@@ -77,7 +75,6 @@ int			ini_window(t_game *game, char *str)
   needs.sprite = sfSprite_create();
   needs.texture = sfTexture_create(buffer->width, buffer->height);
   sfSprite_setTexture(needs.sprite, needs.texture, sfTrue);
-  //  creator_loop(buffer, &needs, str, size);
   start_game(game, buffer, &needs, size);
   return (0);
 }

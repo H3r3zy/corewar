@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Sun Mar 26 20:30:08 2017 Sahel Lucas--Saoudi
-** Last update Wed Mar 29 18:20:08 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 02:13:27 2017 Sahel Lucas--Saoudi
 */
 
 #include <unistd.h>
@@ -57,7 +57,8 @@ static void	need_label(t_line *first, t_line *line)
   if (line->exist)
     while (line->arg[arg_i])
       {
-	if (line->arg[arg_i][0] == DIRECT_CHAR && line->arg[arg_i][1] == LABEL_CHAR)
+	if (line->arg[arg_i][0] == DIRECT_CHAR && line->arg[arg_i][1] ==
+	    LABEL_CHAR)
 	  set_label_bytes(line, first, arg_i);
 	arg_i++;
       }

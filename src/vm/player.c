@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 00:29:58 2017 Sahel Lucas--Saoudi
-** Last update Fri Mar 31 15:37:03 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 02:13:11 2017 Sahel Lucas--Saoudi
 */
 
 #include <stdio.h>
@@ -55,21 +55,20 @@ t_action	*get_action(t_player *player)
   char		is_idx;
   char		*cb_b;
   int		arg[MAX_ARGS_NUMBER];
-  
+
   cb = 0;
   is_idx = 0;
+  size = COMMENT_LENGTH + PROG_NAME_LENGTH + 16;
   action = malloc(sizeof(t_action));
-  if (!player->action)
-    lseek(player->fd, COMMENT_LENGTH + PROG_NAME_LENGTH + 16, SEEK_SET);
-  else
-    lseek(player->fd, COMMENT_LENGTH + PROG_NAME_LENGTH + 16 + player->action->pos + player->action->byte, SEEK_SET);
+  lseek(player->fd, (!player->action) ? (size) :
+	(size + player->action->pos + player->action->byte), SEEK_SET);
   size = read(player->fd, &ac, sizeof(char));
   if (size == 0)
     return (NULL);
   action->op = op_tab[ac - 1];
   action->cycle = action->op.nbr_cycles;
   action->byte = 1;
-  if (ac != 1 && ac != 9 && ac != 12 && ac != 15) 
+  if (ac != 1 && ac != 9 && ac != 12 && ac != 15)
     {
       read(player->fd, &cb, sizeof(char));
       action->byte++;
@@ -79,90 +78,45 @@ t_action	*get_action(t_player *player)
   cb_b = NULL;
   i = 0;
   while (i < MAX_ARGS_NUMBER)
-    {
-      arg[i] = 0;
-      i++;
-    }
+    arg[i++] = 0;
   i = 0;
   if (cb != 0)
     {
       cb_b = in_binary(cb);
       while (i < MAX_ARGS_NUMBER)
 	{
+	  size = 0;
 	  if (cb_b[i * 2] == '0' && cb_b[i * 2 + 1] == '1')
-	    {
-	      read(player->fd, &arg[i], sizeof(char));
-	      action->byte++;
-	    }
+	    size = 1;
 	  else if (cb_b[i * 2] == '1' && cb_b[i * 2 + 1] == '0')
-	    {
-	      read(player->fd, &arg[i], (is_idx == 0) ? (DIR_SIZE) : (2));
-	      action->byte += (is_idx == 0) ? (DIR_SIZE) : (2);
-	      arg[i] = (is_idx == 0) ? (reverse_add(arg[i])) : (reverse_add2(arg[i]));
-	    }
+	    size = (is_idx == 0) ? (DIR_SIZE) : (2);
 	  else if (cb_b[i * 2] == '1' && cb_b[i * 2 + 1] == '1')
-	    {
-	      read(player->fd, &arg[i], (is_idx == 0) ? (IND_SIZE) : (2));
-	      action->byte += (is_idx == 0) ? (IND_SIZE) : (2);
-	      arg[i] = reverse_add2(arg[i]);
-	    }
+	    size = (is_idx == 0) ? (IND_SIZE) : (2);
+	  action->bytes[i] = size;
+	  action->byte += size;
 	  i++;
 	}
     }
   else if (ac == 1)
-    {
-      action->byte += DIR_SIZE;
-      read(player->fd, &arg[0], DIR_SIZE);
-      arg[0] = reverse_add(arg[0]);
-    }
-  else if (ac == 9)
-    {
-      action->byte += 2;
-      read(player->fd, &arg[0], 2);
-      printf("AVANT REVERSE : %i\n", (short) arg[0]);
-      arg[0] = (short) reverse_add2(arg[0]);
-      printf("APRES REVERSE : %i\n", arg[0]);
-    }
-  else if (ac == 12)
-    {
-      action->byte += 2;
-      read(player->fd, &arg[0], 2);
-      arg[0] = reverse_add2(arg[0]);
-    }
-  else if (ac == 15)
-    {
-      action->byte += 2;
-      read(player->fd, &arg[0], 2);
-      arg[0] = reverse_add2(arg[0]);
-    }
+    action->byte += DIR_SIZE;
+  else if (ac == 9 || ac == 12 || ac == 15)
+    action->byte += 2;
   else if (ac == 16)
-    {
-      action->byte++;
-      read(player->fd, &arg[0], 1);
-    }
+    action->byte++;
   if (player->action)
     {
-      printf("ACTION BYTE %i\n", player->action->byte);
-      printf("LAST POSM %i\n", player->action->pos_m);
-      action->pos = (player->action->pos + player->action->byte) % player->prog_size;
-      action->pos_m = (player->action->pos_m + player->action->byte) % MEM_SIZE;
-      printf("POSM %i\n", action->pos_m);
+      action->pos = (player->action->pos + player->action->byte) %
+	player->prog_size;
+      action->pos_m = (player->action->pos_m + player->action->byte) %
+	MEM_SIZE;
     }
   else
     {
       action->pos = 0;
       action->pos_m = player->max_size * (player->p - 1);
-      printf("NEW POSM%i\n", action->pos_m);
     }
   action->arg = arg;
   action->parra = NULL;
-  printf("Player %s\n|-> Action:\n", player->name);
-  printf("\t|-> Pos C\t:%i\n", action->pos);
-  printf("\t|-> Pos M\t:%i\n", action->pos_m);
-  printf("\t|-> Cycle\t:%i\n", action->cycle);
-  printf("\t|-> Byte\t:%u\n", action->byte);
-  if (cb)
-    printf("\t|-> Coding Byte\t:%i | %s\n", cb, cb_b);
   return (action);
 }
 
@@ -174,7 +128,6 @@ t_player	*set_player(t_game *game, char **av, int i)
 
   player = malloc(sizeof(t_player));
   player->fd = open(av[i], O_RDONLY);
-  printf("Player : %s\n|-> fd : %i\n", av[i], player->fd);
   if (!player || player->fd == -1)
     return (NULL);
   read(player->fd, &player->magic, sizeof(int));

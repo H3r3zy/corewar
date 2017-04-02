@@ -5,14 +5,13 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 18:48:57 2017 Martin Januario
-** Last update Fri Mar 31 18:32:01 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 02:07:21 2017 Sahel Lucas--Saoudi
 */
 
 #include        <SFML/Graphics/RenderWindow.h>
 #include        <SFML/Graphics/Texture.h>
 #include        <SFML/Graphics/Sprite.h>
 #include	<stdlib.h>
-#include	<string.h> // A enlever
 #include	"framebuffer.h"
 #include	"csfml.h"
 
@@ -31,7 +30,7 @@ void		draw_square(t_my_framebuffer *buffer, sfVector2i from,
 	  save.x++;
 	}
       save.y++;
-    }  
+    }
 }
 
 char		**my_str_to_wordmap(char *mem)
@@ -80,10 +79,8 @@ int		update_map(t_my_framebuffer *buffer, char *mem,
 	  idx.x += size.x + 1;
 	  tmp.x++;
 	}
-      printf("last: %d\n", idx.x);
       tmp.y++;
       idx.y += size.y + 1;
     }
-  printf("width: %d\n", tmp.x);
   return (0);
 }

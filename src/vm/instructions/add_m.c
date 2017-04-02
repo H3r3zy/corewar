@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Fri Mar 31 19:59:16 2017 maximilien desnos
-** Last update Fri Mar 31 21:02:16 2017 maximilien desnos
+** Last update Sun Apr  2 02:10:06 2017 Sahel Lucas--Saoudi
 */
 
 #include	<sys/types.h>
@@ -19,7 +19,8 @@ void		add_m(t_player *player, t_action *actual)
   char		k;
 
   (void)actual;
-  lseek(player->fd, COMMENT_LENGTH + PROG_NAME_LENGTH + 16 + actual->pos + 1, SEEK_SET);
+  lseek(player->fd, COMMENT_LENGTH + PROG_NAME_LENGTH + 16 +
+	actual->pos + 1, SEEK_SET);
   read(player->fd, &i, sizeof(i));
   read(player->fd, &j, sizeof(j));
   read(player->fd, &k, sizeof(k));

@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Sat Mar 25 11:05:25 2017 Martin Januario
-** Last update Wed Mar 29 18:32:04 2017 Martin Van Elslande
+** Last update Sun Apr  2 02:15:02 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdlib.h>
@@ -104,7 +104,8 @@ int		check_command(char *str, int nb_line,
   while (op_tab[idx].mnemonique != NULL)
     {
       if (my_strcmp(tmp[0], op_tab[idx].mnemonique) == 0)
-	return (id_command(&str[my_strlen(tmp[0]) + nb_space(str)], nb_line, idx, label));
+	return (id_command(&str[my_strlen(tmp[0]) + nb_space(str)],
+			   nb_line, idx, label));
       idx++;
     }
   if ((new = epur_command(str)) == NULL)

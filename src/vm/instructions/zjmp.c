@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Fri Mar 31 11:30:56 2017 Sahel Lucas--Saoudi
-** Last update Fri Mar 31 12:07:30 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 02:10:51 2017 Sahel Lucas--Saoudi
 */
 
 #include <unistd.h>
@@ -17,12 +17,12 @@
 void	zjmp(t_player *player, t_action *actual)
 {
   short	byte;
-  lseek(player->fd, COMMENT_LENGTH + PROG_NAME_LENGTH + 16 + actual->pos + 1, SEEK_SET);
+
+  lseek(player->fd, COMMENT_LENGTH + PROG_NAME_LENGTH + 16 +
+	actual->pos + 1, SEEK_SET);
   read(player->fd, &byte, sizeof(byte));
-  printf("AVANT %i\n", byte);
   byte = reverse_add2(byte);
-  printf("APRES %i\n", byte);
-  actual->byte = byte;
-  printf("ACTUAL BYTE %i\n", actual->byte);
+  if (player->carry == 1)
+    actual->byte = byte;
   (void) player;
 }

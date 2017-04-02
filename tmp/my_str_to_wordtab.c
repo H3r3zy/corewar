@@ -5,7 +5,7 @@
 ** Login   <martin.januario@epitech.eu>
 ** 
 ** Started on  Thu Mar 30 13:45:43 2017 Martin Januario
-** Last update Sun Apr  2 00:46:40 2017 Martin Januario
+** Last update Sun Apr  2 02:03:29 2017 Sahel Lucas--Saoudi
 */
 
 #include	<stdio.h>
@@ -70,17 +70,15 @@ char		*give_me_word(char *str, int *idx)
 	  res[cpt] = '\0';
 	  return (res);
 	}
-      else if ((qt[1] == 0 && str[*idx] == '\"') || (qt[0] == 0 && str[*idx] == '\''))
+      else if ((qt[1] == 0 && str[*idx] == '\"') || (qt[0] == 0 &&
+						     str[*idx] == '\''))
 	{
-	  qt[(str[*idx] == '\'') ? 1 : 0] = (qt[(str[*idx] == '\'') ? 1 : 0] + 1) % 2;
+	  qt[(str[*idx] == '\'') ? 1 : 0] =
+	    (qt[(str[*idx] == '\'') ? 1 : 0] + 1) % 2;
 	  (*idx)++;
 	}
       else
-	{
-	  res[cpt] = str[*idx];
-	  cpt++;
-	  (*idx)++;
-	}	
+	res[cpt++] = str[(*idx)++];
     }
   res[cpt] = '\0';
   return (res);
@@ -103,7 +101,6 @@ char		**my_str_to_wordtab(char *str)
     {
       if ((tab[idx] = give_me_word(str, &idx2)) == NULL)
 	return (NULL);
-      printf("idx2: %d\n", idx2);
       idx++;
     }
   tab[idx] = NULL;

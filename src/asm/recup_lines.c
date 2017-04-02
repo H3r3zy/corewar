@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Sat Mar 25 15:07:35 2017 maximilien desnos
-** Last update Sun Apr  2 01:01:51 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 02:16:24 2017 Sahel Lucas--Saoudi
 */
 
 #include	<unistd.h>
@@ -75,7 +75,7 @@ void		write_asm(t_line *op, header_t *hd, int fd)
 t_line		*recup_lines(t_line *op, char **fd, int i)
 {
   t_line	*op2;
-  
+
   op->nb_bytes_tot = 0;
   if ((op2 = malloc(sizeof(t_line))) == NULL)
     exit(84);

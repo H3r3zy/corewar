@@ -5,7 +5,7 @@
 ** Login   <maximilien.desnos@epitech.eu>
 **
 ** Started on  Fri Mar 31 15:46:15 2017 maximilien desnos
-** Last update Fri Mar 31 19:12:36 2017 maximilien desnos
+** Last update Sun Apr  2 02:09:48 2017 Sahel Lucas--Saoudi
 */
 
 #include	<unistd.h>
@@ -24,13 +24,15 @@ void		fork_m(t_player *player, t_action *actual)
 
   if ((act2 = malloc(sizeof(t_action))) == NULL)
     exit(84);
-  lseek(player->fd, COMMENT_LENGTH + PROG_NAME_LENGTH + 16 + actual->pos + 1, SEEK_SET);
+  lseek(player->fd, COMMENT_LENGTH + PROG_NAME_LENGTH + 16 +
+	actual->pos + 1, SEEK_SET);
   read(player->fd, &byte, sizeof(byte));
   byte = reverse_add2(byte);
   tmp = act2->pos_m;
   act2->pos_m = actual->pos_m + byte;
   pos = player->max_size * (player->p - 1) + act2->pos_m;
-  if (pos > player->max_size * (player->p - 1) && pos < player->max_size * (player->p - 1) + player->prog_size)
+  if (pos > player->max_size * (player->p - 1) && pos <
+      player->max_size * (player->p - 1) + player->prog_size)
     act2->pos = pos;
   else
     act2->pos = tmp;

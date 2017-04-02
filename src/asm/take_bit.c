@@ -5,7 +5,7 @@
 ** Login   <sahel.lucas-saoudi@epitech.eu>
 ** 
 ** Started on  Sat Mar 25 14:16:23 2017 Sahel Lucas--Saoudi
-** Last update Sun Apr  2 00:45:49 2017 Sahel Lucas--Saoudi
+** Last update Sun Apr  2 02:19:19 2017 Sahel Lucas--Saoudi
 */
 
 #include <stdlib.h>
@@ -48,33 +48,32 @@ void	set_byte(t_line *line)
   i = 0;
   is_idx = 0;
   line->have_cb = 0;
-  if (match(line->op.mnemonique, "sti") || match(line->op.mnemonique, "zjmp") ||
-      match(line->op.mnemonique, "ldi") || match(line->op.mnemonique, "fork") ||
-      match(line->op.mnemonique, "lldi") || match(line->op.mnemonique, "lfork"))
+  if (line->op.code == 11 || line->op.code == 9 || line->op.code == 10 ||
+      line->op.code == 12 || line->op.code == 15)
     is_idx = 1;
-  if (!match(line->op.mnemonique, "live") && !match(line->op.mnemonique, "zjmp") &&
-      !match(line->op.mnemonique, "fork") && !match(line->op.mnemonique, "lfork"))
+  if (line->op.code != 1 && line->op.code != 9 && line->op.code != 12 &&
+      line->op.code != 15)
     {
       line->bytes += 1;
       line->have_cb = 1;
     }
   while (i < MAX_ARGS_NUMBER)
     {
-      if (i < tablen_(line->arg) && line->arg[i][0] == 'r') // Registre
+      if (i < tablen_(line->arg) && line->arg[i][0] == 'r')
 	{
 	  coding_byte[i * 2] = '0';
 	  coding_byte[i * 2 + 1] = '1';
 	  line->bytes += 1;
 	  line->byte[i] = 1;
 	}
-      else if (i < tablen_(line->arg) && line->arg[i][0] == DIRECT_CHAR) // Direct
+      else if (i < tablen_(line->arg) && line->arg[i][0] == DIRECT_CHAR)
 	{
 	  coding_byte[i * 2] = '1';
 	  coding_byte[i * 2 + 1] = '0';
 	  line->bytes += (is_idx == 0) ? (DIR_SIZE) : (2);
 	  line->byte[i] = (is_idx == 0) ? (DIR_SIZE) : (2);
 	}
-      else if (i < tablen_(line->arg)) // indirect
+      else if (i < tablen_(line->arg))
 	{
 	  coding_byte[i * 2] = '1';
 	  coding_byte[i * 2 + 1] = '1';

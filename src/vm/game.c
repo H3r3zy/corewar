@@ -1,15 +1,11 @@
 /*
-** game.c for corewar in /home/sahel/rendu/CPE/CPE_2016_corewar
-**
-** Made by Sahel Lucas--Saoudi
-** Login   <sahel.lucas-saoudi@epitech.eu>
-**
-** Started on  Thu Mar 30 20:43:07 2017 Sahel Lucas--Saoudi
-<<<<<<< HEAD
-** Last update Sun Apr  2 11:41:39 2017 Martin Januario
-=======
-** Last update Sun Apr  2 11:14:40 2017 Martin Januario
->>>>>>> 1a108a02cc6f93e2060ddb70806f316942567064
+** game.c for  in /home/januar_m/delivery/CPE/CPE_2016_corewar/tmp/CPE_2016_corewar/src/vm
+** 
+** Made by Martin Januario
+** Login   <martin.januario@epitech.eu>
+** 
+** Started on  Sun Apr  2 11:43:02 2017 Martin Januario
+** Last update Sun Apr  2 12:01:27 2017 Martin Januario
 */
 
 #include <SFML/Graphics.h>
@@ -78,11 +74,12 @@ void		action_loop(t_player *player)
     }
 }
 
-int	player_loop(t_player *player)
+int	player_loop(t_player *player, t_core_window *ns)
 {
   int	dead;
 
   dead = 0;
+  sfRenderWindow_clear(ns->window, sfBlack);
   while (player)
     {
       if (player->is_dead || !player->action)
@@ -102,12 +99,11 @@ void	start_game(t_game *game, t_my_framebuffer *buffer,
   cycle = 0;
   while (game->end < game->nb_j - 1)
     {
-      game->end = player_loop(game->player);
+      game->end = player_loop(game->player, ns);
       cycle++;
       update_map(buffer, game->memory, size);
       sfTexture_updateFromPixels(ns->texture, buffer->pixels,
                                  buffer->width, buffer->height, 0, 0);
-      sfRenderWindow_clear(ns->window, sfBlack);
       sfRenderWindow_drawSprite(ns->window, ns->sprite, NULL);
       sfRenderWindow_display(ns->window);
     }

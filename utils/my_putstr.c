@@ -1,11 +1,11 @@
 /*
-** my_putstr.c for  in /home/januar_m/delivery/CPE/CPE_2016_corewar/martin/error_handling/utils
+** my_putstr.c for corewar in /home/tsuna/Epitech/projects/minishell2/tests/PSU_2016_minishell1
 ** 
-** Made by Martin Januario
-** Login   <martin.januario@epitech.eu>
+** Made by Martin Van Elslande
+** Login   <martin.van-elslande@epitech.eu>
 ** 
-** Started on  Fri Mar 24 19:34:31 2017 Martin Januario
-** Last update Sat Mar 25 12:48:30 2017 Martin Van Elslande
+** Started on  Tue Apr  4 21:09:19 2017 Martin Van Elslande
+** Last update Tue Apr  4 21:09:21 2017 Martin Van Elslande
 */
 
 #include	<unistd.h>
